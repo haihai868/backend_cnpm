@@ -24,10 +24,11 @@ def upgrade() -> None:
                     sa.Column('name', sa.String(100), nullable=False),
                     sa.Column('description', sa.String(255)),
                     sa.Column('quantity_in_stock', sa.Integer(), server_default='0', nullable=False),
-                    #remember to add oldPrice
+                    sa.Column('old_price', sa.Numeric(10, 2)),
                     sa.Column('price', sa.Numeric(10, 2), nullable=False),
                     sa.Column('size', sa.Enum('S', 'M', 'L', 'XL', 'XXL', name='size_enum')),
                     sa.Column('category_id', sa.Integer(), nullable=False),
+                    sa.Column('image', sa.String(255)),
 
                     sa.ForeignKeyConstraint(['category_id'], ['categories.id'], name='products_category_id_fk', ondelete='CASCADE')
                     )

@@ -16,6 +16,13 @@ def get_all_orders(db: Session = Depends(get_db)):
     orders = db.query(models.Order).all()
     return orders
 
+@router.get('/{id}', response_model=schemas.OrderOut)
+def get_order_by_id(id: int, db: Session = Depends(get_db)):
+    order = db.query(models.Order).filter(models.Order.id == id).first()
+    return order
+
+
+
 @router.post('/', response_model=schemas.OrderOut)
 def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
     new_order = models.Order(**order.model_dump())

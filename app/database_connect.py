@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from app.config import settings
 
 URI = f"mysql+mysqlconnector://{settings.database_username}:{settings.database_password}@{settings.database_hostname}/{settings.database_name}"
-URL = f"mysql+mysqlconnector://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}?ssl-mode=REQUIRED"
+URL = f"mysql+mysqlconnector://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}"
 engine = create_engine(URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

@@ -9,7 +9,7 @@ class Product(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100), nullable=False)
-    description = Column(String(255)),
+    description = Column(String(255))
     old_price = Column(Float)
     price = Column(Float, nullable=False)
     quantity_in_stock = Column(Integer, nullable=False, server_default='0')

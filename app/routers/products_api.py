@@ -1,6 +1,7 @@
 from typing import List, Optional
 
 from fastapi import APIRouter, HTTPException, Depends, Query
+from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from app import models, schemas
@@ -50,8 +51,10 @@ def get_products_by_criteria(db: Session = Depends(get_db),
 
     if search:
         query = query.filter(
-            models.Product.name.like(f'%{search}%')
-            | models.Product.description.like(f'%{search}%')
+            or_(
+                models.Product.name.like(f'%{search}%'),
+                models.Product.description.like(f'%{search}%')
+            )
         )
 
     if category:

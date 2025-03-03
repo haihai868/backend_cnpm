@@ -1,10 +1,11 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
 class OrderCreate(BaseModel):
     user_id: int
-    product_id: int
-    quantity: int
+    description: Optional[str] = None
 
     class Config:
         orm_mode = True
@@ -12,10 +13,8 @@ class OrderCreate(BaseModel):
 class OrderOut(BaseModel):
     id: int
     user_id: int
-    product_id: int
-    quantity: int
     created_at: str
-    updated_at: str
+    description: Optional[str] = None
     status: str
 
     class Config:

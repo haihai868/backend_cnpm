@@ -8,7 +8,7 @@ class Order(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    status = Column(Enum('Paid', 'Unpaid'), nullable=False)
+    status = Column(Enum('Paid', 'Unpaid'), nullable=False, server_default='Unpaid')
     description = Column(String(255))
     created_at = Column(DateTime, default=func.now())
 

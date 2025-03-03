@@ -28,7 +28,7 @@ def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     if not category:
         raise HTTPException(status_code=404, detail='Category not found')
 
-    if product.size not in ['S', 'M', 'L', 'XL']:
+    if product.size not in ['S', 'M', 'L', 'XL', 'XXL']:
         raise HTTPException(status_code=400, detail='Invalid size')
 
     new_product = models.Product(**product.model_dump())

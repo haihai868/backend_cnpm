@@ -36,7 +36,7 @@ def upgrade() -> None:
     op.create_table('orders',
                     sa.Column('id', sa.Integer(), primary_key=True, autoincrement=True),
                     sa.Column('user_id', sa.Integer(), nullable=False),
-                    sa.Column('status', sa.String(50), nullable=False),
+                    sa.Column('status', sa.Enum('Paid', 'Unpaid'), nullable=False, server_default='Unpaid'),
                     sa.Column('description', sa.String(255)),
                     sa.Column('created_at', sa.DateTime(), server_default=sa.func.now()),
 

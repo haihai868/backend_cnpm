@@ -34,6 +34,9 @@ def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
 def add_product(product_id: int, order_id: int, quantity: int, db: Session = Depends(get_db)):
     order = db.query(models.Order).filter(models.Order.id == order_id).first()
 
+    if quantity <= 0:
+        raise HTTPException(status_code=400, detail='Quantity must be greater than 0')
+
     if not order:
         raise HTTPException(status_code=404, detail='Order not found')
 
@@ -42,14 +45,17 @@ def add_product(product_id: int, order_id: int, quantity: int, db: Session = Dep
     if not product:
         raise HTTPException(status_code=404, detail='Product not found')
 
-    order_detail = models.OrderDetail(product_id=product_id,
-                                      order_id=id,
-                                      quantity=quantity,
-                                      priceEach=product.price)
-    db.add(order_detail)
+    order_detail = db.query(models.OrderDetail).filter(models.OrderDetail.product_id == product_id,
+                                                         models.OrderDetail.order_id == order_id).first()
+    if order_detail:
+        order_detail.quantity += quantity
+    else:
+        order_detail = models.OrderDetail(product_id=product_id, order_id=order_id, quantity=quantity)
+        db.add(order_detail)
+
     db.commit()
-    db.refresh(order_detail)
-    return order_detail
+    db.refresh(order)
+    return order
 
 @router.get('users/{id}', response_model=OrderOut)
 def get_unpaid_order_by_user_id(id: int, db: Session = Depends(get_db)):
@@ -72,3 +78,30 @@ def get_paid_order_by_user_id(id: int, db: Session = Depends(get_db)):
                                                models.Order.status == 'Paid').all()
 
     return paid_order
+
+@router.get('{id}/total_price')
+def get_total_order_price(id: int, db: Session = Depends(get_db)):
+    order = db.query(models.Order).filter(models.Order.id == id).first()
+    if not order:
+        raise HTTPException(status_code=404, detail='Order not found')
+
+    total = 0
+    for order_detail in order.order_details:
+        total += order_detail.product.price * order_detail.quantity
+
+    return {'order_id': id ,'total': total}
+
+@router.put('/{id}/pay', response_model=schemas.OrderOut)
+def pay_order(id: int, db: Session = Depends(get_db)):
+    order = db.query(models.Order).filter(models.Order.id == id).first()
+    if not order:
+        raise HTTPException(status_code=404, detail='Order not found')
+
+    if order.status == 'Paid':
+        raise HTTPException(status_code=400, detail='Order already paid')
+
+    order.status = 'Paid'
+    db.commit()
+    db.refresh(order)
+    return order
+

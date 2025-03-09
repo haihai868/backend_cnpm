@@ -6,5 +6,6 @@ from .product import Product
 from .review import Review
 from .user import User
 from .notification import Notification
+from .favourite import Favourite
 
 from app.database_connect import Base

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app import models, schemas
@@ -11,6 +11,10 @@ router = APIRouter(
 
 @router.post('/', response_model=schemas.CategoryOut)
 def add_category(category: schemas.CategoryCreate, db: Session = Depends(get_db)):
+    check_category = db.query(models.Category).filter(models.Category.name == category.name).first()
+    if check_category:
+        raise HTTPException(status_code=400, detail='Category already exists')
+
     category = models.Category(**category.model_dump())
     db.add(category)
     db.commit()

@@ -6,7 +6,6 @@ from app import models, security
 from app.database_connect import get_db
 
 router = APIRouter(
-    prefix='/authentication',
     tags=['authentication']
 )
 

@@ -8,12 +8,13 @@ class Product(Base):
     __tablename__ = 'products'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(100), nullable=False, unique=True)
+    name = Column(String(100), nullable=False)
     description = Column(String(255))
     old_price = Column(Float)
     price = Column(Float, nullable=False)
     quantity_in_stock = Column(Integer, nullable=False, server_default='0')
     size = Column(Enum('S', 'M', 'L', 'XL', 'XXL', name='size_enum'))
+    age_gender = Column(Enum('Man', 'Women', 'Kids', 'Baby', name='age_gender_enum'))
     category_id = Column(Integer, ForeignKey('categories.id'))
     image = Column(String(255))
 

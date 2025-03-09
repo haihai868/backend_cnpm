@@ -4,7 +4,7 @@ import uvicorn
 
 from app import models
 from app.database_connect import engine
-from app.routers import products_api, users_api, categories_api
+from app.routers import products_api, users_api, categories_api, reviews_api, notifications_api, orders_api, authentication
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -23,6 +23,10 @@ app.add_middleware(
 app.include_router(products_api.router)
 app.include_router(users_api.router)
 app.include_router(categories_api.router)
+app.include_router(reviews_api.router)
+app.include_router(notifications_api.router)
+app.include_router(orders_api.router)
+app.include_router(authentication.router)
 
 @app.get('/')
 def test_get():

@@ -14,3 +14,4 @@ class User(Base):
     notifications = relationship('Notification', back_populates='user')
     orders = relationship('Order', back_populates='user')
     reviews = relationship('Review', back_populates='user')
+    favourites = relationship('Favourite', back_populates='user')

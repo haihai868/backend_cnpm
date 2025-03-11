@@ -14,10 +14,11 @@ class Product(Base):
     price = Column(Float, nullable=False)
     quantity_in_stock = Column(Integer, nullable=False, server_default='0')
     size = Column(Enum('S', 'M', 'L', 'XL', 'XXL', name='size_enum'))
-    age_gender = Column(Enum('Man', 'Women', 'Kids', 'Baby', name='age_gender_enum'))
+    age_gender = Column(Enum('Men', 'Women', 'Kids', 'Babies', name='age_gender_enum'))
     category_id = Column(Integer, ForeignKey('categories.id'))
     image = Column(String(255))
 
     category = relationship('Category', back_populates='products')
     order_details = relationship('OrderDetail', back_populates='product')
     reviews = relationship('Review', back_populates='product')
+    favourites = relationship('Favourite', back_populates='product')

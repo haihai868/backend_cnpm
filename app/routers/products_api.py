@@ -37,6 +37,9 @@ def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     if not category:
         raise HTTPException(status_code=404, detail='Category not found')
 
+    if product.age_gender and product.age_gender not in ['Men', 'Women', 'Kids', 'Babies']:
+        raise HTTPException(status_code=400, detail='Invalid age-gender')
+
     if product.size not in ['S', 'M', 'L', 'XL', 'XXL']:
         raise HTTPException(status_code=400, detail='Invalid size')
 
@@ -60,7 +63,8 @@ def get_products_by_criteria(db: Session = Depends(get_db),
                              price_min: Optional[float] = Query(None, alias='priceMin'),
                              price_max: Optional[float] = Query(None, alias='priceMax'),
                              quantity_in_stock_min: Optional[int] = Query(None, alias='quantityInStockMin'),
-                             quantity_in_stock_max: Optional[int] = Query(None, alias='quantityInStockMax')
+                             quantity_in_stock_max: Optional[int] = Query(None, alias='quantityInStockMax'),
+                             age_gender: Optional[str] = Query(None, alias='ageGender')
                              ):
     query = db.query(models.Product)
 
@@ -75,7 +79,7 @@ def get_products_by_criteria(db: Session = Depends(get_db),
     if category:
         query = query.join(models.Category).filter(models.Category.name == category)
 
-    if size:
+    if size and size in ['S', 'M', 'L', 'XL', 'XXL']:
         query = query.filter(models.Product.size == size)
 
     if price_min is not None:
@@ -89,6 +93,9 @@ def get_products_by_criteria(db: Session = Depends(get_db),
 
     if quantity_in_stock_max is not None:
         query = query.filter(models.Product.quantity_in_stock <= quantity_in_stock_max)
+
+    if age_gender and age_gender in ['Men', 'Women', 'Kids', 'Babies']:
+        query = query.filter(models.Product.age_gender == age_gender)
 
     return query.all()
 
@@ -114,7 +121,7 @@ def get_favourites_by_user_id(user_id: int, db: Session = Depends(get_db)):
     fav_products = [favourite.product for favourite in user.favourites]
     return fav_products
 
-@router.post("/user/favourites/{product_id}")
+@router.post("/user/add-favourite/{product_id}", response_model=schemas.ProductCreate)
 def add_favourite(product_id: int, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
     product = db.query(models.Product).filter(models.Product.id == product_id).first()
     if not product:
@@ -128,4 +135,4 @@ def add_favourite(product_id: int, db: Session = Depends(get_db), user: models.U
 
     user.favourites.append(models.Favourite(product_id=product_id))
     db.commit()
-    return {'message': 'Favourite added successfully'}
+    return product

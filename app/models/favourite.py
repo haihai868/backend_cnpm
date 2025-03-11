@@ -13,4 +13,4 @@ class Favourite(Base):
 
     user = relationship('User', back_populates='favourites')
     product = relationship('Product', back_populates='favourites')
-    __table_args__ = (UniqueConstraint('user_id', 'product_id', name='unique_favourite'))
+    __table_args__ = (UniqueConstraint('user_id', 'product_id', name='unique_favourite'),)

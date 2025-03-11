@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 class ProductCreate(BaseModel):
     name: str
@@ -11,6 +11,7 @@ class ProductCreate(BaseModel):
     quantity_in_stock: int
     category_id: int
     image: Optional[str] = None
+    age_gender: Optional[str] = None
 
 class ProductOut(BaseModel):
     id: int
@@ -22,3 +23,4 @@ class ProductOut(BaseModel):
     quantity_in_stock: int
     category_id: int
     image: Optional[str] = None
+    age_gender: Optional[str] = None

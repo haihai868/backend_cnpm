@@ -21,6 +21,11 @@ def create_review(review: schemas.ReviewCreate, db: Session = Depends(get_db), u
     if not product:
         raise HTTPException(status_code=404, detail='Product not found')
 
+    existed_review = db.query(models.Review).filter(models.Review.product_id == review.product_id,
+                                                    models.Review.user_id == user.id).first()
+    if existed_review:
+        raise HTTPException(status_code=403, detail="You have already reviewed this product")
+
     review = models.Review(**review.model_dump(), user_id=user.id)
     db.add(review)
     db.commit()
@@ -48,19 +53,18 @@ def delete_review(id: int, db: Session = Depends(get_db), user: models.User = De
     db.commit()
     return {'message': 'Review deleted successfully'}
 
-@router.put("/{id}", response_model=schemas.ReviewOut)
-def update_review(id: int, review: schemas.ReviewCreate, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
-    review_db = db.query(models.Review).filter(models.Review.id == id).first()
+@router.put("/", response_model=schemas.ReviewOut)
+def update_review(review: schemas.ReviewCreate, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
+    review_db = db.query(models.Review).filter(models.Review.product_id == review.product_id,
+                                               models.Review.user_id == user.id).first()
     if not review_db:
         raise HTTPException(status_code=404, detail="Review not found")
-
-    if review_db.user_id != user.id:
-        raise HTTPException(status_code=403, detail="You can only update your own reviews")
 
     review_db.rating = review.rating
     review_db.comment = review.comment
     db.commit()
     db.refresh(review_db)
+
     return review_db
 
 @router.get('/products/{id}', response_model=List[schemas.ReviewOut])

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel
 
 
@@ -12,4 +14,4 @@ class NotificationOut(BaseModel):
     title: str
     message: str
     is_read: bool
-    created_at: str
+    created_at: datetime

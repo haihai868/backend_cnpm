@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum
 
 from pydantic import BaseModel
@@ -19,3 +20,4 @@ class ReviewOut(BaseModel):
     rating: rating_enum
     comment: str
     product_id: int
+    create_at: datetime

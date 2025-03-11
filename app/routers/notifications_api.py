@@ -1,9 +1,9 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 
-from app import schemas, models
+from app import schemas, models, security
 from app.database_connect import get_db
 
 router = APIRouter(
@@ -33,27 +33,30 @@ def get_notification(id: int, db: Session = Depends(get_db)):
     return notification
 
 @router.delete("/{id}")
-def delete_notification(id: int, db: Session = Depends(get_db)):
+def delete_notification(id: int, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
     notification = db.query(models.Notification).filter(models.Notification.id == id).first()
     if not notification:
         raise HTTPException(status_code=404, detail="Notification not found")
+
+    if notification.user_id != user.id:
+        raise HTTPException(status_code=403, detail="You can only delete your own notifications")
 
     db.delete(notification)
     db.commit()
     return {'message': 'Notification deleted successfully'}
 
-@router.get("/user/{user_id}", response_model=List[schemas.NotificationOut])
-def get_user_notifications(user_id: int, db: Session = Depends(get_db)):
-    notifications = db.query(models.Notification).filter(models.Notification.user_id == user_id).all()
-    return notifications
-
-@router.delete("/user/{user_id}")
-def delete_user_notifications(user_id: int, db: Session = Depends(get_db)):
-    notifications = db.query(models.Notification).filter(models.Notification.user_id == user_id).all()
+@router.delete("/")
+def delete_user_notifications(db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
+    notifications = db.query(models.Notification).filter(models.Notification.user_id == user.id).all()
     for notification in notifications:
         db.delete(notification)
     db.commit()
     return {'message': 'Notifications deleted successfully'}
+
+@router.get("/user/{user_id}", response_model=List[schemas.NotificationOut])
+def get_user_notifications(user_id: int, db: Session = Depends(get_db)):
+    notifications = db.query(models.Notification).filter(models.Notification.user_id == user_id).all()
+    return notifications
 
 @router.put("/{id}", response_model=schemas.NotificationOut)
 def mark_as(id: int, db: Session = Depends(get_db)):

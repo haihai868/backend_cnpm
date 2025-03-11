@@ -55,6 +55,19 @@ def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     db.refresh(new_product)
     return new_product
 
+@router.put('/{id}', response_model=schemas.ProductOut)
+def update_product(updated_product: schemas.ProductCreate, id: int, db: Session = Depends(get_db)):
+    product_query = db.query(models.Product).filter(models.Product.id == id)
+
+    product = product_query.first()
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+
+    product_query.update(updated_product.model_dump(), synchronize_session=False)
+
+    db.commit()
+    return product_query.first()
+
 @router.get('/', response_model=List[schemas.ProductOut])
 def get_products_by_criteria(db: Session = Depends(get_db),
                              search: Optional[str] = None,
@@ -103,14 +116,14 @@ def get_products_by_criteria(db: Session = Depends(get_db),
 def get_avg_rating(id: int, db: Session = Depends(get_db)):
     product = db.query(models.Product).filter(models.Product.id == id).first()
     if len(product.reviews) == 0:
-        return {"id": id, "avg_rating": 0}
+        return {"product_id": id, "avg_rating": 0}
 
     avg_rating = 0
     for review in product.reviews:
         avg_rating += int(review.rating)
 
     avg_rating /= len(product.reviews)
-    return {"id": id, "avg_rating": avg_rating}
+    return {"product_id": id, "avg_rating": avg_rating}
 
 @router.get("/user/favourites/{user_id}", response_model=List[schemas.ProductOut])
 def get_favourites_by_user_id(user_id: int, db: Session = Depends(get_db)):

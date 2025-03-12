@@ -57,7 +57,7 @@ def add_product(product_id: int, order_id: int, quantity: int, db: Session = Dep
     db.refresh(order)
     return order
 
-@router.get('users/{id}', response_model=OrderOut)
+@router.get('/users/{id}', response_model=OrderOut)
 def get_unpaid_order_by_user_id(id: int, db: Session = Depends(get_db)):
     user = db.query(models.User).filter(models.User.id == id).first()
     if not user:
@@ -68,7 +68,7 @@ def get_unpaid_order_by_user_id(id: int, db: Session = Depends(get_db)):
 
     return unpaid_order
 
-@router.get('users/{id}', response_model=OrderOut)
+@router.get('/users/{id}', response_model=OrderOut)
 def get_paid_order_by_user_id(id: int, db: Session = Depends(get_db)):
     user = db.query(models.User).filter(models.User.id == id).first()
     if not user:
@@ -79,7 +79,7 @@ def get_paid_order_by_user_id(id: int, db: Session = Depends(get_db)):
 
     return paid_order
 
-@router.get('{id}/total_price')
+@router.get('/{id}/total_price')
 def get_total_order_price(id: int, db: Session = Depends(get_db)):
     order = db.query(models.Order).filter(models.Order.id == id).first()
     if not order:

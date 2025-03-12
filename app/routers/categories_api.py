@@ -25,3 +25,11 @@ def add_category(category: schemas.CategoryCreate, db: Session = Depends(get_db)
 def get_all_categories(db: Session = Depends(get_db)):
     categories = db.query(models.Category).all()
     return categories
+
+@router.get('/{name}')
+def get_by_name(name: str, db: Session = Depends(get_db)):
+    category = db.query(models.Category).filter(models.Category.name == name).first()
+    if not category:
+        raise HTTPException(status_code=404, detail="Category not found")
+
+    return category

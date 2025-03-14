@@ -19,7 +19,7 @@ class ProductOut(BaseModel):
     description: str
     old_price: Optional[float] = None
     price: float
-    size: str
+    size: Optional[str] = None
     quantity_in_stock: int
     category_id: int
     image: Optional[str] = None

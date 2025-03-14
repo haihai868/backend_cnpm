@@ -10,7 +10,7 @@ class Order(Base):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     status = Column(Enum('Paid', 'Unpaid'), nullable=False, server_default='Unpaid')
     description = Column(String(255))
-    created_at = Column(DateTime, default=func.now())
+    created_at = Column(DateTime, server_default=func.now())
 
     user = relationship('User', back_populates='orders')
     order_details = relationship('OrderDetail', back_populates='order')

@@ -29,7 +29,7 @@ def upgrade() -> None:
                     sa.ForeignKeyConstraint(['product_id'], ['products.id'], name='favourites_product_id_fk', ondelete='CASCADE')
                     )
 
-    op.add_column('products', sa.Column('age_gender', sa.Enum('Man', 'Women', 'Kids', 'Baby', name='age_gender_enum')))
+    op.add_column('products', sa.Column('age_gender', sa.Enum('Men', 'Women', 'Kids', 'Babies', name='age_gender_enum')))
 
 
 def downgrade() -> None:

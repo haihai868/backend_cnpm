@@ -72,12 +72,14 @@ def update_product(updated_product: schemas.ProductCreate, id: int, db: Session 
 def get_products_by_criteria(db: Session = Depends(get_db),
                              search: Optional[str] = None,
                              category: Optional[str] = None,
-                             size: Optional[str] = None,
+                             sizes: List[Optional[str]] = Query(None, alias='size'),
                              price_min: Optional[float] = Query(None, alias='priceMin'),
                              price_max: Optional[float] = Query(None, alias='priceMax'),
                              quantity_in_stock_min: Optional[int] = Query(None, alias='quantityInStockMin'),
                              quantity_in_stock_max: Optional[int] = Query(None, alias='quantityInStockMax'),
-                             age_gender: Optional[str] = Query(None, alias='ageGender')
+                             age_gender: Optional[str] = Query(None, alias='ageGender'),
+                             max_rating: Optional[int] = Query(None, alias='maxRating'),
+                             min_rating: Optional[int] = Query(None, alias='minRating')
                              ):
     query = db.query(models.Product)
 
@@ -92,8 +94,11 @@ def get_products_by_criteria(db: Session = Depends(get_db),
     if category:
         query = query.join(models.Category).filter(models.Category.name == category)
 
-    if size and size in ['S', 'M', 'L', 'XL', 'XXL']:
-        query = query.filter(models.Product.size == size)
+    if sizes:
+        for size in sizes:
+            if size not in ['S', 'M', 'L', 'XL', 'XXL']:
+                raise HTTPException(status_code=400, detail='Invalid size')
+        query = query.filter(models.Product.size.in_(sizes))
 
     if price_min is not None:
         query = query.filter(models.Product.price >= price_min)
@@ -107,22 +112,42 @@ def get_products_by_criteria(db: Session = Depends(get_db),
     if quantity_in_stock_max is not None:
         query = query.filter(models.Product.quantity_in_stock <= quantity_in_stock_max)
 
-    if age_gender and age_gender in ['Men', 'Women', 'Kids', 'Babies']:
+    if age_gender:
+        if age_gender not in ['Men', 'Women', 'Kids', 'Babies']:
+            raise HTTPException(status_code=400, detail='Invalid age-gender')
         query = query.filter(models.Product.age_gender == age_gender)
 
-    return query.all()
+    products = query.all()
+
+    if max_rating is not None or min_rating is not None:
+        filtered_products = []
+        for product in products:
+            review_count = len(product.reviews)
+            if review_count == 0:
+                avg_rating = 0
+            else:
+                avg_rating = sum(int(review.rating) for review in product.reviews) / review_count
+
+            if min_rating is not None and avg_rating < min_rating:
+                continue
+            if max_rating is not None and avg_rating > max_rating:
+                continue
+            filtered_products.append(product)
+        return filtered_products
+
+    return products
 
 @router.get("/avg_rating/{id}")
 def get_avg_rating(id: int, db: Session = Depends(get_db)):
     product = db.query(models.Product).filter(models.Product.id == id).first()
-    if len(product.reviews) == 0:
+    if not product:
+        raise HTTPException(status_code=404, detail='Product not found')
+
+    review_count = len(product.reviews)
+    if review_count == 0:
         return {"product_id": id, "avg_rating": 0}
 
-    avg_rating = 0
-    for review in product.reviews:
-        avg_rating += int(review.rating)
-
-    avg_rating /= len(product.reviews)
+    avg_rating = sum(int(review.rating) for review in product.reviews) / review_count
     return {"product_id": id, "avg_rating": avg_rating}
 
 @router.get("/user/favourites/{user_id}", response_model=List[schemas.ProductOut])
@@ -149,3 +174,14 @@ def add_favourite(product_id: int, db: Session = Depends(get_db), user: models.U
     user.favourites.append(models.Favourite(product_id=product_id))
     db.commit()
     return product
+
+@router.delete("/favourite/{product_id}")
+def delete_favourite(product_id: int, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
+    favourite = db.query(models.Favourite).filter(models.Favourite.product_id == product_id,
+                                                  models.Favourite.user_id == user.id).first()
+    if not favourite:
+        raise HTTPException(status_code=404, detail='Favourite not found')
+
+    db.delete(favourite)
+    db.commit()
+    return {'message': 'Favourite deleted successfully'}

@@ -20,4 +20,4 @@ class ReviewOut(BaseModel):
     rating: rating_enum
     comment: str
     product_id: int
-    create_at: datetime
+    created_at: datetime

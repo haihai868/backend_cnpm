@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
@@ -29,7 +29,15 @@ app.include_router(orders_api.router)
 app.include_router(authentication.router)
 
 @app.get('/')
-def test_get():
-    return {'data': 'test data'}
+def test_get(response: Response, request: Request):
+    test_data = request.cookies.get('data1')
+    test_data2 = request.cookies.get('data2')
+    if not test_data:
+        response.set_cookie(key='data1', value='test_data', max_age=60, httponly=True)
+        test_data = 'test_data'
+    if not test_data2:
+        response.set_cookie(key='data2', value='test_data2', max_age=60, httponly=True)
+        test_data2 = 'test_data2'
+    return {'data': test_data, 'data2': test_data2}
 
 # uvicorn.run(app, host="0.0.0.0", port=8000)

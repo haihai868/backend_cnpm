@@ -15,7 +15,7 @@ router = APIRouter(
 def get_all_reviews(db: Session = Depends(get_db)):
     return db.query(models.Review).all()
 
-@router.post('/', response_model=schemas.ReviewOut)
+@router.post('/', status_code=201, response_model=schemas.ReviewOut)
 def create_review(review: schemas.ReviewCreate, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
     product = db.query(models.Product).filter(models.Product.id == review.product_id).first()
     if not product:

@@ -16,7 +16,7 @@ def get_all_notifications(db: Session = Depends(get_db)):
     notifications = db.query(models.Notification).all()
     return notifications
 
-@router.post('/', response_model=schemas.NotificationOut)
+@router.post('/', status_code=201, response_model=schemas.NotificationOut)
 def create_notification(notification: schemas.NotificationCreate, db: Session = Depends(get_db)):
     new_notification = models.Notification(**notification.model_dump())
     db.add(new_notification)

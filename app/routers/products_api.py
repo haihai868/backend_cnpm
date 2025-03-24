@@ -21,7 +21,8 @@ def get_product_by_id(id: int, db: Session = Depends(get_db)):
     
     return product
 
-@router.get("/byName/{name}")
+# moi doi ten
+@router.get("/name/{name}")
 def get_products_by_name(name: str, db: Session = Depends(get_db)):
     products = db.query(models.Product).filter(models.Product.name == name).all()
 
@@ -30,7 +31,7 @@ def get_products_by_name(name: str, db: Session = Depends(get_db)):
 
     return products
 
-@router.post('/', response_model=schemas.ProductOut)
+@router.post('/', status_code=201, response_model=schemas.ProductOut)
 def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     category = db.query(models.Category).filter(models.Category.id == product.category_id).first()
 
@@ -159,7 +160,8 @@ def get_favourites_by_user_id(user_id: int, db: Session = Depends(get_db)):
     fav_products = [favourite.product for favourite in user.favourites]
     return fav_products
 
-@router.post("/user/add-favourite/{product_id}", response_model=schemas.ProductCreate)
+# moi doi ten
+@router.post("/user/favourite/{product_id}", status_code=201, response_model=schemas.ProductCreate)
 def add_favourite(product_id: int, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
     product = db.query(models.Product).filter(models.Product.id == product_id).first()
     if not product:

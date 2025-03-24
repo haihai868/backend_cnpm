@@ -9,7 +9,7 @@ router = APIRouter(
     tags=['categories']
 )
 
-@router.post('/', response_model=schemas.CategoryOut)
+@router.post('/', status_code=201, response_model=schemas.CategoryOut)
 def add_category(category: schemas.CategoryCreate, db: Session = Depends(get_db)):
     check_category = db.query(models.Category).filter(models.Category.name == category.name).first()
     if check_category:

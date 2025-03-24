@@ -25,7 +25,7 @@ def get_order_by_id(id: int, db: Session = Depends(get_db)):
 
     return order
 
-@router.post('/', response_model=schemas.OrderOut)
+@router.post('/', status_code=201, response_model=schemas.OrderOut)
 def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
     new_order = models.Order(**order.model_dump())
     db.add(new_order)
@@ -94,7 +94,7 @@ def get_total_order_price(id: int, db: Session = Depends(get_db)):
 
     return {'order_id': id ,'total': total}
 
-@router.put('/{id}/pay', response_model=schemas.OrderOut)
+@router.put('/{id}/payment', response_model=schemas.OrderOut)
 def pay_order(id: int, db: Session = Depends(get_db)):
     order = db.query(models.Order).filter(models.Order.id == id).first()
     if not order:

@@ -14,3 +14,13 @@ class OrderOut(BaseModel):
     created_at: datetime
     description: Optional[str] = None
     status: str
+
+class OrderDetailCreate(BaseModel):
+    product_id: int
+    quantity: int
+
+class OrderDetailOut(BaseModel):
+    id: int
+    product_id: int
+    order_id: int
+    quantity: int

@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from app import schemas, models
 from app.database_connect import get_db
 from app.schemas import OrderOut
+from app.security import get_current_user
 
 router = APIRouter(
     prefix='/orders',
@@ -33,27 +34,28 @@ def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
     db.refresh(new_order)
     return new_order
 
-@router.put('/{id}', response_model=schemas.OrderOut)
-def add_product(product_id: int, order_id: int, quantity: int, db: Session = Depends(get_db)):
-    order = db.query(models.Order).filter(models.Order.id == order_id).first()
-
-    if quantity <= 0:
+@router.put('/', response_model=schemas.OrderOut)
+def add_product_to_order(order_detail: schemas.OrderDetailCreate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    if order_detail.quantity <= 0:
         raise HTTPException(status_code=400, detail='Quantity must be greater than 0')
+
+    order = db.query(models.Order).filter(models.Order.user_id == current_user.id,
+                                         models.Order.status == 'Unpaid').first()
 
     if not order:
         raise HTTPException(status_code=404, detail='Order not found')
 
-    product = db.query(models.Product).filter(models.Product.id == product_id).first()
+    product = db.query(models.Product).filter(models.Product.id == order_detail.product_id).first()
 
     if not product:
         raise HTTPException(status_code=404, detail='Product not found')
 
-    order_detail = db.query(models.OrderDetail).filter(models.OrderDetail.product_id == product_id,
-                                                         models.OrderDetail.order_id == order_id).first()
+    order_detail = db.query(models.OrderDetail).filter(models.OrderDetail.product_id == order_detail.product_id,
+                                                         models.OrderDetail.order_id == order.id).first()
     if order_detail:
         raise HTTPException(status_code=400, detail='Product already in order')
     else:
-        order_detail = models.OrderDetail(product_id=product_id, order_id=order_id, quantity=quantity)
+        order_detail = models.OrderDetail(product_id=order_detail.product_id, order_id=order.id, quantity=order_detail.quantity)
         db.add(order_detail)
 
     db.commit()

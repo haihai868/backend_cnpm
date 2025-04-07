@@ -65,7 +65,7 @@ def create_products(client, create_user, create_categories):
     return new_products
 
 @pytest.fixture
-def create_favourite(client, create_user, create_product):
-    response = client.post(f"/user/favourite/{create_product['id']}")
+def create_order(client, create_user):
+    response = client.post('/orders/', json={"user_id": 1, "description": "test"})
     assert response.status_code == 201
     return response.json()

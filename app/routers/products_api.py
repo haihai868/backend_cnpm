@@ -71,7 +71,7 @@ def update_product(updated_product: schemas.ProductCreate, id: int, db: Session 
 @router.get('/', response_model=List[Tuple[schemas.ProductOut, float]])
 def get_products_by_criteria(db: Session = Depends(get_db),
                              skip: int = 0,
-                             limit: int = Query(50, le=100),
+                             limit: int = Query(None, le=100),
                              search: Optional[str] = None,
                              category: Optional[str] = None,
                              sizes: List[Optional[str]] = Query(None, alias='size'),

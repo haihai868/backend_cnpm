@@ -51,7 +51,7 @@ def add_product(product_id: int, order_id: int, quantity: int, db: Session = Dep
     order_detail = db.query(models.OrderDetail).filter(models.OrderDetail.product_id == product_id,
                                                          models.OrderDetail.order_id == order_id).first()
     if order_detail:
-        order_detail.quantity += quantity
+        raise HTTPException(status_code=400, detail='Product already in order')
     else:
         order_detail = models.OrderDetail(product_id=product_id, order_id=order_id, quantity=quantity)
         db.add(order_detail)
@@ -108,3 +108,13 @@ def pay_order(id: int, db: Session = Depends(get_db)):
     db.refresh(order)
     return order
 
+@router.delete('/{id}')
+def delete_product_from_order(product_id: int, order_id: int, db: Session = Depends(get_db)):
+    order_detail = db.query(models.OrderDetail).filter(models.OrderDetail.product_id == product_id,
+                                                         models.OrderDetail.order_id == order_id).first()
+    if not order_detail:
+        raise HTTPException(status_code=404, detail='Order detail not found')
+
+    db.delete(order_detail)
+    db.commit()
+    return {'message': 'Product deleted successfully'}

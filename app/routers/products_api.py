@@ -1,7 +1,7 @@
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 from fastapi import APIRouter, HTTPException, Depends, Query
-from sqlalchemy import or_
+from sqlalchemy import or_, func
 from sqlalchemy.orm import Session
 
 from app import models, schemas, security
@@ -21,7 +21,6 @@ def get_product_by_id(id: int, db: Session = Depends(get_db)):
     
     return product
 
-# moi doi ten
 @router.get("/name/{name}")
 def get_products_by_name(name: str, db: Session = Depends(get_db)):
     products = db.query(models.Product).filter(models.Product.name == name).all()
@@ -69,8 +68,10 @@ def update_product(updated_product: schemas.ProductCreate, id: int, db: Session 
     db.commit()
     return product_query.first()
 
-@router.get('/', response_model=List[schemas.ProductOut])
+@router.get('/', response_model=List[Tuple[schemas.ProductOut, float]])
 def get_products_by_criteria(db: Session = Depends(get_db),
+                             skip: int = 0,
+                             limit: int = Query(50, le=100),
                              search: Optional[str] = None,
                              category: Optional[str] = None,
                              sizes: List[Optional[str]] = Query(None, alias='size'),
@@ -82,7 +83,16 @@ def get_products_by_criteria(db: Session = Depends(get_db),
                              max_rating: Optional[int] = Query(None, alias='maxRating'),
                              min_rating: Optional[int] = Query(None, alias='minRating')
                              ):
-    query = db.query(models.Product)
+    query = (db.query(models.Product,
+                     func.coalesce(func.avg(models.Review.rating), 0).label('avg_rating')
+                     )
+             .outerjoin(models.Review, models.Review.product_id == models.Product.id)
+             .group_by(models.Product.id))
+
+    if max_rating is not None:
+        query = query.having(func.coalesce(func.avg(models.Review.rating), 0) <= max_rating)
+    if min_rating is not None:
+        query = query.having(func.coalesce(func.avg(models.Review.rating), 0) >= min_rating)
 
     if search:
         query = query.filter(
@@ -103,13 +113,11 @@ def get_products_by_criteria(db: Session = Depends(get_db),
 
     if price_min is not None:
         query = query.filter(models.Product.price >= price_min)
-
     if price_max is not None:
         query = query.filter(models.Product.price <= price_max)
 
     if quantity_in_stock_min is not None:
         query = query.filter(models.Product.quantity_in_stock >= quantity_in_stock_min)
-
     if quantity_in_stock_max is not None:
         query = query.filter(models.Product.quantity_in_stock <= quantity_in_stock_max)
 
@@ -118,38 +126,28 @@ def get_products_by_criteria(db: Session = Depends(get_db),
             raise HTTPException(status_code=400, detail='Invalid age-gender')
         query = query.filter(models.Product.age_gender == age_gender)
 
+    query = query.offset(skip).limit(limit)
     products = query.all()
-
-    if max_rating is not None or min_rating is not None:
-        filtered_products = []
-        for product in products:
-            review_count = len(product.reviews)
-            if review_count == 0:
-                avg_rating = 0
-            else:
-                avg_rating = sum(int(review.rating) for review in product.reviews) / review_count
-
-            if min_rating is not None and avg_rating < min_rating:
-                continue
-            if max_rating is not None and avg_rating > max_rating:
-                continue
-            filtered_products.append(product)
-        return filtered_products
 
     return products
 
 @router.get("/avg_rating/{id}")
 def get_avg_rating(id: int, db: Session = Depends(get_db)):
-    product = db.query(models.Product).filter(models.Product.id == id).first()
-    if not product:
-        raise HTTPException(status_code=404, detail='Product not found')
+    result = (
+        db.query(
+            models.Product.id,
+            func.coalesce(func.avg(models.Review.rating), 0).label("avg_rating")
+        )
+        .outerjoin(models.Review, models.Review.product_id == models.Product.id)
+        .filter(models.Product.id == id)
+        .group_by(models.Product.id)
+        .first()
+    )
 
-    review_count = len(product.reviews)
-    if review_count == 0:
-        return {"product_id": id, "avg_rating": 0}
+    if not result:
+        raise HTTPException(status_code=404, detail="Product not found")
 
-    avg_rating = sum(int(review.rating) for review in product.reviews) / review_count
-    return {"product_id": id, "avg_rating": avg_rating}
+    return {"product_id": id, "avg_rating": result.avg_rating}
 
 @router.get("/user/favourites/{user_id}", response_model=List[schemas.ProductOut])
 def get_favourites_by_user_id(user_id: int, db: Session = Depends(get_db)):
@@ -160,7 +158,6 @@ def get_favourites_by_user_id(user_id: int, db: Session = Depends(get_db)):
     fav_products = [favourite.product for favourite in user.favourites]
     return fav_products
 
-# moi doi ten
 @router.post("/user/favourite/{product_id}", status_code=201, response_model=schemas.ProductCreate)
 def add_favourite(product_id: int, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
     product = db.query(models.Product).filter(models.Product.id == product_id).first()

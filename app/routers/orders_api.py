@@ -105,6 +105,15 @@ def get_orders_by_user_id(id: int, db: Session = Depends(get_db), status: str = 
 
     return unpaid_order
 
+@router.get('/products/', response_model=List[schemas.ProductOut])
+def get_products_in_order(order_id: int, db: Session = Depends(get_db), user: models.User = Depends(get_current_user)):
+    order = db.query(models.Order).filter(models.Order.id == order_id).first()
+    if not order:
+        raise HTTPException(status_code=404, detail='Order not found')
+
+    products = [order_detail.product for order_detail in order.order_details]
+    return products
+
 @router.get('/{id}/total_price')
 def get_total_order_price(id: int, db: Session = Depends(get_db)):
     order = db.query(models.Order).filter(models.Order.id == id).first()

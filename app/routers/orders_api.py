@@ -29,6 +29,16 @@ def get_products_in_order(db: Session = Depends(get_db), user: models.User = Dep
     products_with_quantity = [schemas.ProductOrderOut(**order_detail.product.__dict__, quantity_in_order=order_detail.quantity) for order_detail in order_details]
     return products_with_quantity
 
+@router.get('/{order_id}/products', response_model=List[schemas.ProductOrderOut])
+def get_products_in_order_by_id(order_id: int, db: Session = Depends(get_db)):
+    order = db.query(models.Order).filter(models.Order.id == order_id).first()
+    if not order:
+        raise HTTPException(status_code=404, detail='Order not found')
+
+    order_details = db.query(models.OrderDetail).filter(models.OrderDetail.order_id == order.id).all()
+    products_with_quantity = [schemas.ProductOrderOut(**order_detail.product.__dict__, quantity_in_order=order_detail.quantity) for order_detail in order_details]
+    return products_with_quantity
+
 @router.get('/{id}', response_model=schemas.OrderOut)
 def get_order_by_id(id: int, db: Session = Depends(get_db)):
     order = db.query(models.Order).filter(models.Order.id == id).first()

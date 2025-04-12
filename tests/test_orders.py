@@ -56,3 +56,13 @@ def test_get_products_in_order(authorized_client, create_order, create_products)
     assert response.json()[0]['id'] == create_products[0]['id']
     assert response.json()[1]['id'] == create_products[1]['id']
 
+def test_get_products_in_order_by_id(authorized_client, create_order, create_products):
+    authorized_client.put('/orders/', json={"product_id": create_products[0]['id'], "quantity": 1})
+    authorized_client.put('/orders/', json={"product_id": create_products[1]['id'], "quantity": 1})
+    response = authorized_client.get(f'/orders/{create_order["id"]}/products')
+    assert response.status_code == 200
+    assert len(response.json()) == 2
+    assert response.json()[0]['id'] == create_products[0]['id']
+    assert response.json()[1]['id'] == create_products[1]['id']
+
+

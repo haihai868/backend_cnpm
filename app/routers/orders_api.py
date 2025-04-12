@@ -18,6 +18,17 @@ def get_all_orders(db: Session = Depends(get_db)):
     orders = db.query(models.Order).all()
     return orders
 
+@router.get('/products', response_model=List[schemas.ProductOut])
+def get_products_in_order(db: Session = Depends(get_db), user: models.User = Depends(get_current_user)):
+    order = db.query(models.Order).filter(models.Order.user_id == user.id,
+                                         models.Order.status == 'Unpaid').first()
+    if not order:
+        raise HTTPException(status_code=404, detail='Order not found')
+
+    products = [order_detail.product for order_detail in order.order_details]
+    print(products)
+    return products
+
 @router.get('/{id}', response_model=schemas.OrderOut)
 def get_order_by_id(id: int, db: Session = Depends(get_db)):
     order = db.query(models.Order).filter(models.Order.id == id).first()
@@ -104,15 +115,6 @@ def get_orders_by_user_id(id: int, db: Session = Depends(get_db), status: str = 
                                                  models.Order.status == 'Unpaid').all()
 
     return unpaid_order
-
-@router.get('/products/', response_model=List[schemas.ProductOut])
-def get_products_in_order(order_id: int, db: Session = Depends(get_db), user: models.User = Depends(get_current_user)):
-    order = db.query(models.Order).filter(models.Order.id == order_id).first()
-    if not order:
-        raise HTTPException(status_code=404, detail='Order not found')
-
-    products = [order_detail.product for order_detail in order.order_details]
-    return products
 
 @router.get('/{id}/total_price')
 def get_total_order_price(id: int, db: Session = Depends(get_db)):

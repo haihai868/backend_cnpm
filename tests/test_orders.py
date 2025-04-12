@@ -47,12 +47,12 @@ def test_delete_product_from_order(authorized_client, create_order, create_produ
     assert response.json() == {'message': 'Product deleted successfully'}
 
 def test_get_products_in_order(authorized_client, create_order, create_products):
-    response = authorized_client.get(f'/orders/products/{create_order["id"]}')
+    authorized_client.put('/orders/', json={"product_id": create_products[0]['id'], "quantity": 1})
+    authorized_client.put('/orders/', json={"product_id": create_products[1]['id'], "quantity": 1})
+    response = authorized_client.get('/orders/products/')
     assert response.status_code == 200
     print(response.json())
-    # assert len(response.json()['order_details']) == 2
-    # assert response.json()['order_details'][0]['product_id'] == create_products[0]['id']
-    # assert response.json()['order_details'][1]['product_id'] == create_products[1]['id']
-    # assert response.json()['order_details'][0]['quantity'] == 1
-    # assert response.json()['order_details'][1]['quantity'] == 1
+    assert len(response.json()) == 2
+    assert response.json()[0]['id'] == create_products[0]['id']
+    assert response.json()[1]['id'] == create_products[1]['id']
 

@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-class ProductCreate(BaseModel):
+class ProductBase(BaseModel):
     name: str
     description: str
     old_price: Optional[float] = None
@@ -13,14 +13,17 @@ class ProductCreate(BaseModel):
     image: Optional[str] = None
     age_gender: Optional[str] = None
 
-class ProductOut(BaseModel):
+    model_config = {
+        'from_attributes': True
+    }
+
+class ProductCreate(ProductBase):
+    pass
+
+class ProductOut(ProductBase):
     id: int
-    name: str
-    description: str
-    old_price: Optional[float] = None
-    price: float
-    size: Optional[str] = None
-    quantity_in_stock: int
-    category_id: int
-    image: Optional[str] = None
-    age_gender: Optional[str] = None
+
+class ProductOrderOut(ProductBase):
+    id: int
+    quantity_in_order: int
+

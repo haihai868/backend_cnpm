@@ -1,4 +1,4 @@
-from .product import ProductOut, ProductCreate
+from .product import ProductOut, ProductCreate, ProductOrderOut
 from .category import CategoryOut, CategoryCreate
 from .user import UserOut, UserCreate, TokenData
 from .review import ReviewOut, ReviewCreate

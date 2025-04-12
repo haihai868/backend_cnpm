@@ -14,4 +14,4 @@ class Order(Base):
 
     user = relationship('User', back_populates='orders')
     order_details = relationship('OrderDetail', back_populates='order')
-    payments = relationship('Payment', back_populates='order')
+    payment = relationship('Payment', back_populates='order')

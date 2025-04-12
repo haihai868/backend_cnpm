@@ -2,9 +2,16 @@ import pytest
 
 from tests.test_database_connect import client, db
 
-def test_get_product_by_id(client, create_product):
-    response = client.get(f'/products/{create_product["id"]}')
-    assert response.status_code == 200
+@pytest.mark.parametrize('id, status_code', [
+    (1, 200),
+    (3, 404)
+])
+def test_get_product_by_id(client, create_product, id, status_code):
+    response = client.get(f'/products/{id}')
+    assert response.status_code == status_code
+    if status_code == 404:
+        assert response.json()['detail'] == 'Product not found'
+        return
     assert response.json()['id'] == create_product['id']
     assert response.json()['name'] == create_product['name']
     assert response.json()['description'] == create_product['description']

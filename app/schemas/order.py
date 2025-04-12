@@ -17,6 +17,7 @@ class OrderOut(BaseModel):
 
 class OrderDetailCreate(BaseModel):
     product_id: int
+    priceEach: Optional[float] = None
     quantity: int
 
 class OrderDetailOut(BaseModel):
@@ -24,3 +25,4 @@ class OrderDetailOut(BaseModel):
     product_id: int
     order_id: int
     quantity: int
+    priceEach: float

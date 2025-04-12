@@ -14,11 +14,18 @@ def create_user(client):
     return new_user
 
 @pytest.fixture
-def token(create_user):
-    return create_access_token({"user_email": create_user['email'], "user_id": create_user['id']})
+def create_user2(client):
+    res = client.post("/users/", json={"email": "test2@gmail.com", 'fullname': 'test2',"password": "test2"})
+
+    assert res.status_code == 201
+
+    new_user = res.json()
+    new_user['password'] = "test2"
+    return new_user
 
 @pytest.fixture
-def authorized_client(client, token):
+def authorized_client(client, create_user):
+    token = create_access_token({"user_email": create_user['email'], "user_id": create_user['id']})
     client.headers = {
         **client.headers,
         "Authorization": f"Bearer {token}"
@@ -65,7 +72,49 @@ def create_products(client, create_user, create_categories):
     return new_products
 
 @pytest.fixture
+def create_reviews_for_1_product(authorized_client, create_user2, create_product):
+    response = authorized_client.post('/reviews/', json={'rating': '1', 'comment': 'test', 'product_id': create_product['id']})
+    assert response.status_code == 201
+
+    authorized_client.headers.update({'Authorization': f'Bearer {create_access_token({"user_email": create_user2["email"], "user_id": create_user2["id"]})}'})
+    response1 = authorized_client.post('/reviews/', json={'rating': '5', 'comment': 'test2', 'product_id': create_product['id']})
+    assert response.status_code == 201
+    assert response1.status_code == 201
+    assert response.json()['product_id'] == create_product['id']
+    return response.json(), response1.json()
+
+@pytest.fixture
+def create_reviews_for_1_user(authorized_client, create_products):
+    response = authorized_client.post('/reviews/', json={'rating': '1', 'comment': 'test', 'product_id': create_products[0]['id']})
+    assert response.status_code == 201
+
+    response1 = authorized_client.post('/reviews/', json={'rating': '5', 'comment': 'test2', 'product_id': create_products[1]['id']})
+    assert response1.status_code == 201
+    return response.json(), response1.json()
+
+@pytest.fixture
 def create_order(client, create_user):
-    response = client.post('/orders/', json={"user_id": 1, "description": "test"})
+    response = client.post('/orders/', json={"user_id": create_user['id'], "description": "test"})
     assert response.status_code == 201
     return response.json()
+
+@pytest.fixture
+def create_orders(client, create_user):
+    response = client.post('/orders/', json={"user_id": create_user['id'], "description": "test"})
+    response1 = client.post('/orders/', json={"user_id": create_user['id'], "description": "test"})
+    assert response.status_code == 201
+    assert response1.status_code == 201
+    return response.json(), response1.json()
+
+@pytest.fixture
+def create_notifications(client, create_user, create_user2):
+    response = client.post('/notifications/', json={'user_id': create_user["id"], 'title': 'test', 'message': 'test'})
+    response1 = client.post('/notifications/', json={'user_id': create_user["id"], 'title': 'test2', 'message': 'test2'})
+    response2 = client.post('/notifications/', json={'user_id': create_user2["id"], 'title': 'test3', 'message': 'test3'})
+
+    assert response.status_code == 201
+    assert response1.status_code == 201
+    assert response2.status_code == 201
+    assert response.json()['is_read'] == False
+
+    return response.json(), response1.json(), response2.json()

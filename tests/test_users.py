@@ -31,4 +31,12 @@ def test_failed_login(email, password, status_code, client, create_user):
     assert response.status_code == status_code
     assert response.json().get('detail') == 'Incorrect email or password'
 
+def test_update_user(authorized_client, create_user):
+    response = authorized_client.put('/users/', json={'email': 'test@gmail.com', 'password': 'test1', 'fullname': 'test'})
+    assert response.status_code == 200
+    assert response.json()['email'] == 'test@gmail.com'
+    assert response.json()['fullname'] == 'test'
+    assert response.json()['password'] == 'test1'
+    assert response.json()['id'] == create_user['id']
+
     #full

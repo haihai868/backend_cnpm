@@ -34,3 +34,10 @@ def get_user(id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
 
     return user
+
+@router.put("/", response_model=schemas.UserOut)
+def update_user(updated_user: schemas.UserCreate, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
+    user_query = db.query(models.User).filter(models.User.id == user.id)
+    user_query.update(updated_user.model_dump(), synchronize_session=False)
+    db.commit()
+    return user_query.first()

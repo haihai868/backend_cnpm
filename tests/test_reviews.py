@@ -38,10 +38,12 @@ def test_get_reviews_by_product_id(authorized_client, create_reviews_for_1_produ
     assert response.json()[0]['rating'] == create_reviews_for_1_product[0]['rating']
     assert response.json()[0]['comment'] == create_reviews_for_1_product[0]['comment']
     assert response.json()[0]['product_id'] == create_reviews_for_1_product[0]['product_id']
+    assert response.json()[0]['user_id'] == 1
 
     assert response.json()[1]['rating'] == create_reviews_for_1_product[1]['rating']
     assert response.json()[1]['comment'] == create_reviews_for_1_product[1]['comment']
     assert response.json()[1]['product_id'] == create_reviews_for_1_product[1]['product_id']
+    assert response.json()[1]['user_id'] == 2
 
 def test_get_reviews_by_user_id(client, create_reviews_for_1_user):
     response = client.get(f'/reviews/users/1')
@@ -68,7 +70,7 @@ def test_delete_review(authorized_client, create_product):
 
 @pytest.mark.parametrize('id, status_code', [
     (10, 404),
-    (3, 403)
+    (1, 403)
 ])
 def test_delete_review_failed(authorized_client, create_reviews_for_1_product, id, status_code):
     response = authorized_client.delete(f'/reviews/{id}')
@@ -86,5 +88,6 @@ def test_update_review(authorized_client, create_product):
     assert response.json()['rating'] == '5'
     assert response.json()['comment'] == 'test2'
     assert response.json()['product_id'] == 1
+    assert response.json()['user_id'] == 1
 
     #full

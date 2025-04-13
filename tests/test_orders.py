@@ -16,6 +16,15 @@ def test_create_order_failed(client, create_order):
     assert response.status_code == 400
     assert response.json()['detail'] == 'User already has an unpaid order'
 
+def test_get_products_in_order_by_id(authorized_client, create_order, create_products):
+    authorized_client.put('/orders/', json={"product_id": create_products[0]['id'], "quantity": 1})
+    authorized_client.put('/orders/', json={"product_id": create_products[1]['id'], "quantity": 1})
+    response = authorized_client.get(f'/orders/{create_order["id"]}/products')
+    assert response.status_code == 200
+    assert len(response.json()) == 2
+    assert response.json()[0]['id'] == create_products[0]['id']
+    assert response.json()[1]['id'] == create_products[1]['id']
+
 @pytest.mark.parametrize("quantity, price_each, status_code", [
     (1, None, 200),
     (0, 100, 400),
@@ -46,6 +55,11 @@ def test_delete_product_from_order(authorized_client, create_order, create_produ
     assert response.status_code == 200
     assert response.json() == {'message': 'Product deleted successfully'}
 
+def test_delete_product_from_order_failed(authorized_client, create_order, create_product):
+    response = authorized_client.delete(f'/orders/10')
+    assert response.status_code == 404
+    assert response.json()['detail'] == "Product not in user's order"
+
 def test_get_products_in_order(authorized_client, create_order, create_products):
     authorized_client.put('/orders/', json={"product_id": create_products[0]['id'], "quantity": 1})
     authorized_client.put('/orders/', json={"product_id": create_products[1]['id'], "quantity": 1})
@@ -56,13 +70,5 @@ def test_get_products_in_order(authorized_client, create_order, create_products)
     assert response.json()[0]['id'] == create_products[0]['id']
     assert response.json()[1]['id'] == create_products[1]['id']
 
-def test_get_products_in_order_by_id(authorized_client, create_order, create_products):
-    authorized_client.put('/orders/', json={"product_id": create_products[0]['id'], "quantity": 1})
-    authorized_client.put('/orders/', json={"product_id": create_products[1]['id'], "quantity": 1})
-    response = authorized_client.get(f'/orders/{create_order["id"]}/products')
-    assert response.status_code == 200
-    assert len(response.json()) == 2
-    assert response.json()[0]['id'] == create_products[0]['id']
-    assert response.json()[1]['id'] == create_products[1]['id']
 
 

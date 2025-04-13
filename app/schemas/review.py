@@ -17,6 +17,7 @@ class ReviewCreate(BaseModel):
 
 class ReviewOut(BaseModel):
     id: int
+    user_id: int
     rating: rating_enum
     comment: str
     product_id: int

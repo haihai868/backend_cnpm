@@ -35,6 +35,12 @@ def get_user(id: int, db: Session = Depends(get_db)):
 
     return user
 
+@router.post("/password-verification/{password}")
+def verify_password(password: str, user: models.User = Depends(security.get_current_user)):
+    if security.verify(password, user.password):
+        return {'message': 'Password is correct'}
+    raise HTTPException(status_code=403, detail='Incorrect password')
+
 @router.put("/", response_model=schemas.UserOut)
 def update_user(updated_user: schemas.UserCreate, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
     user_query = db.query(models.User).filter(models.User.id == user.id)

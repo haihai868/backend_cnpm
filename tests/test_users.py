@@ -1,5 +1,6 @@
 import pytest
 
+from app import security
 from app.schemas import UserOut
 from tests.test_database_connect import client, db
 
@@ -36,7 +37,19 @@ def test_update_user(authorized_client, create_user):
     assert response.status_code == 200
     assert response.json()['email'] == 'test@gmail.com'
     assert response.json()['fullname'] == 'test'
-    assert response.json()['password'] == 'test1'
+    assert security.verify('test1', response.json()['password'])
     assert response.json()['id'] == create_user['id']
+
+@pytest.mark.parametrize('password, status_code', [
+    ('test1', 403),
+    ('test', 200)
+])
+def test_password_verification(authorized_client, create_user, password, status_code):
+    response = authorized_client.post(f'/users/password-verification/{password}')
+    assert response.status_code == status_code
+    if status_code == 200:
+        assert response.json()['message'] == 'Password is correct'
+    else:
+        assert response.json()['detail'] == 'Incorrect password'
 
     #full

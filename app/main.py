@@ -4,7 +4,7 @@ import uvicorn
 
 from app import models
 from app.database_connect import engine
-from app.routers import products_api, users_api, categories_api, reviews_api, notifications_api, orders_api, authentication
+from app.routers import products_api, users_api, categories_api, reviews_api, notifications_api, orders_api, authentication, chatbot_api
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -27,6 +27,7 @@ app.include_router(reviews_api.router)
 app.include_router(notifications_api.router)
 app.include_router(orders_api.router)
 app.include_router(authentication.router)
+app.include_router(chatbot_api.router)
 
 @app.get('/')
 def test_get(response: Response, request: Request):

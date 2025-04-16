@@ -47,6 +47,18 @@ def verify_access_token(token: str, credentials_exception):
 
     return token_data
 
+def get_current_admin(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+    credentials_exception = HTTPException(
+        status_code=401,
+        detail='Could not validate credentials',
+        headers={'WWW-Authenticate': 'Bearer'}
+    )
+
+    token_data = verify_access_token(token, credentials_exception)
+
+    admin = db.query(models.Admin).filter(models.Admin.id == token_data.id).first()
+
+    return admin
 
 def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     credentials_exception = HTTPException(

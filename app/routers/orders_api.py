@@ -60,7 +60,21 @@ def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
     db.refresh(new_order)
     return new_order
 
-@router.put('/', response_model=schemas.OrderDetailOut)
+@router.put('/', response_model=schemas.OrderOut)
+def update_order(order: schemas.OrderCreate, db: Session = Depends(get_db), user: models.User = Depends(get_current_user)):
+    if order.user_id != user.id:
+        raise HTTPException(status_code=403, detail='You can only update your own order')
+
+    order_query = db.query(models.Order).filter(models.Order.user_id == order.user_id,
+                                                models.Order.status == 'Unpaid')
+    if not order_query:
+        raise HTTPException(status_code=404, detail='Order not found')
+
+    order_query.update(order.model_dump(), synchronize_session=False)
+    db.commit()
+    return order_query.first()
+
+@router.put('/product', response_model=schemas.OrderDetailOut)
 def add_product_to_order(order_detail_create: schemas.OrderDetailCreate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     if order_detail_create.quantity <= 0:
         raise HTTPException(status_code=400, detail='Quantity must be greater than 0')

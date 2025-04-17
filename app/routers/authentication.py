@@ -11,7 +11,7 @@ router = APIRouter(
 
 @router.post('/admin-login')
 def admin_login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    admin = db.query(models.Admin).filter(models.Admin.username == form_data.username).first()
+    admin = db.query(models.Admin).filter(models.Admin.email == form_data.username).first()
     if not admin or not security.verify(form_data.password, admin.password):
         raise HTTPException(status_code=403, detail='Incorrect username or password')
 

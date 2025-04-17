@@ -24,8 +24,27 @@ def create_user2(client):
     return new_user
 
 @pytest.fixture
+def create_admin(client):
+    res = client.post("/admins/", json={"email": "test@gmail.com", "password": "test"})
+
+    assert res.status_code == 201
+
+    new_admin = res.json()
+    new_admin['password'] = "test"
+    return new_admin
+
+@pytest.fixture
 def authorized_client(client, create_user):
     token = create_access_token({"user_email": create_user['email'], "user_id": create_user['id']})
+    client.headers = {
+        **client.headers,
+        "Authorization": f"Bearer {token}"
+    }
+    return client
+
+@pytest.fixture
+def authorized_admin_client(client, create_admin):
+    token = create_access_token({"user_email": create_admin['email'], "user_id": create_admin['id']})
     client.headers = {
         **client.headers,
         "Authorization": f"Bearer {token}"
@@ -63,7 +82,7 @@ def create_product(client, create_user, create_category):
 @pytest.fixture
 def create_products(client, create_user, create_categories):
     response = client.post("/products/", json={"name": "test_product", "description": "test_desc", "price": 10, "size": "S", "quantity_in_stock": 10, "category_id": 1, "age_gender": "Men"})
-    response1 = client.post("/products/", json={"name": "test_product2", "description": "test_desc", "price": 10, "size": "S", "quantity_in_stock": 10, "category_id": 2, "age_gender": "Men"})
+    response1 = client.post("/products/", json={"name": "test_product2", "description": "test_desc", "price": 20, "size": "S", "quantity_in_stock": 20, "category_id": 2, "age_gender": "Men"})
 
     assert response.status_code == 201
     assert response1.status_code == 201
@@ -118,3 +137,11 @@ def create_notifications(client, create_user, create_user2):
     assert response.json()['is_read'] == False
 
     return response.json(), response1.json(), response2.json()
+
+@pytest.fixture
+def create_favourites(client, create_user, create_products):
+    response = client.post('/products/user/favourite/1')
+    assert response.status_code == 201
+    response1 = client.post('/products/user/favourite/2')
+    assert response1.status_code == 201
+    return response.json(), response1.json()

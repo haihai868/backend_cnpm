@@ -19,6 +19,7 @@ def test_create_user_failed(client, create_user):
 def test_login(client, create_user):
     response = client.post('/login', data={'username': create_user['email'], 'password': create_user['password']})
     assert response.status_code == 200
+    assert response.json().get('access_token') is not None
 
 @pytest.mark.parametrize('email, password, status_code', [
     ('test@gmail.com', 'test1', 403),

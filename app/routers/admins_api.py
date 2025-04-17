@@ -9,7 +9,7 @@ router = APIRouter(
     tags=['admins']
 )
 
-@router.post('/', response_model=schemas.AdminOut)
+@router.post('/',status_code=201, response_model=schemas.AdminOut)
 def create_admin(admin: schemas.AdminCreate, db: Session = Depends(get_db)):
     query = db.query(models.Admin).filter(models.Admin.email == admin.email)
     if query.first():

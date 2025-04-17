@@ -33,7 +33,6 @@ def get_products_by_name(name: str, db: Session = Depends(get_db)):
 @router.post('/', status_code=201, response_model=schemas.ProductOut)
 def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     category = db.query(models.Category).filter(models.Category.id == product.category_id).first()
-
     if not category:
         raise HTTPException(status_code=404, detail='Category not found')
 
@@ -62,6 +61,16 @@ def update_product(updated_product: schemas.ProductCreate, id: int, db: Session 
     product = product_query.first()
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
+
+    category = db.query(models.Category).filter(models.Category.id == updated_product.category_id).first()
+    if not category:
+        raise HTTPException(status_code=404, detail='Category not found')
+
+    if updated_product.age_gender and updated_product.age_gender not in ['Men', 'Women', 'Kids', 'Babies']:
+        raise HTTPException(status_code=400, detail='Invalid age-gender')
+
+    if updated_product.size not in ['S', 'M', 'L', 'XL', 'XXL']:
+        raise HTTPException(status_code=400, detail='Invalid size')
 
     product_query.update(updated_product.model_dump(), synchronize_session=False)
 
@@ -158,7 +167,7 @@ def get_favourites_by_user_id(user_id: int, db: Session = Depends(get_db)):
     fav_products = [favourite.product for favourite in user.favourites]
     return fav_products
 
-@router.post("/user/favourite/{product_id}", status_code=201, response_model=schemas.ProductCreate)
+@router.post("/user/favourite/{product_id}", status_code=201, response_model=schemas.ProductOut)
 def add_favourite(product_id: int, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
     product = db.query(models.Product).filter(models.Product.id == product_id).first()
     if not product:

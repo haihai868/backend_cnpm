@@ -167,11 +167,12 @@ def pay_order(db: Session = Depends(get_db), user: models.User = Depends(get_cur
     if not order:
         raise HTTPException(status_code=404, detail='Order not found')
 
-    order.status = 'Pending'
     for order_detail in order.order_details:
         if order_detail.product.quantity_in_stock < order_detail.quantity:
             raise HTTPException(status_code=400, detail=f'Not enough product {order_detail.product.name} in stock')
 
+    order.status = 'Pending'
+    order.started_payment_at = datetime.now()
     for order_detail in order.order_details:
         order_detail.product.quantity_in_stock -= order_detail.quantity
 

@@ -122,6 +122,8 @@ def test_pay_order_failed(authorized_client, create_order, create_products):
 
     assert response.status_code == 400
     assert response.json()['detail'] == f'Not enough product {create_products[0]["name"]} in stock'
+    response = authorized_client.get('/orders/1').json()
+    assert response['status'] == 'Unpaid'
 
 def test_confirm_payment(authorized_admin_client, pay_order, create_products):
     response = authorized_admin_client.put(f'/orders/payment/confirmation/{pay_order["id"]}')

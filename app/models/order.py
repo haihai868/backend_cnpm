@@ -11,6 +11,7 @@ class Order(Base):
     status = Column(Enum('Paid', 'Pending', 'Unpaid'), nullable=False, server_default='Unpaid')
     description = Column(String(255))
     created_at = Column(DateTime, server_default=func.now())
+    started_payment_at = Column(DateTime, server_default=None)
     confirmed_at = Column(DateTime, server_default=None)
 
     user = relationship('User', back_populates='orders')

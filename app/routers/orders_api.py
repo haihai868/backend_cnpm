@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -6,7 +7,7 @@ from sqlalchemy.orm import Session
 from app import schemas, models
 from app.database_connect import get_db
 from app.schemas import OrderOut
-from app.security import get_current_user
+from app.security import get_current_user, get_current_admin
 
 router = APIRouter(
     prefix='/orders',
@@ -129,6 +130,13 @@ def get_orders_by_user_id(id: int, db: Session = Depends(get_db), status: str = 
     if status == 'All':
         orders = db.query(models.Order).filter(models.Order.user_id == id).all()
         return orders
+
+    if status == 'Pending':
+        pending_order = db.query(models.Order).filter(models.Order.user_id == id,
+                                                   models.Order.status == 'Pending').all()
+
+        return pending_order
+
     if status == 'Paid':
         paid_order = db.query(models.Order).filter(models.Order.user_id == id,
                                                    models.Order.status == 'Paid').all()
@@ -159,9 +167,50 @@ def pay_order(db: Session = Depends(get_db), user: models.User = Depends(get_cur
     if not order:
         raise HTTPException(status_code=404, detail='Order not found')
 
-    order.status = 'Paid'
+    order.status = 'Pending'
+    for order_detail in order.order_details:
+        if order_detail.product.quantity_in_stock < order_detail.quantity:
+            raise HTTPException(status_code=400, detail=f'Not enough product {order_detail.product.name} in stock')
+
+    for order_detail in order.order_details:
+        order_detail.product.quantity_in_stock -= order_detail.quantity
+
     db.commit()
     db.refresh(order)
     return order
 
+@router.put('/payment/confirmation/{order_id}', response_model=schemas.OrderOut)
+def comfirm_payment(order_id: int, db: Session = Depends(get_db), admin: models.Admin = Depends(get_current_admin)):
+    order = db.query(models.Order).filter(models.Order.id == order_id).first()
 
+    if not order:
+        raise HTTPException(status_code=404, detail='Order not found')
+
+    if order.status != 'Pending':
+        raise HTTPException(status_code=400, detail='Order is not pending')
+
+    order.status = 'Paid'
+    order.confirmed_at = datetime.now()
+    db.commit()
+    db.refresh(order)
+    return order
+
+@router.delete('/payment/cancelation/{order_id}')
+def cancel_payment(order_id: int, db: Session = Depends(get_db), user: models.User = Depends(get_current_user)):
+    order = db.query(models.Order).filter(models.Order.id == order_id).first()
+    if not order:
+        raise HTTPException(status_code=404, detail='Order not found')
+
+    if order.user_id != user.id:
+        raise HTTPException(status_code=403, detail='You can only cancel your own order')
+
+    if order.status != 'Pending':
+        raise HTTPException(status_code=400, detail='Order is not pending')
+
+    for order_detail in order.order_details:
+        order_detail.product.quantity_in_stock += order_detail.quantity
+        db.delete(order_detail)
+
+    db.delete(order)
+    db.commit()
+    return {'message': 'Order canceled successfully'}

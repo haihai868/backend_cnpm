@@ -96,7 +96,54 @@ def test_get_total_order_price(authorized_client, create_order, create_products)
     authorized_client.put('/orders/product', json={"product_id": create_products[1]['id'], "quantity": 1})
     response = authorized_client.get(f'/orders/{create_order["id"]}/total_price')
     assert response.status_code == 200
-    assert response.json()['total'] == 20
+    assert response.json()['total'] == 30
     assert response.json()['order_id'] == create_order['id']
+
+def test_pay_order(authorized_client, create_order, create_products):
+    authorized_client.put('/orders/product', json={"product_id": create_products[0]['id'], "quantity": 8})
+    authorized_client.put('/orders/product', json={"product_id": create_products[1]['id'], "quantity": 1})
+    response = authorized_client.put('/orders/payment')
+    assert response.status_code == 200
+    assert response.json()['status'] == 'Pending'
+    assert response.json()['id'] == create_order['id']
+    assert response.json()['user_id'] == create_order['user_id']
+    assert response.json()['description'] == create_order['description']
+    assert response.json()['created_at'] == create_order['created_at']
+    assert response.json()['status'] == 'Pending'
+
+    products = authorized_client.get('/products').json()
+    assert products[0][0]['quantity_in_stock'] == 2
+    assert products[1][0]['quantity_in_stock'] == 19
+
+def test_pay_order_failed(authorized_client, create_order, create_products):
+    authorized_client.put('/orders/product', json={"product_id": create_products[0]['id'], "quantity": 11})
+    authorized_client.put('/orders/product', json={"product_id": create_products[1]['id'], "quantity": 1})
+    response = authorized_client.put('/orders/payment')
+
+    assert response.status_code == 400
+    assert response.json()['detail'] == f'Not enough product {create_products[0]["name"]} in stock'
+
+def test_confirm_payment(authorized_admin_client, pay_order, create_products):
+    response = authorized_admin_client.put(f'/orders/payment/confirmation/{pay_order["id"]}')
+    assert response.status_code == 200
+    assert response.json()['status'] == 'Paid'
+    assert response.json()['id'] == pay_order['id']
+    assert response.json()['user_id'] == pay_order['user_id']
+    assert response.json()['description'] == pay_order['description']
+    assert response.json()['created_at'] == pay_order['created_at']
+
+def test_cancel_payment(authorized_client, pay_order, create_products):
+    response = authorized_client.delete(f'/orders/payment/cancelation/{pay_order["id"]}')
+    assert response.status_code == 200
+    assert response.json()['message'] == 'Order canceled successfully'
+
+    products = authorized_client.get('/products').json()
+    assert products[0][0]['quantity_in_stock'] == 10
+    assert products[1][0]['quantity_in_stock'] == 20
+
+def test_cancel_payment_failed(authorized_client, create_order, create_products):
+    response = authorized_client.delete(f'/orders/payment/cancelation/{create_order["id"]}')
+    assert response.status_code == 400
+    assert response.json()['detail'] == 'Order is not pending'
 
 

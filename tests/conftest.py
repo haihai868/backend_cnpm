@@ -145,3 +145,10 @@ def create_favourites(client, create_user, create_products):
     response1 = client.post('/products/user/favourite/2')
     assert response1.status_code == 201
     return response.json(), response1.json()
+
+@pytest.fixture
+def pay_order(authorized_client, create_order, create_products):
+    authorized_client.put('/orders/product', json={"product_id": create_products[0]['id'], "quantity": 8})
+    authorized_client.put('/orders/product', json={"product_id": create_products[1]['id'], "quantity": 1})
+    response = authorized_client.put('/orders/payment')
+    return response.json()

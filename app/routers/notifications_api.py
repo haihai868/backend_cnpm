@@ -24,6 +24,15 @@ def create_notification(notification: schemas.NotificationCreate, db: Session = 
     db.refresh(new_notification)
     return new_notification
 
+@router.post('/users', status_code=201)
+def create_notification_for_all_user(notification: schemas.NotificationBase, db: Session = Depends(get_db)):
+    users = db.query(models.User).all()
+    for user in users:
+        new_notification = models.Notification(**notification.model_dump(), user_id=user.id)
+        db.add(new_notification)
+        db.commit()
+        db.refresh(new_notification)
+
 @router.get("/{id}", response_model=schemas.NotificationOut)
 def get_notification(id: int, db: Session = Depends(get_db)):
     notification = db.query(models.Notification).filter(models.Notification.id == id).first()

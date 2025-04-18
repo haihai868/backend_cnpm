@@ -145,5 +145,3 @@ def test_cancel_payment_failed(authorized_client, create_order, create_products)
     response = authorized_client.delete(f'/orders/payment/cancelation/{create_order["id"]}')
     assert response.status_code == 400
     assert response.json()['detail'] == 'Order is not pending'
-
-

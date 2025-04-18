@@ -1,3 +1,5 @@
+from http.client import responses
+
 import pytest
 
 from tests.test_database_connect import client, db
@@ -8,6 +10,20 @@ def test_create_notification(client, create_user):
     assert response.json()['title'] == 'test'
     assert response.json()['message'] == 'test'
     assert response.json()['user_id'] == 1
+
+def test_create_notification_for_all_users(client, create_user, create_user2):
+    response = client.post('/notifications/users', json={'title': 'test', 'message': 'test'})
+    assert response.status_code == 201
+
+    response = client.get(f'/notifications/user/{create_user["id"]}')
+    assert response.json()[0]['title'] == 'test'
+    assert response.json()[0]['message'] == 'test'
+    assert response.json()[0]['user_id'] == 1
+
+    response = client.get(f'/notifications/user/{create_user2["id"]}')
+    assert response.json()[0]['title'] == 'test'
+    assert response.json()[0]['message'] == 'test'
+    assert response.json()[0]['user_id'] == 2
 
 def test_get_user_notifications(client, create_notifications):
     response = client.get(f'/notifications/user/{create_notifications[0]["user_id"]}')

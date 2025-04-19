@@ -14,6 +14,8 @@ class OrderOut(BaseModel):
     created_at: datetime
     description: Optional[str] = None
     status: str
+    started_payment_at: Optional[datetime] = None
+    confirmed_at: Optional[datetime] = None
 
 class OrderDetailCreate(BaseModel):
     product_id: int

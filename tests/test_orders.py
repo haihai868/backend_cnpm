@@ -147,3 +147,11 @@ def test_cancel_payment_failed(authorized_client, create_order, create_products)
     response = authorized_client.delete(f'/orders/payment/cancelation/{create_order["id"]}')
     assert response.status_code == 400
     assert response.json()['detail'] == 'Order is not pending'
+
+def test_admin_cancel_payment(authorized_admin_client, pay_order, create_products):
+    response = authorized_admin_client.delete(f'/orders/payment/admin/cancelation/{pay_order["id"]}')
+    assert response.status_code == 200
+    assert response.json()['message'] == 'Order canceled successfully'
+    products = authorized_admin_client.get('/products').json()
+    assert products[0][0]['quantity_in_stock'] == 10
+    assert products[1][0]['quantity_in_stock'] == 20

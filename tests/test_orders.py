@@ -135,7 +135,7 @@ def test_confirm_payment(authorized_admin_client, pay_order, create_products):
     assert response.json()['created_at'] == pay_order['created_at']
 
 def test_cancel_payment(authorized_client, pay_order, create_products):
-    response = authorized_client.delete(f'/orders/payment/cancelation/{pay_order["id"]}')
+    response = authorized_client.delete(f'/orders/payment/user/cancelation/{pay_order["id"]}')
     assert response.status_code == 200
     assert response.json()['message'] == 'Order canceled successfully'
 
@@ -144,7 +144,7 @@ def test_cancel_payment(authorized_client, pay_order, create_products):
     assert products[1][0]['quantity_in_stock'] == 20
 
 def test_cancel_payment_failed(authorized_client, create_order, create_products):
-    response = authorized_client.delete(f'/orders/payment/cancelation/{create_order["id"]}')
+    response = authorized_client.delete(f'/orders/payment/user/cancelation/{create_order["id"]}')
     assert response.status_code == 400
     assert response.json()['detail'] == 'Order is not pending'
 

@@ -1,4 +1,6 @@
 import time
+
+import httpx
 from langchain_core.prompts import ChatPromptTemplate
 
 from chatbot.rag_src.utils import llm
@@ -20,10 +22,16 @@ Answer:
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | llm
 
-def answer_question(question: str):
+def answer_question(question: str) -> tuple[str, float, float, float]:
     start_time = time.time()
 
-    question_category = classify_question(question)
+    # Classify the question
+    try :
+        question_category = classify_question(question)
+        if question_category not in ["1", "2", "3", "4"]:
+            return "False classification", 0, 0, 0
+    except httpx.HTTPStatusError:
+        return "", 0, 0, 0
 
     # Time the retrieval step
     retrieval_start = time.time()
@@ -58,11 +66,14 @@ def answer_question(question: str):
 
     # Time the LLM response step
     llm_start = time.time()
-    result = chain.invoke({
-        "category_description": category_description,
-        "context": context,
-        "question": question
-    })
+    try:
+        result = chain.invoke({
+            "category_description": category_description,
+            "context": context,
+            "question": question
+        })
+    except httpx.HTTPStatusError:
+        return "", 0, 0, 0
 
     llm_time = time.time() - llm_start
     total_time = time.time() - start_time

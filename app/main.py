@@ -30,8 +30,4 @@ app.include_router(authentication.router)
 app.include_router(chatbot_api.router)
 app.include_router(admins_api.router)
 
-@app.get('/')
-def test_get(response: Response, request: Request):
-    return {'data': 'test'}
-
 # uvicorn.run(app, host="0.0.0.0", port=8000)

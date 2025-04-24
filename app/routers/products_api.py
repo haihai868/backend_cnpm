@@ -6,6 +6,8 @@ from sqlalchemy.orm import Session
 
 from app import models, schemas, security
 from app.database_connect import get_db
+from chatbot.rag_src.astradb_retrievers import prods_vstore
+from chatbot.rag_src.utils import create_product_document
 
 router = APIRouter(
     prefix='/products',
@@ -52,6 +54,10 @@ def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     db.add(new_product)
     db.commit()
     db.refresh(new_product)
+
+    doc = create_product_document(new_product)
+    prods_vstore.add_documents(documents=[doc], ids=[str(new_product.id)])
+
     return new_product
 
 @router.put('/{id}', response_model=schemas.ProductOut)
@@ -75,7 +81,13 @@ def update_product(updated_product: schemas.ProductCreate, id: int, db: Session 
     product_query.update(updated_product.model_dump(), synchronize_session=False)
 
     db.commit()
-    return product_query.first()
+    db.refresh(product)
+
+    doc = create_product_document(product)
+    prods_vstore.delete(ids=[str(id)])
+    prods_vstore.add_documents(documents=[doc], ids=[str(id)])
+
+    return product
 
 @router.get('/', response_model=List[Tuple[schemas.ProductOut, float]])
 def get_products_by_criteria(db: Session = Depends(get_db),

@@ -33,3 +33,11 @@ def get_by_name(name: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Category not found")
 
     return category
+
+@router.get('/id/{id}')
+def get_by_id(id: int, db: Session = Depends(get_db)):
+    category = db.query(models.Category).filter(models.Category.id == id).first()
+    if not category:
+        raise HTTPException(status_code=404, detail="Category not found")
+
+    return category

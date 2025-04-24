@@ -5,7 +5,8 @@ from app.config import settings
 
 import pandas as pd
 
-from chatbot.rag_src.utils import embeddings
+from chatbot.rag_src.utils import embeddings, create_product_document
+
 
 def load_prods_data():
     df = pd.read_csv('../TestBTLcnpm/chatbot/data/products.csv')
@@ -13,19 +14,20 @@ def load_prods_data():
     ids = []
 
     for index, row in df.iterrows():
-        doc = Document(
-            page_content= 'name:' + row['name']
-                          + ' description:' + row['description']
-                          + ' age_gender:' + row['age_gender']
-                          + ' size:' + row['size']
-                          + ' price:' + str(row['price'])
-                          + ' quantity_in_stock:' + str(row['quantity_in_stock']),
-            metadata={
-                'id': row['id'],
-                'category_id': row['category_id'],
-            },
-            id=str(index)
-        )
+        # doc = Document(
+        #     page_content= 'name:' + row['name']
+        #                   + ' description:' + row['description']
+        #                   + ' age_gender:' + row['age_gender']
+        #                   + ' size:' + row['size']
+        #                   + ' price:' + str(row['price'])
+        #                   + ' quantity_in_stock:' + str(row['quantity_in_stock']),
+        #     metadata={
+        #         'id': row['id'],
+        #         'category_id': row['category_id'],
+        #     },
+        #     id=str(index)
+        # )
+        doc = create_product_document(row)
         ids.append(str(index))
         docs.append(doc)
     return docs, ids

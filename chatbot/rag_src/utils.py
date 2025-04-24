@@ -28,3 +28,18 @@ def split_documents(doc: list[Document]) -> list[Document]:
     )
 
     return text_splitter.split_documents(doc)
+
+def create_product_document(product):
+    return Document(
+        page_content= 'name:' + product['name']
+                      + ' description:' + product['description']
+                      + ' age_gender:' + product['age_gender']
+                      + ' size:' + product['size']
+                      + ' price:' + str(product['price'])
+                      + ' quantity_in_stock:' + str(product['quantity_in_stock']),
+        metadata={
+            'id': product['id'],
+            'category_id': product['category_id'],
+        },
+        id=str(product['id'])
+    )

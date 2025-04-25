@@ -1,7 +1,7 @@
 from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 from app import models, schemas, security
 from app.database_connect import get_db
@@ -11,9 +11,11 @@ router = APIRouter(
     tags=['reviews']
 )
 
-@router.get('/')
+@router.get('/', response_model=List[schemas.ReviewAllOut])
 def get_all_reviews(db: Session = Depends(get_db)):
-    return db.query(models.Review).all()
+    reviews = db.query(models.Review).all()
+
+    return reviews
 
 @router.post('/', status_code=201, response_model=schemas.ReviewOut)
 def create_review(review: schemas.ReviewCreate, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):

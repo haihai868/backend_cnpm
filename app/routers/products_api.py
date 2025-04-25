@@ -217,5 +217,13 @@ def get_product_recommendations(product_id: int, db: Session = Depends(get_db)):
 
     products = db.query(models.Product).filter(models.Product.category_id == product.category_id,
                                                models.Product.name != product.name).all()
-    recommended_products = random.sample(products, min(len(products), 4))
+
+    unique_products_dict = {}
+    for p in products:
+        if p.name not in unique_products_dict:
+            unique_products_dict[p.name] = p
+
+    unique_products = list(unique_products_dict.values())
+
+    recommended_products = random.sample(unique_products, min(len(products), 4))
     return recommended_products

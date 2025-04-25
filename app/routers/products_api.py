@@ -1,3 +1,4 @@
+import random
 from typing import List, Optional, Tuple
 
 from fastapi import APIRouter, HTTPException, Depends, Query
@@ -205,3 +206,16 @@ def delete_favourite(product_id: int, db: Session = Depends(get_db), user: model
     db.delete(favourite)
     db.commit()
     return {'message': 'Favourite deleted successfully'}
+
+
+@router.get("/recommendations/{product_id}", response_model=List[schemas.ProductOut])
+def get_product_recommendations(product_id: int, db: Session = Depends(get_db)):
+    product = db.query(models.Product).filter(models.Product.id == product_id).first()
+
+    if not product:
+        raise HTTPException(status_code=404, detail='Product not found')
+
+    products = db.query(models.Product).filter(models.Product.category_id == product.category_id,
+                                               models.Product.name != product.name).all()
+    recommended_products = random.sample(products, min(len(products), 4))
+    return recommended_products

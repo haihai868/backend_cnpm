@@ -1,7 +1,32 @@
 import pytest
 
 from app.security import create_access_token
+from chatbot.rag_src import astradb_retrievers
 
+class MockAstraDBVectorStore:
+    def __init__(self, *args, **kwargs):
+        self.documents = {}
+
+    def add_documents(self, documents, ids):
+        for doc, id in zip(documents, ids):
+            self.documents[id] = doc
+
+    def delete(self, ids):
+        for id in ids:
+            self.documents.pop(id, None)
+
+@pytest.fixture()
+def mock_vstore():
+    return MockAstraDBVectorStore()
+
+@pytest.fixture(autouse=True)
+def mock_astradb(mock_vstore):
+    original_vstore = astradb_retrievers.prods_vstore
+    # Replace with mock for testing
+    astradb_retrievers.prods_vstore = mock_vstore
+    yield mock_vstore
+    # Restore original after test
+    astradb_retrievers.prods_vstore = original_vstore
 
 @pytest.fixture
 def create_user(client):
@@ -72,20 +97,24 @@ def create_categories(client, create_user):
     return new_categories
 
 @pytest.fixture
-def create_product(client, create_user, create_category):
+def create_product(client, mock_astradb, create_user, create_category):
     res = client.post("/products/", json={"name": "test_product", "description": "test_desc", "price": 10, "size": "S", "quantity_in_stock": 10, "category_id": 1, "age_gender": "Men"})
     assert res.status_code == 201
+    # assert mock_vstore.documents['1'] is not None
 
     new_product = res.json()
     return new_product
 
 @pytest.fixture
-def create_products(client, create_user, create_categories):
+def create_products(client, mock_astradb, create_user, create_categories):
     response = client.post("/products/", json={"name": "test_product", "description": "test_desc", "price": 10, "size": "S", "quantity_in_stock": 10, "category_id": 1, "age_gender": "Men"})
     response1 = client.post("/products/", json={"name": "test_product2", "description": "test_desc", "price": 20, "size": "S", "quantity_in_stock": 20, "category_id": 2, "age_gender": "Men"})
 
     assert response.status_code == 201
     assert response1.status_code == 201
+    # assert mock_vstore.documents['1'] is not None
+    # assert mock_vstore.documents['2'] is not None
+    # assert mock_vstore.documents['1'].metadata['category_id'] == 1
 
     new_products = response.json(), response1.json()
     return new_products

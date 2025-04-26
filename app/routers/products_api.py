@@ -56,8 +56,8 @@ def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_product)
 
-    doc = create_product_document(new_product)
-    prods_vstore.add_documents(documents=[doc], ids=[str(new_product.id)])
+    # doc = create_product_document(new_product.__dict__)
+    # prods_vstore.add_documents(documents=[doc], ids=[str(new_product.id)])
 
     return new_product
 
@@ -84,9 +84,9 @@ def update_product(updated_product: schemas.ProductCreate, id: int, db: Session 
     db.commit()
     db.refresh(product)
 
-    doc = create_product_document(product)
-    prods_vstore.delete(ids=[str(id)])
-    prods_vstore.add_documents(documents=[doc], ids=[str(id)])
+    doc = create_product_document(product.__dict__)
+    # prods_vstore.delete(ids=[str(id)])
+    # prods_vstore.add_documents(documents=[doc], ids=[str(id)])
 
     return product
 
@@ -100,7 +100,7 @@ def get_products_by_criteria(db: Session = Depends(get_db),
                              price_min: Optional[float] = Query(None, alias='priceMin'),
                              price_max: Optional[float] = Query(None, alias='priceMax'),
                              quantity_in_stock_min: Optional[int] = Query(None, alias='quantityInStockMin'),
-                             quantity_in_stock_max: Optional[int] = Query(None, alias='quantityInStockMax'),
+                             quantity_in_stock_max: Optional[int] = Query(None, alias='quantityInStockM_ax'),
                              age_gender: Optional[str] = Query(None, alias='ageGender'),
                              max_rating: Optional[int] = Query(None, alias='maxRating'),
                              min_rating: Optional[int] = Query(None, alias='minRating')

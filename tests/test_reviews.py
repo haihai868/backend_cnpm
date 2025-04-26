@@ -68,6 +68,13 @@ def test_delete_review(authorized_client, create_product):
     assert response.status_code == 404
     assert response.json()['detail'] == 'Review not found'
 
+def test_admin_delete_user_reviews(authorized_admin_client, create_reviews_for_1_user):
+    response = authorized_admin_client.delete(f'/reviews/admin/1')
+    assert response.status_code == 200
+    assert response.json()['message'] == 'Reviews deleted successfully'
+    response = authorized_admin_client.get(f'/reviews/1')
+    assert response.status_code == 404
+
 @pytest.mark.parametrize('id, status_code', [
     (10, 404),
     (1, 403)

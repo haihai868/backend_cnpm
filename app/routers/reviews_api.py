@@ -55,6 +55,16 @@ def delete_review(id: int, db: Session = Depends(get_db), user: models.User = De
     db.commit()
     return {'message': 'Review deleted successfully'}
 
+@router.delete("/admin/{id}")
+def delete_user_reviews(id:int, db: Session = Depends(get_db), user: models.Admin = Depends(security.get_current_admin)):
+    review = db.query(models.Review).filter(models.Review.user_id == id).first()
+    if not review:
+        raise HTTPException(status_code=404, detail="Review not found")
+
+    db.delete(review)
+    db.commit()
+    return {'message': 'Reviews deleted successfully'}
+
 @router.put("/", response_model=schemas.ReviewOut)
 def update_review(review: schemas.ReviewCreate, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
     review_db = db.query(models.Review).filter(models.Review.product_id == review.product_id,

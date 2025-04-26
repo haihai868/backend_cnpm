@@ -100,7 +100,7 @@ def create_categories(client, create_user):
 def create_product(client, mock_astradb, create_user, create_category):
     res = client.post("/products/", json={"name": "test_product", "description": "test_desc", "price": 10, "size": "S", "quantity_in_stock": 10, "category_id": 1, "age_gender": "Men"})
     assert res.status_code == 201
-    # assert mock_vstore.documents['1'] is not None
+    assert mock_astradb.documents['1'] is not None
 
     new_product = res.json()
     return new_product
@@ -112,9 +112,9 @@ def create_products(client, mock_astradb, create_user, create_categories):
 
     assert response.status_code == 201
     assert response1.status_code == 201
-    # assert mock_vstore.documents['1'] is not None
-    # assert mock_vstore.documents['2'] is not None
-    # assert mock_vstore.documents['1'].metadata['category_id'] == 1
+    assert mock_astradb.documents['1'] is not None
+    assert mock_astradb.documents['2'] is not None
+    assert mock_astradb.documents['1'].metadata['category_id'] == 1
 
     new_products = response.json(), response1.json()
     return new_products

@@ -56,8 +56,8 @@ def delete_review(id: int, db: Session = Depends(get_db), user: models.User = De
     return {'message': 'Review deleted successfully'}
 
 @router.delete("/admin/{id}")
-def delete_user_reviews(id:int, db: Session = Depends(get_db), user: models.Admin = Depends(security.get_current_admin)):
-    review = db.query(models.Review).filter(models.Review.user_id == id).first()
+def delete_user_reviews(id: int, db: Session = Depends(get_db), user: models.Admin = Depends(security.get_current_admin)):
+    review = db.query(models.Review).filter(models.Review.id == id).first()
     if not review:
         raise HTTPException(status_code=404, detail="Review not found")
 

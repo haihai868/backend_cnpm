@@ -28,7 +28,7 @@ def load_prods_data():
         #     id=str(index)
         # )
         doc = create_product_document(row)
-        ids.append(str(index))
+        ids.append(str(doc.id))
         docs.append(doc)
     return docs, ids
 
@@ -51,9 +51,6 @@ def load_faqs_data():
     return docs, ids
 
 def connect_to_vstore(coll_name: str):
-    # ASTRA_DB_API_ENDPOINT = os.getenv('ASTRA_DB_API_ENDPOINT')
-    # ASTRA_DB_APPLICATION_TOKEN = os.getenv('ASTRA_DB_APPLICATION_TOKEN')
-    # desired_namespace = os.getenv('ASTRA_DB_KEYSPACE')
     ASTRA_DB_API_ENDPOINT = settings.astra_db_api_endpoint
     ASTRA_DB_APPLICATION_TOKEN = settings.astra_db_application_token
     desired_namespace = settings.astra_db_keyspace

@@ -2,6 +2,7 @@ import pytest
 
 from app.security import create_access_token
 from chatbot.rag_src import astradb_retrievers
+from chatbot.rag_src.astradb_retrievers import prods_vstore
 
 class MockAstraDBVectorStore:
     def __init__(self, *args, **kwargs):
@@ -19,7 +20,7 @@ class MockAstraDBVectorStore:
 def mock_vstore():
     return MockAstraDBVectorStore()
 
-@pytest.fixture(autouse=True)
+@pytest.fixture()
 def mock_astradb(mock_vstore):
     original_vstore = astradb_retrievers.prods_vstore
     # Replace with mock for testing

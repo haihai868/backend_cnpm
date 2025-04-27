@@ -19,6 +19,22 @@ def get_all_orders(db: Session = Depends(get_db)):
     orders = db.query(models.Order).all()
     return orders
 
+@router.get('/products/sale_quantity', response_model=List[schemas.ProductWithPaidQuantity])
+def get_sale_quantity(db: Session = Depends(get_db)):
+    order_details = db.query(models.OrderDetail).filter(models.Order.status == 'Paid').all()
+    products = {}
+
+    for order_detail in order_details:
+        product = db.query(models.Product).filter(models.Product.id == order_detail.product_id).first()
+        if product.name not in products:
+            products[product.name] = {'paid_quantity': order_detail.quantity, 'price': product.price, 'image': product.image}
+        else:
+            products[product.name]['paid_quantity'] += order_detail.quantity
+
+    products = [{'name': name, 'paid_quantity': data['paid_quantity'], 'price': data['price'], 'image': data['image']} for name, data in products.items()]
+
+    return products
+
 @router.get('/products', response_model=List[schemas.ProductOrderOut])
 def get_products_in_order(db: Session = Depends(get_db), user: models.User = Depends(get_current_user)):
     order = db.query(models.Order).filter(models.Order.user_id == user.id,
@@ -252,3 +268,4 @@ def admin_cancel_payment(order_id: int, db: Session = Depends(get_db), admin: mo
     db.delete(order)
     db.commit()
     return {'message': 'Order canceled successfully'}
+

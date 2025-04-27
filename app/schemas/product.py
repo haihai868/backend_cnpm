@@ -27,3 +27,9 @@ class ProductOrderOut(ProductBase):
     id: int
     quantity_in_order: int
 
+class ProductWithPaidQuantity(BaseModel):
+    name: str
+    paid_quantity: int
+    price: float
+    image: str
+

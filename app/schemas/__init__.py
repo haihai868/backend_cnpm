@@ -1,6 +1,6 @@
 from .product import ProductOut, ProductCreate, ProductOrderOut, ProductWithPaidQuantity
 from .category import CategoryOut, CategoryCreate
-from .user import UserOut, UserCreate, TokenData, EmailSchema
+from .user import UserOut, UserCreate, TokenData, EmailSchema, UserUpdatePassword
 from .review import ReviewOut, ReviewCreate, ReviewAllOut
 from .notification import NotificationOut, NotificationCreate, NotificationBase
 from .order import OrderOut, OrderCreate, OrderDetailCreate, OrderDetailOut

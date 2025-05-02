@@ -17,3 +17,6 @@ class UserOut(BaseModel):
 class TokenData(BaseModel):
     id: Optional[int] = None
     email: Optional[EmailStr] = None
+
+class EmailSchema(BaseModel):
+    email: EmailStr

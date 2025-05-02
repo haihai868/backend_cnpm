@@ -1,13 +1,33 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
+import smtplib
+import random
+from email.message import EmailMessage
 
 from app import schemas, security, models
 from app.database_connect import get_db
+from app.config import settings
 
 router = APIRouter(
     prefix='/users',
     tags=['users']
 )
+
+@router.post('/otp')
+def send_otp(receiver_email: schemas.EmailSchema):
+    otp = str(random.randint(100000, 999999))
+    mess = EmailMessage()
+    mess['Subject'] = 'OTP'
+    mess['From'] = settings.email_username
+    mess['To'] = receiver_email.email
+    mess.set_content(f'Your OTP is {otp}')
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(settings.email_username, settings.email_password)
+        smtp.send_message(mess)
+
+    return otp
+
 
 @router.post('/', status_code=201, response_model=schemas.UserOut)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):

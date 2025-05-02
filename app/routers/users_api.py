@@ -26,7 +26,7 @@ def send_otp(receiver_email: schemas.EmailSchema):
         smtp.login(settings.email_username, settings.email_password)
         smtp.send_message(mess)
 
-    return otp
+    return {"otp": otp}
 
 
 @router.post('/', status_code=201, response_model=schemas.UserOut)

@@ -70,8 +70,12 @@ def update_user(updated_user: schemas.UserCreate, db: Session = Depends(get_db),
     return user_query.first()
 
 @router.put("/password", response_model=schemas.UserOut)
-def update_user_password(updated_user: schemas.UserUpdatePassword, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
-    user_query = db.query(models.User).filter(models.User.id == user.id)
+def update_user_password(updated_user: schemas.UserUpdatePassword, db: Session = Depends(get_db)):
+    user_query = db.query(models.User).filter(models.User.email == updated_user.email)
+
+    if not user_query.first():
+        raise HTTPException(status_code=404, detail="User not found")
+
     updated_user.password = security.hash(updated_user.password)
     user_query.update(updated_user.model_dump(), synchronize_session=False)
     db.commit()

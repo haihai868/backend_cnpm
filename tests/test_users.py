@@ -53,4 +53,12 @@ def test_password_verification(authorized_client, create_user, password, status_
     else:
         assert response.json()['detail'] == 'Incorrect password'
 
+def test_update_user_password(authorized_client, create_user):
+    response = authorized_client.put('/users/password', json={'email': 'test@gmail.com', 'password': 'test2'})
+    assert response.status_code == 200
+    assert response.json()['email'] == 'test@gmail.com'
+    assert response.json()['fullname'] == 'test'
+    assert security.verify('test2', response.json()['password'])
+    assert response.json()['id'] == create_user['id']
+
     #full

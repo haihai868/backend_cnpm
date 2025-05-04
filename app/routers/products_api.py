@@ -227,3 +227,23 @@ def get_product_recommendations(product_id: int, db: Session = Depends(get_db)):
 
     recommended_products = random.sample(unique_products, min(len(products), 4))
     return recommended_products
+
+@router.put("/sale/{discount_percentage}", response_model=List[schemas.ProductOut])
+def update_product_sale(discount_percentage: float ,db: Session = Depends(get_db), category: Optional[str] = None , age_gender: Optional[str] = Query(None, alias='ageGender'), admin: models.Admin = Depends(security.get_current_admin)):
+    products_query = db.query(models.Product)
+    if category:
+        products_query = products_query.join(models.Category).filter(models.Category.name == category)
+    if age_gender:
+        products_query = products_query.filter(models.Product.age_gender == age_gender)
+    products = products_query.all()
+
+    if discount_percentage < 0 or discount_percentage >= 100:
+        raise HTTPException(status_code=400, detail='Invalid discount percentage')
+
+    for product in products:
+        product.old_price = product.price
+        product.price = product.price * (1 - discount_percentage / 100)
+        db.commit()
+        db.refresh(product)
+
+    return products

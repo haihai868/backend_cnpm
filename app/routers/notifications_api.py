@@ -54,6 +54,16 @@ def delete_notification(id: int, db: Session = Depends(get_db), user: models.Use
     db.commit()
     return {'message': 'Notification deleted successfully'}
 
+@router.delete("/admin/{id}")
+def delete_user_notifications(id: int, db: Session = Depends(get_db), user: models.Admin = Depends(security.get_current_admin)):
+    notifications = db.query(models.Notification).filter(models.Notification.id == id).first()
+    if not notifications:
+        raise HTTPException(status_code=404, detail="Notification not found")
+
+    db.delete(notifications)
+    db.commit()
+    return {'message': 'Notifications deleted successfully'}
+
 @router.delete("/")
 def delete_user_notifications(db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
     notifications = db.query(models.Notification).filter(models.Notification.user_id == user.id).all()

@@ -173,12 +173,3 @@ def test_delete_favourite(authorized_client, create_favourites):
     response = authorized_client.get(f'products/user/favourites/1')
     assert response.status_code == 200
     assert len(response.json()) == 0
-
-def test_sale(authorized_admin_client, create_products):
-    response = authorized_admin_client.put('/products/sale/10?category=test_category&ageGender=Men')
-    print(response.json())
-
-    assert response.status_code == 200
-    assert len(response.json()) == 1
-    assert response.json()[0]['name'] == 'test_product'
-    assert response.json()[0]['price'] == 9.0

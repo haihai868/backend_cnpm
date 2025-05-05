@@ -12,3 +12,4 @@ class Category(Base):
     description = Column(String(255))
 
     products = relationship('Product', back_populates='category')
+    sales = relationship('Sale', back_populates='category')

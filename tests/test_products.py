@@ -1,5 +1,6 @@
 import pytest
 
+from tests.conftest import authorized_admin_client
 from tests.test_database_connect import client, db
 
 @pytest.mark.parametrize('id, status_code', [
@@ -124,6 +125,25 @@ def test_get_products_by_criteria(client, create_products):
     response = client.get('/products/?search=test_product&category=test_category2&size=S&priceMin=10&priceMax=60&quantityInStockMin=10&quantityInStockMax=60&ageGender=Men&maxRating=5&minRating=1')
     assert response.status_code == 200
     assert len(response.json()) == 0
+
+def test_get_product_by_sale_criteria(authorized_admin_client, create_products):
+    response = authorized_admin_client.get('/products/?isOnSale=true')
+    assert response.status_code == 200
+    assert len(response.json()) == 0
+
+    response = authorized_admin_client.get('/products/?isOnSale=false')
+    assert response.status_code == 200
+    assert len(response.json()) == 2
+
+    response = authorized_admin_client.post('/sales/', json={'discount_percentage': 10, 'age_gender': 'Men', 'category_id': 1})
+    assert response.status_code == 201
+
+    response = authorized_admin_client.get('/products/?isOnSale=true')
+    assert response.status_code == 200
+    assert len(response.json()) == 1
+    assert response.json()[0][0]['name'] == 'test_product'
+    assert response.json()[0][0]['old_price'] == 10
+    assert response.json()[0][0]['price'] == 9
 
 @pytest.mark.parametrize('search, category, size, priceMin, priceMax, quantityInStockMin, quantityInStockMax, ageGender, maxRating, minRating, status_code', [
     ('test_product', 'test_category', 'SS', 10, 60, 10, 10, 'Men', 5, 0, 400),

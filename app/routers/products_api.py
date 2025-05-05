@@ -103,13 +103,20 @@ def get_products_by_criteria(db: Session = Depends(get_db),
                              quantity_in_stock_max: Optional[int] = Query(None, alias='quantityInStockM_ax'),
                              age_gender: Optional[str] = Query(None, alias='ageGender'),
                              max_rating: Optional[int] = Query(None, alias='maxRating'),
-                             min_rating: Optional[int] = Query(None, alias='minRating')
+                             min_rating: Optional[int] = Query(None, alias='minRating'),
+                             is_on_sale: Optional[bool] = Query(None, alias='isOnSale')
                              ):
     query = (db.query(models.Product,
                      func.coalesce(func.avg(models.Review.rating), 0).label('avg_rating')
                      )
              .outerjoin(models.Review, models.Review.product_id == models.Product.id)
              .group_by(models.Product.id))
+
+    if is_on_sale is not None:
+        if is_on_sale:
+            query = query.filter(models.Product.old_price != None)
+        else:
+            query = query.filter(models.Product.old_price == None)
 
     if max_rating is not None:
         query = query.having(func.coalesce(func.avg(models.Review.rating), 0) <= max_rating)

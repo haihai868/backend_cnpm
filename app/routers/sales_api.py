@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -10,6 +11,11 @@ router = APIRouter(
     prefix='/sales',
     tags=['sales']
 )
+
+@router.get('/', response_model=List[schemas.SaleOut])
+def get_all_sales(db: Session = Depends(get_db)):
+    sales = db.query(models.Sale).all()
+    return sales
 
 @router.get('/{id}', response_model=schemas.SaleOut)
 def get_sale_by_id(id: int, db: Session = Depends(get_db)):

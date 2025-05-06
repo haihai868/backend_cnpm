@@ -182,3 +182,9 @@ def pay_order(authorized_client, create_order, create_products):
     authorized_client.put('/orders/product', json={"product_id": create_products[1]['id'], "quantity": 1})
     response = authorized_client.put('/orders/payment')
     return response.json()
+
+@pytest.fixture
+def create_report(authorized_client, create_user2, create_product):
+    response = authorized_client.post('/reports/', json={'message': 'test', 'product_id': create_product['id']})
+    assert response.status_code == 201
+    return response.json()

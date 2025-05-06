@@ -7,3 +7,4 @@ from .order import OrderOut, OrderCreate, OrderDetailCreate, OrderDetailOut
 from .chatbot import ChatbotResponse, ChatbotRequest
 from .admin import AdminCreate, AdminOut
 from .sale import SaleCreate, SaleOut
+from .report import ReportCreate, ReportOut

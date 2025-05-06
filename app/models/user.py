@@ -15,3 +15,4 @@ class User(Base):
     orders = relationship('Order', back_populates='user')
     reviews = relationship('Review', back_populates='user')
     favourites = relationship('Favourite', back_populates='user')
+    reports = relationship('Report', back_populates='user')

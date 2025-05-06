@@ -21,7 +21,7 @@ def get_all_orders(db: Session = Depends(get_db)):
 
 @router.get('/products/sale_quantity', response_model=List[schemas.ProductWithPaidQuantity])
 def get_sale_quantity(db: Session = Depends(get_db)):
-    order_details = db.query(models.OrderDetail).filter(models.Order.status == 'Paid').all()
+    order_details = db.query(models.OrderDetail).join(models.Order).filter(models.Order.status == 'Paid').all()
     products = {}
 
     for order_detail in order_details:
@@ -211,26 +211,6 @@ def comfirm_payment(order_id: int, db: Session = Depends(get_db), admin: models.
     db.commit()
     db.refresh(order)
     return order
-
-# @router.delete('/payment/cancelation/{order_id}')
-# def user_cancel_payment(order_id: int, db: Session = Depends(get_db), user: models.User = Depends(get_current_user)):
-#     order = db.query(models.Order).filter(models.Order.id == order_id).first()
-#     if not order:
-#         raise HTTPException(status_code=404, detail='Order not found')
-#
-#     if order.user_id != user.id:
-#         raise HTTPException(status_code=403, detail='You can only cancel your own order')
-#
-#     if order.status != 'Pending':
-#         raise HTTPException(status_code=400, detail='Order is not pending')
-#
-#     for order_detail in order.order_details:
-#         order_detail.product.quantity_in_stock += order_detail.quantity
-#         db.delete(order_detail)
-#
-#     db.delete(order)
-#     db.commit()
-#     return {'message': 'Order canceled successfully'}
 
 @router.delete('/payment/user/cancelation/{order_id}')
 def user_cancel_payment(order_id: int, db: Session = Depends(get_db), user: models.User = Depends(get_current_user)):

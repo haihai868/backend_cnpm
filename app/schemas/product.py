@@ -31,5 +31,5 @@ class ProductWithPaidQuantity(BaseModel):
     name: str
     paid_quantity: int
     price: float
-    image: str
+    image: Optional[str]
 

@@ -24,6 +24,36 @@ def test_get_products_in_order_by_id(authorized_client, create_order, create_pro
     assert response.json()[0]['id'] == create_products[0]['id']
     assert response.json()[1]['id'] == create_products[1]['id']
 
+def test_get_sale_quantity(authorized_client, create_order, create_products):
+    response = authorized_client.get('/orders/products/sale_quantity')
+    assert response.status_code == 200
+    assert len(response.json()) == 0
+
+    authorized_client.put('/orders/product', json={"product_id": create_products[0]['id'], "quantity": 1})
+    authorized_client.put('/orders/product', json={"product_id": create_products[1]['id'], "quantity": 1})
+    response = authorized_client.get('/orders/products/sale_quantity')
+    assert response.status_code == 200
+    assert len(response.json()) == 0
+
+    response = authorized_client.put('/orders/payment')
+    assert response.status_code == 200
+    assert response.json()['status'] == 'Pending'
+    response = authorized_client.get('/orders/products/sale_quantity')
+    assert response.status_code == 200
+    assert len(response.json()) == 0
+
+    response = authorized_client.put('/orders/payment/confirmation/1')
+    assert response.status_code == 200
+    assert response.json()['status'] == 'Paid'
+
+    response = authorized_client.get('/orders/products/sale_quantity')
+    assert response.status_code == 200
+    assert len(response.json()) == 2
+    assert response.json()[0]['name'] == create_products[0]['name']
+    assert response.json()[1]['name'] == create_products[1]['name']
+    assert response.json()[0]['paid_quantity'] == 1
+    assert response.json()[1]['paid_quantity'] == 1
+
 def test_create_order(client):
     response = client.post('/orders/', json={"user_id": 1, "description": "test"})
     assert response.status_code == 201

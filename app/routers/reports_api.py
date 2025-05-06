@@ -59,6 +59,13 @@ def get_report(id: int, db: Session = Depends(get_db)):
     report.fullname = report.user.fullname
     return report
 
+@router.get('/users/{id}', response_model=List[schemas.ReportOut])
+def get_reports_by_user_id(id: int, db: Session = Depends(get_db)):
+    reports = db.query(models.Report).filter(models.Report.user_id == id).all()
+
+    reports = [schemas.ReportOut(**report.__dict__, fullname=report.user.fullname) for report in reports]
+    return reports
+
 @router.get('/', response_model=List[schemas.ReportOut])
 def get_all_reports(db: Session = Depends(get_db)):
     reports = db.query(models.Report).all()

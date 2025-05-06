@@ -48,3 +48,11 @@ def test_update_report(authorized_client, create_report):
     assert response.json()['fullname'] == create_report['fullname']
     assert response.json()['created_at'] == create_report['created_at']
     assert response.json()['id'] == create_report['id']
+
+def test_get_reports_by_user_id(authorized_client, create_report):
+    response = authorized_client.get(f'/reports/users/1')
+    assert response.status_code == 200
+    assert len(response.json()) == 1
+    assert response.json()[0]['message'] == create_report['message']
+    assert response.json()[0]['created_at'] == create_report['created_at']
+    assert response.json()[0]['id'] == create_report['id']

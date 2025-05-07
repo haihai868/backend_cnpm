@@ -7,11 +7,12 @@ def test_create_report(authorized_client, create_user):
     assert response.json()['fullname'] == create_user['fullname']
     assert response.json()['created_at'] is not None
     assert response.json()['id'] == 1
+    assert response.json()['user_id'] == create_user['id']
 
 def test_get_all_reports(authorized_client):
     response = authorized_client.post('/reports/', json={'message': 'test'})
     assert response.status_code == 201
-    create_report = response.json()
+    create_report1 = response.json()
 
     response = authorized_client.post('/reports/', json={'message': 'test2'})
     assert response.status_code == 201
@@ -20,13 +21,15 @@ def test_get_all_reports(authorized_client):
     response = authorized_client.get('/reports/')
     assert response.status_code == 200
     assert len(response.json()) == 2
-    assert response.json()[0]['message'] == create_report['message']
-    assert response.json()[0]['created_at'] == create_report['created_at']
-    assert response.json()[0]['id'] == create_report['id']
+    assert response.json()[0]['message'] == create_report1['message']
+    assert response.json()[0]['created_at'] == create_report1['created_at']
+    assert response.json()[0]['id'] == create_report1['id']
+    assert response.json()[0]['user_id'] == create_report1['user_id']
 
     assert response.json()[1]['message'] == create_report2['message']
     assert response.json()[1]['created_at'] == create_report2['created_at']
     assert response.json()[1]['id'] == create_report2['id']
+    assert response.json()[1]['user_id'] == create_report2['user_id']
 
 def test_delete_report(authorized_client, create_report):
     response = authorized_client.delete(f'/reports/{create_report["id"]}')

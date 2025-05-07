@@ -8,6 +8,7 @@ class ReportCreate(BaseModel):
 
 class ReportOut(BaseModel):
     id: int
+    user_id: int
     fullname: str
     message: str
     created_at: datetime

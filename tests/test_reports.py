@@ -56,3 +56,10 @@ def test_get_reports_by_user_id(authorized_client, create_report):
     assert response.json()[0]['message'] == create_report['message']
     assert response.json()[0]['created_at'] == create_report['created_at']
     assert response.json()[0]['id'] == create_report['id']
+
+def test_admin_update_report(authorized_admin_client, create_report):
+    response = authorized_admin_client.put(f'/reports/admin/{create_report["id"]}', json={'message': 'test2'})
+    assert response.status_code == 200
+    assert response.json()['message'] == 'test2'
+    assert response.json()['fullname'] == create_report['fullname']
+    assert response.json()['created_at'] == create_report['created_at']

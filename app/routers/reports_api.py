@@ -50,6 +50,19 @@ def update_report(report: schemas.ReportCreate, id: int, db: Session = Depends(g
     report_db.fullname = user.fullname
     return report_db
 
+@router.put('/admin/{id}', response_model=schemas.ReportOut)
+def admin_update_report(report: schemas.ReportCreate, id: int, db: Session = Depends(get_db), admin: models.Admin = Depends(security.get_current_admin)):
+    report_db = db.query(models.Report).filter(models.Report.id == id).first()
+    if not report_db:
+        raise HTTPException(status_code=404, detail="Report not found")
+
+    report_db.message = report.message
+    db.commit()
+    db.refresh(report_db)
+
+    report_db.fullname = report_db.user.fullname
+    return report_db
+
 @router.get('/{id}', response_model=schemas.ReportOut)
 def get_report(id: int, db: Session = Depends(get_db)):
     report = db.query(models.Report).filter(models.Report.id == id).first()

@@ -6,7 +6,6 @@ from langchain_core.messages import RemoveMessage, SystemMessage, HumanMessage, 
 from pydantic import BaseModel, Field
 from typing_extensions import Annotated
 import sqlite3
-import os
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.utilities import SQLDatabase
@@ -87,7 +86,8 @@ def generate_query(state: State):
     chain = db_query_prompt | llm.with_structured_output(QueryOutput)
     chat_history = state['messages'][:-1] if state["need_history_classify"] == "need_history" else []
 
-    result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "schema": db.get_table_info(), "user_id": state["user_id"]})
+    table_info = db.get_table_info(table_names=['categories', 'favourites', 'notifications', 'order_details', 'orders', 'products', 'reports', 'reviews', 'sales', 'users'])
+    result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "schema": table_info, "user_id": state["user_id"]})
     return {"query": result.query}
 
 def sql_query(state: State):

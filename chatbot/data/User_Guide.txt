@@ -1,0 +1,887 @@
+* Feature: User Login
+
+- Purpose:
+The Login feature allows registered users to securely access their accounts. After logging in, users can perform actions such as shopping, making payments, viewing order history, and managing their profile. These functionalities are only available to users who are successfully logged in.
+
+- How to Access the Login Page:
+
+Navigate to the homepage of the website.
+
+Locate the "Login" link or button at the top-right corner of the page.
+
+Click on the "Login" link. You will be redirected to the Login page.
+
+- Steps to Log In:
+
+1. On the Login page, you will see two input fields:
+
+Email Address: Enter the email associated with your account.
+
+Password: Enter your password. Passwords are case-sensitive.
+
+2. Click the "Login" button to proceed.
+
+3. If the credentials are correct:
+
+You will be signed in and redirected to the homepage the website.
+
+Your avatar will be displayed at the top-right corner, replacing the "Login" option.
+
+4. If the credentials are incorrect:
+
+An error message will appear, such as "Invalid email or password."
+
+You can try logging in again, or click the "Forgot Password?" link if you cannot remember your credentials.
+
+- Additional Options on the Login Page:
+
+"Create an account":
+Clicking this link redirects you to the registration page. Instructions for account creation are available in the Registration feature guide.
+
+"Forgot Password?":
+Clicking this link redirects you to the password recovery page. Detailed steps are explained in the Password Recovery guide.
+
+- Tips:
+
+Make sure Caps Lock is turned off when typing your password.
+
+Use a valid email format, such as name@example.com.
+
+If you are using a shared or public computer, do not select the “Remember me” option.
+
+- Common Issues and Troubleshooting:
+
+Problem: “Invalid email or password” error
+Possible Cause: Typo in email or password
+Suggested Solution: Recheck both fields and try again
+
+Problem: Login button does not respond
+Possible Cause: Browser issue
+Suggested Solution: Refresh the page or try using a different web browser
+
+Problem: No redirection after login
+Possible Cause: Pop-up blocker or JavaScript is disabled
+Suggested Solution: Enable JavaScript and disable any pop-up blockers
+
+
+* Feature: User Registration
+
+- Purpose:
+The Registration feature allows new users to create an account on the website. This is essential for accessing features such as logging in, shopping, making payments, and managing personal profiles.
+
+- How to Access the Registration Page:
+
+Navigate to the homepage of the website.
+
+Click the "Sign Up" button located at the top-right corner of the screen.
+
+You will be redirected to the Registration page.
+
+- Steps to Register an Account:
+
+1. On the Registration page, you will see the following required input fields:
+
+Name: Enter your full name.
+
+Email: Enter a valid email address.
+
+Password: Enter a secure password.
+
+Confirm Password: Re-enter the same password to confirm it.
+
+2. All fields are mandatory. You cannot proceed if any field is left blank.
+
+3. Requirements for the input fields:
+
+Email must follow a valid email format (e.g., user@example.com).
+
+Password must meet the following criteria:
+• At least 8 characters long
+• Contains at least one uppercase letter
+• Contains at least one lowercase letter
+• Contains at least one number
+
+4. After completing all fields, click the "Sign Up" button to submit your registration.
+
+5. If all inputs are valid:
+
+You will receive a success message confirming your registration.
+
+The system will automatically redirect you to the Login page.
+
+6. If there are errors:
+
+You will see detailed error messages such as:
+• "Email is not in a valid format"
+• "Password does not meet security requirements"
+• "Passwords do not match"
+
+Correct the errors and try submitting again.
+
+- Additional Option on the Registration Page:
+
+"Already have an account? Login here.":
+Clicking this link will redirect you to the Login page. For detailed instructions on how to log in, refer to the Login feature guide.
+
+- Tips:
+
+Double-check your email address and make sure it is spelled correctly.
+
+Ensure your password is strong and meets all required conditions.
+
+Confirm that both password fields match exactly.
+
+- Common Issues and Troubleshooting:
+
+Problem: "Email is not in a valid format"
+Possible Cause: Missing "@" symbol or domain name
+Suggested Solution: Use a standard email format such as user@example.com
+
+Problem: "Password does not meet requirements"
+Possible Cause: Password is too short or lacks complexity
+Suggested Solution: Include uppercase, lowercase letters, and numbers; minimum 8 characters
+
+Problem: "Passwords do not match"
+Possible Cause: Typing mistake between the Password and Confirm Password fields
+Suggested Solution: Re-enter both fields carefully to ensure they are identical
+
+
+* Feature: Product Search
+
+- Purpose:
+The Product Search feature allows users to find products on the website using keywords. It searches for matches in both product names and descriptions. This feature is publicly accessible and does not require users to log in.
+
+- How to Use the Search Feature:
+
+1. Locate the search bar in the header section of any page on the website.
+
+Alternatively, press the keyboard shortcut "/" to automatically focus on the search input field.
+
+2. Click inside the search bar (if not already focused) and enter one or more keywords related to the product you are looking for.
+
+3. As you type, a dropdown list of search results will appear below the input field. These are products that contain the keyword(s) in either their name or description.
+
+4. You can interact with the dropdown in the following ways:
+
+Click on any product in the list to be taken directly to its detail page.
+
+Press Enter or click the magnifying glass icon to go to the full search results page.
+
+5. On the full search results page:
+
+A more detailed list of products matching your search term will be displayed.
+
+Each product will include information such as name, image and price to help you find what you’re looking for.
+
+6. If no products match the search term:
+
+A message saying "No results found" will be shown.
+
+- Tips:
+
+Use specific and relevant keywords for more accurate search results.
+
+Partial matches are supported. For example, searching "cam" may return "camera", "camping tent", etc.
+
+You can use the search bar from any page on the website, making it quick to find products without navigating manually.
+
+- Common Issues and Troubleshooting:
+
+Problem: No results are displayed
+Possible Cause: Typo or overly specific keyword
+Suggested Solution: Try using a broader or simpler keyword
+
+Problem: Search bar does not respond
+Possible Cause: Browser issue or JavaScript disabled
+Suggested Solution: Refresh the page or enable JavaScript
+
+Problem: Search dropdown appears but clicking a result does nothing
+Possible Cause: Temporary UI glitch
+Suggested Solution: Use Enter or magnifying glass icon to go to the full results page
+
+
+* Feature: Notifications
+
+- Purpose:
+The Notifications feature allows users to receive important updates from the website or administrators. These may include promotions, maintenance notices, feature updates, order status changes, and more.
+This feature requires users to be logged in to view notifications.
+
+- How to Use the Notifications Feature:
+
+1. From any page on the website, locate the bell icon in the header section.
+
+2. Click on the bell icon to open the notifications dropdown.
+
+3. If you are not logged in:
+
+A message will appear: "Please login to view notifications."
+
+You can click on this message to be redirected to the Login page.
+
+For detailed login instructions, refer to the Login feature guide.
+
+4. If you are logged in:
+
+A dropdown will appear showing a list of notification titles.
+
+Click on any title to view the full content of that notification.
+
+- Notification Options for Logged-In Users:
+
+Delete individual notification:
+Click the small "X" button next to a notification title to remove it from the list.
+
+Clear all notifications:
+Click the "Clear All" option at the bottom-left corner of the dropdown to remove all notifications at once.
+
+Mark as Unread:
+Click the "Mark as Unread" option (available in the detail view) to mark a notification as unread again.
+
+- Unread Notification Count:
+
+If there are unread notifications, a badge showing the number of unread items will appear on the top-right corner of the bell icon.
+
+If there are no notifications or all notifications have been read or cleared, no badge will be displayed.
+
+- If No Notifications Exist:
+
+The dropdown will display the message: "No notifications available."
+
+- Tips:
+
+Check the bell icon regularly to stay updated on promotions, system changes, or your order status.
+
+Keep your browser notifications enabled (if supported in future versions) for real-time updates.
+
+- Common Issues and Troubleshooting:
+
+Problem: "Please login to view notifications" appears even after login
+Possible Cause: Session expired or login not completed
+Suggested Solution: Refresh the page or log in again
+
+Problem: Bell icon shows no number despite having new messages
+Possible Cause: All notifications are marked as read
+Suggested Solution: Open the dropdown to review messages; check for newly marked unread items
+
+Problem: Unable to delete or clear notifications
+Possible Cause: Temporary UI glitch
+Suggested Solution: Refresh the page and try again
+
+
+*Feature: Favorite Products
+
+- Purpose:
+The Favorite Products feature allows users to save products they like but are not ready to purchase immediately. This helps users easily find and review items they are interested in buying later.
+This feature requires users to be logged in. For login instructions, refer to the Login feature guide.
+
+- How to Add a Product to Favorites:
+
+1. From a product list (e.g., homepage, category pages, search results):
+
+Click the heart icon located at the top-right corner of the product card.
+
+2. From a product detail page:
+
+Click the "Add to Favorite" button.
+
+3. After clicking, a notification will appear in the bottom-right corner of the screen indicating one of the following:
+
+"Please log in to use this feature" – shown if the user is not logged in.
+
+"Product is already in your favorites" – shown if the item was previously saved.
+
+"Product added to favorites successfully" – shown if the product was added successfully.
+
+- How to View Favorite Products:
+
+1. Click the heart icon in the header of any page.
+
+2. If you are not logged in, you will be redirected to the Login page.
+
+3. If you are logged in, you will be redirected to the Favorites page, where all saved products are displayed.
+
+- How to Remove a Product from Favorites:
+
+1. In the Favorites page, click the heart icon again on the product you wish to remove.
+
+2. The product will be removed from your favorite.
+
+- Empty Favorites:
+
+If you have no favorite products, the Favorites page will display a message such as: "You have no favorite products yet."
+
+- Tips:
+
+You can favorite as many products as you want.
+
+Use this feature to create a wish list for future purchases.
+
+Make sure you are logged in so that your favorite list is saved to your account and accessible from any device.
+
+- Common Issues and Troubleshooting:
+
+Problem: "Please log in to use this feature"
+Possible Cause: User clicked the heart icon while not logged in
+Suggested Solution: Log in to your account, then try adding the product again
+
+Problem: Product not being added to favorites
+Possible Cause: Product is already in the favorites list
+Suggested Solution: Check your favorites page to confirm it's already saved
+
+Problem: Removed product still appears in the list
+Possible Cause: UI delay or caching
+Suggested Solution: Refresh the page or clear cache
+
+
+* Feature: Shopping Cart
+
+- Purpose:
+The Shopping Cart feature allows users to add, view, and remove products they intend to purchase. It functions like a traditional shopping cart in physical stores. This feature requires users to be logged in. Refer to the Login feature guide for instructions on signing in.
+
+- How to Add a Product to the Cart:
+
+1. Navigate to the Product Detail Page of the item you wish to buy.
+
+2. Select the size and quantity of the product.
+
+3. Click the "Add to Cart" button.
+
+4. After clicking, a notification will appear in the bottom-right corner of the screen with one of the following messages:
+
+"Please log in to add products to your cart." – if the user is not logged in.
+
+"This product is out of stock." – if the product is no longer available.
+
+"This product with the selected size is already in your cart." – if the exact product and size is already in the cart (Note: you cannot add the same product with the same size more than once. To update the quantity, you must remove the existing item and add it again with the new quantity).
+
+"Product added to cart successfully." – when the item is successfully added with the chosen size and quantity.
+
+- How to View the Shopping Cart:
+
+1. Click on the shopping cart icon in the header of any page.
+
+2. If you are not logged in, you will be redirected to the Login page.
+
+3. If logged in, you will be redirected to the Cart page.
+
+4. On the Cart Page:
+
+A list of all the products you’ve added will be displayed.
+
+Each product entry shows the product name, selected size, and quantity.
+
+To remove an item, click the trash bin icon at the top-right corner of the product card.
+
+- Empty Cart:
+
+If there are no products in the cart, a message such as "Your cart is currently empty." will be shown.
+
+- Important Notes:
+
+Items in your cart are not reserved. Inventory is shared across all users, so products in your cart may go out of stock if not purchased in time.
+
+It is recommended to proceed to checkout as soon as possible to avoid losing items due to stock changes.
+
+To learn how to proceed with checkout and place your order, refer to the Order Checkout feature guide.
+
+- Common Issues and Troubleshooting:
+
+Problem: Unable to add a product to the cart
+Possible Cause: Not logged in
+Suggested Solution: Log in and try again
+
+Problem: Same product and size cannot be added twice
+Explanation: Cart does not allow duplicate items with the same size
+Suggested Solution: Remove the existing item and re-add it with the updated quantity
+
+Problem: Product shows as out of stock
+Explanation: Product or selected size is no longer available
+Suggested Solution: Check back later or choose a different size
+
+
+* Feature: Chatbot Support
+
+- Purpose:
+The Chatbot feature allows users to ask questions and receive automated support about website usage, products, orders, and more.
+This feature requires users to be logged in. Please refer to the Login guide for details on how to log in.
+
+- How to Access the Chatbot:
+
+1. From any page on the website, click the message icon located in the header.
+
+2. If you are not logged in, a message saying "Please login to chat" will appear inside the chat box.
+
+3. You can click the "Please login to chat" message to be redirected to the Login page.
+
+4. Once you log in, return to the page and open the chatbot again to start chatting.
+
+- Using the Chatbot:
+
+After logging in and opening the chatbot:
+
+1. A chat window will appear in the bottom-right corner of the screen.
+
+2. You will see a list of Frequently Asked Questions (FAQs) — click on any question to view its answer.
+
+3. You can also type your own question in the input box.
+
+4. Press Enter or click the Send icon to submit your message.
+
+5. The chatbot will process your question and return the most relevant answer.
+
+- What You Can Ask About:
+
+How to use website features (login, registration, search, favorites, cart, checkout, etc.)
+
+Product details (availability, sizes, descriptions, etc.)
+
+Payment methods and issues
+
+Return, refund, and exchange policies
+
+- Error Handling:
+
+If the chatbot encounters an issue or cannot understand your query, it will display an error message.
+
+You can edit your question and try again.
+
+- Notes:
+
+Clear and specific questions receive better answers.
+
+If your question is too complex, the chatbot may suggest visiting a support page or contacting customer service.
+
+
+* Feature: Forgot Password
+
+- Purpose:
+This feature allows users to reset their password if they forget it, by verifying an OTP sent to their email.
+
+- How to Use the Forgot Password Feature:
+
+1. Go to the Login page.
+
+2. Click on the text "Forgot your password?" located below the Login button.
+
+3. A form will appear prompting you to enter the email address associated with your account.
+
+You must enter a valid email format.
+
+If the email is not in the correct format, you will be asked to re-enter it.
+
+4. After submitting a valid email, the system will send an OTP code to that email address.
+
+If you do not see the OTP in your inbox, please check your Spam/Junk folder.
+
+5. Enter the OTP code in the input field provided.
+
+If the OTP is incorrect, you will receive an error message and be asked to enter it again.
+
+If the OTP is correct, you will be taken to the password reset form.
+
+- Resetting the Password:
+
+6. Enter your new password and then confirm it by typing it again.
+
+The new password must:
+
+Be at least 8 characters long
+
+Contain at least one uppercase letter
+
+Contain at least one lowercase letter
+
+Include at least one number
+
+If the password does not meet the requirements or if the confirmation does not match, an error message will be shown.
+
+7. If everything is valid, the system will process the request:
+
+If the email address exists in the system, a success message will appear:
+"Your password has been updated successfully."
+
+You will now be able to log in using your new password.
+
+If the email address does not exist, an error message will be shown:
+"Account not found."
+
+- Tips:
+
+Always use a secure password that you can remember.
+
+Make sure you enter the correct email address tied to your existing account.
+
+If you experience issues, you can try the process again or contact customer support.
+
+
+* Feature: Checkout / Payment
+
+- Purpose:
+This feature allows users to complete payment for their selected products and finalize their order.
+
+- How to Use the Checkout Feature:
+
+Note: You must be logged in and have at least one item in your cart to use this feature.
+For login instructions, refer to the Login feature guide.
+
+Step-by-step Instructions:
+1. Access your cart:
+
+Click on the cart icon located in the website header (visible on any page).
+
+If you are not logged in, you will be redirected to the login page.
+
+If you are logged in, you will be taken to the Cart page.
+
+2. Review your cart:
+
+If your cart is empty, a message will inform you, and you won’t be able to proceed to checkout.
+
+If your cart contains items, you will see a “Proceed to Checkout” button displayed below the total order amount.
+
+3. Initiate Checkout:
+
+Before proceeding, carefully review your selected items (product name, size, quantity, and total amount).
+
+Click “Proceed to Checkout” to continue.
+
+4. Enter Required Information:
+
+A form will appear asking for the following 3 fields:
+
+Phone Number (must be exactly 10 digits)
+
+Shipping Address
+
+Order Note (optional notes for the order)
+
+All fields except order note are required.
+
+If any field is missing or invalid, an error message will be shown.
+
+5. Confirm and Pay:
+
+Click the “Confirm Payment” button after filling out the form.
+
+A QR code will be displayed, which contains the payment details.
+
+Scan the QR code using your mobile banking app and transfer the exact total amount.
+
+6. Finalize Order:
+
+Once payment is complete, click the “Done” button to return to the site and place more orders if desired.
+
+Your order will now be marked as “Pending” while waiting for admin approval.
+
+A confirmation message will be shown:
+"Your order has been received and is pending admin verification."
+
+- Important Notes:
+
+You must transfer the exact amount shown in the QR code for the order to be verified promptly.
+
+Orders in "pending" status are not considered confirmed until the admin verifies the payment.
+
+You can view the status of your order in the Orders section (feature instructions may be provided separately).
+
+Ensure your contact and shipping details are accurate to avoid delays.
+
+
+* Feature: Report an Issue
+
+- Purpose:
+This feature allows users to report any bugs, issues, or problems encountered while using the website so that the admin can review and respond accordingly.
+
+Note: Login is required to use this feature. Please refer to the Login guide if needed.
+
+- How to Use the Report Issue Feature:
+1. Access the Report Form:
+
+Click on the “Report Issue” icon (usually a message/report icon) fixed at the bottom-left corner of any page.
+
+If you are not logged in, a message will appear prompting you to log in. You will then be redirected to the Login page.
+
+If you are already logged in, a form will pop up, allowing you to write a report message to the admin.
+
+2. Submit Your Report:
+
+Enter the issue details in the input box.
+
+Click the “Send” button.
+
+If the message is successfully sent, you will see a confirmation message.
+
+In case of any error during submission, an error message will appear.
+
+3. View Your Report History:
+
+Click on the “History” icon located at the top-right corner of the report form.
+
+You will be redirected to your personal Report History page.
+
+4. Understanding the Report Status:
+
+If you haven’t submitted any reports yet, a message like “No reports found” will appear.
+
+If you have submitted reports, they will be listed along with their status:
+
+“Pending” – the admin hasn’t responded yet.
+
+“Responded” – the admin has reviewed and replied to the report. The admin’s response will be displayed instead of the original message.
+
+- Delete a Report:
+
+To delete a report, click the trash bin icon located at the bottom-right corner of the report entry.
+
+- Important Notes:
+
+Be as specific as possible when describing the issue to help the admin understand and resolve it quickly.
+
+Reports cannot be edited after submission, but you can delete and re-submit if needed.
+
+The admin’s responses are only visible to the user who submitted the report.
+
+
+* Feature: Product Filtering
+
+- Purpose:
+This feature allows users to filter the product list based on criteria such as price, target audience, size, and rating to quickly find suitable items.
+
+Note: This feature is available to all users, no login required.
+
+- How to Use the Product Filtering Feature:
+1. Access the Filter Options:
+
+On any product listing page (e.g., Men’s Shoes, All Products, etc.), click the “Filter” button located at the top-left area of the product grid.
+
+2. Set Filter Criteria:
+
+A dropdown panel will appear with the following options:
+
+Size: Select one or more available sizes (e.g., S, M, L, XL).
+
+Price Range: Input your desired minimum and maximum prices.
+
+Rating: Choose a minimum star rating (e.g., 4 stars and up).
+
+Target Audience: Choose only one of the following categories:
+
+Men
+
+Women
+
+Kid
+
+Baby
+
+3. Apply the Filter:
+
+After selecting your criteria, click the “Apply Filter” button or press Enter.
+
+The system will display products that match all selected filters.
+
+4. Filter Results:
+
+If matching products are found, they will be shown immediately in the product grid.
+
+If no products match, a message like “No products available” will appear.
+
+- Important Notes:
+
+Filters can be combined for more specific results (e.g., Size = M, Price < $50, Rating ≥ 4 stars).
+
+You can clear or change the filters at any time by reopening the filter dropdown.
+
+The “Target Audience” filter is single-select; you can only choose one category at a time.
+
+
+* Feature: Update Personal Information
+
+- Purpose:
+Allows users to update their name, email, or password.
+
+Note: This feature requires the user to be logged in.
+
+- How to use this feature:
+
+1. The user clicks on their avatar at the top right corner of the screen (assuming they are already logged in).
+
+2. A dropdown menu will appear with several options. The user selects “Setting” to go to the personal information update page.
+
+3. The user will be prompted to verify their current password before proceeding.
+
+4. If the password is incorrect: an error message will be shown.
+
+5. If the password is correct: the user will be directed to the information update form.
+
+6. The user can edit the following fields:
+
+Name: cannot be empty.
+
+Email: cannot be empty and must be in a valid email format.
+
+New Password (optional): must be at least 8 characters long and include uppercase letters, lowercase letters, and numbers.
+
+7. After filling out the form, the user clicks the Update button to confirm.
+
+8. If the update is successful: a success message will appear.
+
+9. If there are errors: appropriate error messages will be displayed.
+- Tips:
+
+Users should double-check the email format and password strength to avoid validation errors.
+
+If the user doesn't want to change the password, they can leave the new password field blank.
+
+It's recommended to regularly update your password for better account security.
+
+- Common Issues:
+
+Entering incorrect current password → system will deny access to update form.
+
+Leaving name or email field blank → form submission will be blocked with error.
+
+Invalid email format or weak password → validation errors will be shown.
+
+Server or network issues may cause the update to fail even with valid inputs → users should try again later.
+
+
+* Feature: View User Profile
+- Purpose:
+Allows users to view all personal information and access related account sections such as order history, cart, favorite products, reviews, payment info, and reported issues. This feature requires the user to be logged in.
+
+- How to Use:
+
+1. Click the avatar icon at the top-right corner of the screen (assuming the user is already logged in).
+
+2. A dropdown menu will appear. Select “Profile”.
+
+3. The user will be redirected to their Profile Page, where the following information is displayed:
+
+Avatar
+
+Name
+
+Email
+
+4. On the right side of the user’s information, there will be a list of quick navigation links to:
+
+Order History
+
+Cart
+
+Favorite Products
+
+My Reviews
+
+Payment Information
+
+Reported History
+
+5. The user can click on any item to be redirected to its respective page.
+(Refer to the corresponding feature guides for detailed instructions on using each section.)
+
+- Tips:
+
+Regularly check your profile to ensure all information is up to date.
+
+Use the quick links to navigate directly to frequently used features.
+
+Keeping your profile information accurate can help in quicker issue resolution and better personalization.
+
+- Common Issues:
+
+Profile page might fail to load due to network/server issues → refresh or try again later.
+
+
+* Feature: View Order History
+- Purpose:
+Allows users to view detailed information about their past orders and their current status. This feature requires the user to be logged in.
+
+- How to Use:
+
+1. Click on the avatar icon at the top right of the screen (assuming the user is already logged in).
+
+2. A dropdown menu will appear. Select Profile.
+
+3. On the Profile page, select Order History.
+
+4. You will be redirected to the Order History page, which shows two sections: Pending Orders and Paid Orders.
+
+5. For each order, the user can click View Detail to see detailed information about the products in that order.
+
+6. For Pending Orders, the user can click Cancel to cancel the order. However, after cancellation, the user must contact customer support to request a refund for any payment already made during the checkout process.
+
+- Tips:
+
+Regularly check the order history to keep track of the status of your purchases.
+
+Cancel only when you're sure about it, since refunds require contacting support.
+
+- Common Issues:
+
+If an order is already marked as "Paid", it cannot be canceled.
+
+Some users may mistakenly cancel a pending order and forget to contact support for a refund—make sure to follow through if you've already paid.
+
+
+* Feature: Logout
+- Purpose:
+Allows users to log out from their current account, enabling them to switch accounts or end their session for security purposes. This feature requires the user to be logged in.
+
+- How to Use:
+
+1. Click on the avatar icon in the top-right corner of the screen (assuming the user is already logged in).
+
+2. A dropdown menu will appear with multiple options.
+
+3. Select Logout from the list.
+
+4. The system will log the user out and redirect them to the login page.
+
+- Tips:
+
+Make sure to always log out when using a shared or public device to protect your account.
+
+Logging out clears the session, so any unsaved changes in the account or cart might be lost.
+
+- Issues:
+
+If the logout button doesn’t respond, try refreshing the page.
+
+In rare cases, session cookies may persist—try clearing browser cookies if you're not redirected properly
+
+
+* Feature: Product Review
+- Purpose:
+Allows users to leave reviews for products they have purchased. This helps other customers make informed decisions. To use this feature, users must be logged in and have at least one order that has been confirmed by the admin (status: paid).
+
+- How to Use:
+
+1. Click on the avatar icon in the top-right corner (assuming the user is logged in).
+
+2. From the dropdown, select Profile.
+
+3. In the profile page, choose Order History.
+
+4. From the list of paid orders, click View Detail for any order.
+
+5. The order's product list will appear — click Write a Review next to the product you want to review.
+
+6. To edit or delete your own reviews, go to My Reviews from the Profile page and use the Edit or Delete options.
+
+- Tips:
+
+Be honest and detailed in your review to help other users.
+
+Reviews may include a rating and written comments.
+
+You can update your review later if your opinion changes.
+
+- Issues:
+
+Only products from paid orders can be reviewed.
+
+If the “Write a Review” button doesn’t appear, check whether the order status is paid.
+
+If your review does not show up immediately, it may be pending moderation.

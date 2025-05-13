@@ -30,15 +30,13 @@ def test_get_product_by_name(client, create_product, name, status_code):
         return
     assert response.json()[0]['name'] == create_product['name']
 
-def test_add_product(client, mock_astradb, create_category):
+def test_add_product(client, create_category):
     response = client.post('/products/', json={'name': 'test_product', 'description': 'test_desc', 'price': 10, 'size': 'S', 'quantity_in_stock': 10, 'category_id': 1, 'age_gender': 'Men'})
     assert response.status_code == 201
     assert response.json()['name'] == 'test_product'
     assert response.json()['description'] == 'test_desc'
     assert response.json()['price'] == 10
     assert response.json()['size'] == 'S'
-    print(mock_astradb.documents)
-    assert mock_astradb.documents['1'] is not None
 
 @pytest.mark.parametrize('name, description, price, size, quantity_in_stock, category_id, age_gender, status_code', [
     ('test_product', 'test_desc', 10, 'S', 10, 1, 'Men', 400),

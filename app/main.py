@@ -4,8 +4,7 @@ import uvicorn
 
 from app import models
 from app.database_connect import engine
-from app.routers import products_api, users_api, categories_api, reviews_api, notifications_api, orders_api, \
-    authentication, chatbot_api, admins_api, sales_api, reports_api
+from app.routers import products_api, users_api, categories_api, reviews_api, notifications_api, orders_api, authentication, chatbot_api, admins_api, sales_api, reports_api
 
 models.Base.metadata.create_all(bind=engine)
 

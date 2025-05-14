@@ -106,7 +106,7 @@ def user_guide_answer(state: State):
     chain = category_2_prompt | llm
     chat_history = state['messages'][:-1] if state["need_history_classify"] == "need_history" else []
 
-    result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "context": docs[0].page_content})
+    result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "context": "\n".join([doc.page_content for doc in docs])})
     return {"messages": [{"role": "assistant", "content": result.content}]}
 
 def small_talk_answer(state: State):

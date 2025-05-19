@@ -99,3 +99,13 @@ id,question,answer
 98,Why can't I log in?,"If you're unable to log in, please double-check your email and password to ensure they are entered correctly. If you've forgotten your password, you can use the Forgot Password option to reset it. If you're still having trouble logging in, it could be due to an account issue or a temporary glitch. In that case, please contact our customer support team, and we'll assist you in resolving the issue."
 99,How do I use the search filters?,"To use the search filters on our website, click the filter button located at the top left corner of the product list. This will open up various options, including filters for size, minimum and maximum price, and minimum and maximum ratings. Simply select the options that match your preferences, then click Apply to update the product list based on your selected criteria."
 100,Why am I seeing old prices?,"If you're seeing old prices, it's possible that the product is no longer on sale or the discount has expired. Please check the 'Sales' section for the latest offers, or refresh the page to ensure you're seeing the most current price. If the issue persists, feel free to contact our customer support team for assistance."
+101,What is my account information?,
+102,Can I update my display name?,
+103,Show me the latest products,
+104,What new arrivals are available?,
+105,What items are on sale right now?,
+106,Find products with ‘jeans’ in the name,
+107,Filter products by size M and price between $20 and $50,
+108,What products have a 5-star rating,
+109,Which accessories are available for women?,
+110,Show me the details for product ID 12345,

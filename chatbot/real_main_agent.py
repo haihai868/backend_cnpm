@@ -19,6 +19,7 @@ from chatbot.prompts import classification_prompt, db_query_prompt, category_1_p
 load_dotenv()
 
 db = SQLDatabase.from_uri(f"mysql+mysqlconnector://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}")
+executor = QuerySQLDatabaseTool(db=db)
 
 llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash",)
 
@@ -67,7 +68,6 @@ def generate_query(state: State):
     return {"query": result.query}
 
 def sql_query(state: State):
-    executor = QuerySQLDatabaseTool(db=db)
     return {"query_result": executor.invoke(state["query"])}
 
 def product_details_answer(state: State):

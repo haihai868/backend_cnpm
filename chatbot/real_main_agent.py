@@ -1,11 +1,13 @@
 from dotenv import load_dotenv
 
-from langchain_community.tools import QuerySQLDatabaseTool
-from langchain_core.messages import RemoveMessage, SystemMessage, HumanMessage, AIMessage, BaseMessage
+
 from pydantic import BaseModel
 from typing_extensions import Annotated
 import sqlite3
 
+from langchain_community.tools import QuerySQLDatabaseTool
+from langchain_community.agent_toolkits import SQLDatabaseToolkit
+from langchain_core.messages import RemoveMessage, SystemMessage, HumanMessage, AIMessage, BaseMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.utilities import SQLDatabase
 
@@ -18,10 +20,9 @@ from chatbot.prompts import classification_prompt, db_query_prompt, category_1_p
 
 load_dotenv()
 
+llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash",)
 db = SQLDatabase.from_uri(f"mysql+mysqlconnector://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}")
 executor = QuerySQLDatabaseTool(db=db)
-
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash",)
 
 class State(MessagesState):
     user_id: str
@@ -68,7 +69,10 @@ def generate_query(state: State):
     return {"query": result.query}
 
 def sql_query(state: State):
-    return {"query_result": executor.invoke(state["query"])}
+    result = executor.invoke(state["query"])
+    if result.startswith("Error"):
+        return {"should_answer": False}
+    return {"query_result": result, "should_answer": True}
 
 def product_details_answer(state: State):
     chain = category_1_prompt | llm
@@ -141,6 +145,12 @@ graph_builder.add_conditional_edges("classify_question_router",
                                         "generate_query": "generate_query",
                                         "user_guide_answer": "user_guide_answer",
                                         "small_talk_answer": "small_talk_answer",
+                                    })
+graph_builder.add_conditional_edges("sql_query",
+                                    lambda state: state["should_answer"],
+                                    {
+                                        True: "product_details_answer",
+                                        False: "generate_query",
                                     })
 
 graph_builder.add_edge("generate_query", "sql_query")

@@ -38,7 +38,7 @@ Instructions:
 - To increase flexibility, prefer using **LIKE** on fields such as `name`, `description`, `category`, etc. in multiple tables, especially when the user's input is not very specific or they want a broad search or a suggestion.
 - Combine filters using multiple **OR** conditions when helpful for broader matching.
 - Use advanced SQL clauses when appropriate, including **JOIN**, **GROUP BY**, **HAVING**, **ORDER BY**, **COUNT**, etc.
-- Try to use **LIMIT** to restrict the number of results if necessary.
+- Try to use **LIMIT** to restrict the number of results to 10 if the user has not specified a limit.
 
 Database schema:
 {schema}

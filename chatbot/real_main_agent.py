@@ -1,9 +1,8 @@
-from typing import Literal
-
 from dotenv import load_dotenv
+
 from langchain_community.tools import QuerySQLDatabaseTool
 from langchain_core.messages import RemoveMessage, SystemMessage, HumanMessage, AIMessage, BaseMessage
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing_extensions import Annotated
 import sqlite3
 
@@ -15,7 +14,7 @@ from langgraph.graph import StateGraph, START, END, MessagesState
 
 from app.config import settings
 from chatbot.load_data import user_guide_retriever
-from chatbot.prompts import classification_prompt, need_history_prompt, db_query_prompt, category_1_prompt, category_2_prompt, category_3_prompt
+from chatbot.prompts import classification_prompt, db_query_prompt, category_1_prompt, category_2_prompt, category_3_prompt
 
 load_dotenv()
 
@@ -26,15 +25,8 @@ llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash",)
 class State(MessagesState):
     user_id: str
     question_category: int
-    need_history_classify: str
     query: str
     query_result: str
-
-class NeedHistoryOutput(BaseModel):
-    answer: Literal['need_history', 'no_need_history', 'irrelevant'] = Field(
-        ...,
-        description="Whether the user is referring to a previous conversation or not or irrelevant question."
-    )
 
 class ClassificationOutput(BaseModel):
     category: int
@@ -53,22 +45,6 @@ def role(m: BaseMessage):
     else:
         return "unknown"
 
-def need_history(state: State):
-    chain = need_history_prompt | llm.with_structured_output(NeedHistoryOutput)
-    result = chain.invoke({"question": state["messages"][-1].content})
-    return {"need_history_classify": result.answer}
-
-def need_history_router(state: State):
-    if state["need_history_classify"] == "irrelevant":
-        return {"after_need_history": "irrelevant_answer"}
-    return {"after_need_history": "classify_question"}
-
-def irrelevant_answer(state: State):
-    return {"messages": [{
-        "role": "assistant",
-        "content": "Sorry, I specialize in fashion products and website assistance. Please ask something related!"
-    }]}
-
 def classify_question(state: State):
     chain = classification_prompt | llm.with_structured_output(ClassificationOutput)
     result = chain.invoke({"question": state["messages"][-1].content})
@@ -84,7 +60,7 @@ def classify_question_router(state: State):
 
 def generate_query(state: State):
     chain = db_query_prompt | llm.with_structured_output(QueryOutput)
-    chat_history = state['messages'][:-1] if state["need_history_classify"] == "need_history" else []
+    chat_history = state['messages'][:-1]
 
     table_info = db.get_table_info(table_names=['categories', 'favourites', 'notifications', 'order_details', 'orders', 'products', 'reports', 'reviews', 'sales', 'users'])
     result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "schema": table_info, "user_id": state["user_id"]})
@@ -96,22 +72,23 @@ def sql_query(state: State):
 
 def product_details_answer(state: State):
     chain = category_1_prompt | llm
-    chat_history = state['messages'][:-1] if state["need_history_classify"] == "need_history" else []
+    chat_history = state['messages'][:-1]
 
-    result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "sql_query": state["query"], "query_result": state["query_result"]})
+    query_result = state["query_result"] if state["query_result"] != "" else "no results"
+    result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "sql_query": state["query"], "query_result": query_result})
     return {"messages": [{"role": "assistant", "content": result.content}]}
 
 def user_guide_answer(state: State):
     docs = user_guide_retriever.get_relevant_documents(state["messages"][-1].content)
     chain = category_2_prompt | llm
-    chat_history = state['messages'][:-1] if state["need_history_classify"] == "need_history" else []
+    chat_history = state['messages'][:-1]
 
     result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "context": "\n".join([doc.page_content for doc in docs])})
     return {"messages": [{"role": "assistant", "content": result.content}]}
 
 def small_talk_answer(state: State):
     chain = category_3_prompt | llm
-    chat_history = state['messages'][:-1] if state["need_history_classify"] == "need_history" else []
+    chat_history = state['messages'][:-1]
 
     result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content})
     return {"messages": [{"role": "assistant", "content": result.content}]}
@@ -119,14 +96,14 @@ def small_talk_answer(state: State):
 def manage_memory(state: State):
     messages = state["messages"]
 
-    max_messages_len = 8
-    delete_messages_len = 4
+    max_messages_len = 20
+    delete_messages_len = 10
 
     print(len(state["messages"]))
 
     if isinstance(state["messages"][0], SystemMessage):
-        max_messages_len = 9
-        delete_messages_len = 5
+        max_messages_len = 21
+        delete_messages_len = 11
 
     if len(state["messages"]) >= max_messages_len + 1:
         print("need to remove messages")
@@ -145,9 +122,6 @@ def manage_memory(state: State):
 
 graph_builder = StateGraph(State)
 graph_builder.add_node("manage_memory", manage_memory)
-graph_builder.add_node("need_history", need_history)
-graph_builder.add_node("need_history_router", need_history_router)
-graph_builder.add_node("irrelevant_answer", irrelevant_answer)
 graph_builder.add_node("classify_question", classify_question)
 graph_builder.add_node("classify_question_router", classify_question_router)
 graph_builder.add_node("generate_query", generate_query)
@@ -157,15 +131,7 @@ graph_builder.add_node("user_guide_answer", user_guide_answer)
 graph_builder.add_node("small_talk_answer", small_talk_answer)
 
 graph_builder.add_edge(START, "manage_memory")
-graph_builder.add_edge("manage_memory", "need_history")
-graph_builder.add_edge("need_history", "need_history_router")
-
-graph_builder.add_conditional_edges("need_history_router",
-                                    lambda state: state["after_need_history"],
-                                    {
-                                        "classify_question": "classify_question",
-                                        "irrelevant_answer": "irrelevant_answer",
-                                    })
+graph_builder.add_edge("manage_memory", "classify_question")
 
 graph_builder.add_edge("classify_question", "classify_question_router")
 
@@ -181,7 +147,6 @@ graph_builder.add_edge("generate_query", "sql_query")
 graph_builder.add_edge("sql_query", "product_details_answer")
 graph_builder.add_edge("product_details_answer", END)
 graph_builder.add_edge("user_guide_answer", END)
-graph_builder.add_edge("irrelevant_answer", END)
 graph_builder.add_edge("small_talk_answer", END)
 
 conn = sqlite3.connect('chat_history.sqlite', check_same_thread=False)

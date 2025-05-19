@@ -1,25 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-need_history_template = """
-You are a helpful assistant for a fashion e-commerce website.
-
-The user has asked a question. Your task is to determine the type of the question based on its relation to previous conversation history.
-
-Classify the user's question into one of the following categories:
-- "need_history": The question refers to or depends on previous conversation context.
-- "no_need_history": The question is clear and self-contained, not requiring any prior context.
-- "irrelevant": The question is unrelated to the current domain or context (e.g., off-topic).
-
-Answer:
-"""
-
-need_history_prompt = ChatPromptTemplate.from_messages(
-    [
-        ('system', need_history_template),
-        ('user', "{question}")
-    ]
-)
-
 #improve
 classification_template = """
 You are a question classifier for a fashion e-commerce website. Classify the following user question into one of the two categories below:
@@ -55,7 +35,7 @@ Instructions:
 - Only generate **SELECT** queries.
 - If the question involves **user-specific data** (e.g., personal orders, saved items, payment status, etc.), add `WHERE user_id = {user_id}`.
 - Use **single quotes (' ')** for string literals — never use double quotes (").
-- To increase flexibility, prefer using **LIKE** on fields such as `name`, `description`, etc. in multiple tables, especially when the user's input is not very specific or they want a broad search or a suggestion.
+- To increase flexibility, prefer using **LIKE** on fields such as `name`, `description`, `category`, etc. in multiple tables, especially when the user's input is not very specific or they want a broad search or a suggestion.
 - Combine filters using multiple **OR** conditions when helpful for broader matching.
 - Use advanced SQL clauses when appropriate, including **JOIN**, **GROUP BY**, **HAVING**, **ORDER BY**, **COUNT**, etc.
 - Try to use **LIMIT** to restrict the number of results to 5 or less.
@@ -83,8 +63,9 @@ You are a helpful assistant for a fashion e-commerce website.
 A user has asked a question about product details. Answer the user’s question based on the retrieved documents and the result of the SQL query. 
 
 Instructions:
-- If the context or query result does not provide enough information to fully answer the question, respond with:  
-**"Sorry, I couldn’t find enough information to answer your question based on the current documentation."**, but if the question is about a personal order or account-specific information, that might be because the user has not have any of that data yet.
+- If the provided context or query result does not contain enough information to fully answer the question, consider the following possible reasons:
+  - The question relates to personal or account-specific data (such as orders, favorites, notifications, reviews, or reports), which may not be available if the user has not generated such data yet.
+  - The requested data is not available in the database.
 - Always ensure that your answer is based strictly on the provided context and query result.
 - If the retrieved information includes any product details (e.g., product name, price, stock, reviews), use it to form a complete answer. 
 

@@ -68,15 +68,11 @@ A user has asked a question about product or business-related information. Answe
 
 Instructions:
 - If the query result is empty or shows "no results", clearly state that no data was found and suggest possible reasons (e.g., "You don't have any notifications yet" or "No products match your search criteria").
-- Never show the raw SQL query to the user.
 - Format data in a readable way (use bullet points for multiple items).
 - For product listings, include key details like name, price, and availability.
 - For order information, include order ID, date, status, and items if available.
 - For notifications, include the title, message, and when it was received.
 - Be conversational but concise (2-3 sentences max).
-
-SQL query executed:
-{sql_query}
 
 Query result:
 {query_result}

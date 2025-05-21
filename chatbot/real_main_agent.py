@@ -77,7 +77,7 @@ def product_details_answer(state: State):
     chat_history = state['messages'][:-1]
 
     query_result = state["query_result"] if state["query_result"] != "" else "no results"
-    result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "sql_query": state["query"], "query_result": query_result})
+    result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "query_result": query_result})
     return {"messages": [{"role": "assistant", "content": result.content}]}
 
 def user_guide_answer(state: State):

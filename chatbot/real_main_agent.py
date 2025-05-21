@@ -1,26 +1,17 @@
-from dotenv import load_dotenv
-
+from langchain_community.agent_toolkits import SQLDatabaseToolkit
+from langchain_core.messages import RemoveMessage, SystemMessage, HumanMessage, AIMessage, BaseMessage, ToolMessage
+from langgraph.checkpoint.sqlite import SqliteSaver
+from langgraph.graph import StateGraph, START, END, MessagesState
+from langgraph.prebuilt import ToolNode
 from pydantic import BaseModel
 from typing_extensions import Annotated
 import sqlite3
 
-from langchain_community.tools import QuerySQLDatabaseTool
-from langchain_core.messages import RemoveMessage, SystemMessage, HumanMessage, AIMessage, BaseMessage
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_community.utilities import SQLDatabase
-
-from langgraph.checkpoint.sqlite import SqliteSaver
-from langgraph.graph import StateGraph, START, END, MessagesState
-
-from app.config import settings
 from chatbot.load_data import user_guide_retriever
-from chatbot.prompts import classification_prompt, db_query_prompt, category_1_prompt, category_2_prompt, category_3_prompt
+from chatbot.prompts import classification_prompt, category_2_prompt, category_3_prompt, generate_query_prompt, \
+    generate_query_system_prompt
+from chatbot.utils import llm, db
 
-load_dotenv()
-
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash",)
-db = SQLDatabase.from_uri(f"mysql+mysqlconnector://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}")
-executor = QuerySQLDatabaseTool(db=db)
 
 class State(MessagesState):
     user_id: str
@@ -42,8 +33,14 @@ def role(m: BaseMessage):
         return "user"
     elif isinstance(m, AIMessage):
         return "assistant"
-    else:
-        return "unknown"
+    elif isinstance(m, ToolMessage):
+        return "tool"
+    return "unknown"
+
+
+tools = SQLDatabaseToolkit(db=db, llm=llm).get_tools()
+tool_node = ToolNode(tools)
+
 
 def classify_question(state: State):
     chain = classification_prompt | llm.with_structured_output(ClassificationOutput)
@@ -52,33 +49,32 @@ def classify_question(state: State):
 
 def classify_question_router(state: State):
     if state["question_category"] == 1:
-        return {"after_classify_question": "generate_query"}
+        return {"after_classify_question": "generate_query_and_answer"}
     elif state["question_category"] == 2:
         return {"after_classify_question": "user_guide_answer"}
     elif state["question_category"] == 3:
         return {"after_classify_question": "small_talk_answer"}
 
-def generate_query(state: State):
-    chain = db_query_prompt | llm.with_structured_output(QueryOutput)
-    chat_history = state['messages'][:-1]
+def generate_query_and_answer(state: State):
+    system_message = {
+        "role": "system",
+        "content": generate_query_system_prompt.format(
+            dialect=db.dialect,
+            top_k=20,
+            user_id=state["user_id"]
+        ),
+    }
+    llm_with_tools = llm.bind_tools(tools)
+    response = llm_with_tools.invoke([system_message] + state["messages"])
 
-    table_info = db.get_table_info(table_names=['categories', 'favourites', 'notifications', 'order_details', 'orders', 'products', 'reports', 'reviews', 'sales', 'users'])
-    result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "schema": table_info, "user_id": state["user_id"]})
-    return {"query": result.query}
+    return {"messages": [response]}
 
-def sql_query(state: State):
-    result = executor.invoke(state["query"])
-    if result.startswith("Error"):
-        return {"should_answer": False}
-    return {"query_result": result, "should_answer": True}
-
-def product_details_answer(state: State):
-    chain = category_1_prompt | llm
-    chat_history = state['messages'][:-1]
-
-    query_result = state["query_result"] if state["query_result"] != "" else "no results"
-    result = chain.invoke({"chat_history": chat_history, "question": state["messages"][-1].content, "query_result": query_result})
-    return {"messages": [{"role": "assistant", "content": result.content}]}
+def should_continue(state: State):
+    last_message = state["messages"][-1]
+    if not last_message.tool_calls:
+        return {"should_continue": False}
+    else:
+        return {"should_continue": True}
 
 def user_guide_answer(state: State):
     docs = user_guide_retriever.get_relevant_documents(state["messages"][-1].content)
@@ -135,9 +131,11 @@ graph_builder = StateGraph(State)
 graph_builder.add_node("manage_memory", manage_memory)
 graph_builder.add_node("classify_question", classify_question)
 graph_builder.add_node("classify_question_router", classify_question_router)
-graph_builder.add_node("generate_query", generate_query)
-graph_builder.add_node("sql_query", sql_query)
-graph_builder.add_node("product_details_answer", product_details_answer)
+
+graph_builder.add_node("generate_query_and_answer", generate_query_and_answer)
+graph_builder.add_node("should_continue", should_continue)
+graph_builder.add_node("tool_node", tool_node)
+
 graph_builder.add_node("user_guide_answer", user_guide_answer)
 graph_builder.add_node("small_talk_answer", small_talk_answer)
 
@@ -149,20 +147,22 @@ graph_builder.add_edge("classify_question", "classify_question_router")
 graph_builder.add_conditional_edges("classify_question_router",
                                     lambda state: state["after_classify_question"],
                                     {
-                                        "generate_query": "generate_query",
+                                        "generate_query_and_answer": "generate_query_and_answer",
                                         "user_guide_answer": "user_guide_answer",
                                         "small_talk_answer": "small_talk_answer",
                                     })
-graph_builder.add_conditional_edges("sql_query",
-                                    lambda state: state["should_answer"],
-                                    {
-                                        True: "product_details_answer",
-                                        False: "generate_query",
-                                    })
 
-graph_builder.add_edge("generate_query", "sql_query")
-graph_builder.add_edge("sql_query", "product_details_answer")
-graph_builder.add_edge("product_details_answer", END)
+graph_builder.add_edge("generate_query_and_answer", END)
+
+graph_builder.add_edge("generate_query_and_answer", "should_continue")
+graph_builder.add_conditional_edges("should_continue",
+                                    lambda state: state["should_continue"],
+                                    {
+                                        True: "tool_node",
+                                        False: END,
+                                    })
+graph_builder.add_edge("tool_node", "generate_query_and_answer")
+
 graph_builder.add_edge("user_guide_answer", END)
 graph_builder.add_edge("small_talk_answer", END)
 

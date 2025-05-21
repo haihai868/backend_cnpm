@@ -1,12 +1,10 @@
 from dotenv import load_dotenv
 
-
 from pydantic import BaseModel
 from typing_extensions import Annotated
 import sqlite3
 
 from langchain_community.tools import QuerySQLDatabaseTool
-from langchain_community.agent_toolkits import SQLDatabaseToolkit
 from langchain_core.messages import RemoveMessage, SystemMessage, HumanMessage, AIMessage, BaseMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.utilities import SQLDatabase
@@ -113,7 +111,16 @@ def manage_memory(state: State):
         print("need to remove messages")
         prev_messages = state["messages"][:delete_messages_len]
 
-        prompt_template = "Summarize the following conversation history into a single message:\n\n" + "\n".join([f"{role(m)}: {m.content}" for m in prev_messages])
+        prompt_template = """
+                Summarize the following conversation history between a user and a fashion e-commerce assistant.
+                Focus on key information like:
+                - Products or categories the user was interested in
+                - Any specific preferences mentioned (sizes, colors, styles)
+                - Questions about website features
+                - Order-related information
+
+                Conversation:
+                """ + "\n".join([f"{role(m)}: {m.content}" for m in prev_messages])
 
         response = llm.invoke(prompt_template)
         state["messages"].insert(delete_messages_len, {"role": "system", "content": response.content})

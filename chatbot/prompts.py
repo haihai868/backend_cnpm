@@ -62,9 +62,7 @@ db_query_prompt = ChatPromptTemplate.from_messages(
 )
 
 category_1_template = """
-You are a helpful assistant for a fashion e-commerce website.
-
-A user has asked a question about product or business-related information. Answer the user’s question based on the SQL query result. 
+You are a helpful assistant for a fashion e-commerce website. You must answer the user’s question strictly based on the SQL query result. Do not include any additional information that is not in the query result.
 
 Instructions:
 - If the query result is empty or shows "no results", clearly state that no data was found and suggest possible reasons (e.g., "You don't have any notifications yet" or "No products match your search criteria").
@@ -72,7 +70,7 @@ Instructions:
 - For product listings, include key details like name, price, and availability.
 - For order information, include order ID, date, status, and items if available.
 - For notifications, include the title, message, and when it was received.
-- Be conversational but concise (2-3 sentences max).
+- Focus on the user's question and answer it as directly and concisely as possible.
 
 Query result:
 {query_result}

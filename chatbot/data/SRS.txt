@@ -1,0 +1,2675 @@
+﻿LỜI CAM ĐOAN
+Chúng em, các thành viên trong nhóm, cam kết không sao chép nội dung từ các nhóm khác dưới bất kỳ hình thức nào và không sử dụng nội dung được tạo ra bởi các công cụ AI như Chat GPT hay các phần mềm hỗ trợ khác. Toàn bộ bài làm là kết quả lao động, nghiên cứu và sáng tạo của chính nhóm chúng em. Nếu vi phạm dù chỉ một đoạn hoặc một câu trong bài làm, chúng em đồng ý chịu mức xử lý 0 điểm theo quy định của nhà trường. Chúng em xin chịu hoàn toàn trách nhiệm trước mọi hậu quả nếu lời cam đoan này không được thực hiện nghiêm túc.
+Danh sách thành viên và chữ ký:
+1. Họ và tên: Nguyễn Anh Tú           Chữ ký: ......................
+
+2. Họ và tên: Trương Văn Hải           Chữ ký: ......................
+
+3. Họ và tên: Lê Trọng Thực             Chữ ký: ......................
+
+4. Họ và tên: Đào Quang Tiến           Chữ ký: ......................
+
+
+
+
+
+
+
+
+BẢNG MÔ TẢ ĐÓNG GÓP CỦA CÁC THÀNH VIÊN NHÓM
+Mã Sinh Viên
+	Họ và Tên
+	Phần trăm (%)
+	Mô tả đóng góp
+	23020147
+	Nguyễn Anh Tú
+	35
+	Thiết kế giao diện, cài đặt giao diện người dùng (frontend), soạn thảo nội dung bản mềm của tài liệu, chuẩn bị và thêm dữ liệu mẫu vào hệ thống, chuẩn bị dữ liệu cho chatbot.
+	23020058
+	Trương Văn Hải
+	35
+	Thiết kế giao diện, cài đặt backend, xây dựng chatbot và cơ sở dữ liệu, soạn thảo nội dung bản mềm của tài liệu.
+	23020165
+	Lê Trọng Thực
+	20
+	Thiết kế giao diện, chuẩn bị và thêm dữ liệu mẫu vào hệ thống, đảm nhiệm việc sao chép và hoàn thiện bản cứng tài liệu bằng phương pháp viết tay từ bản mềm.
+	22021517
+	Đào Quang Tiến
+	10
+	 Đảm nhiệm việc sao chép và hoàn thiện bản cứng tài liệu bằng phương pháp viết tay từ bản mềm.
+	
+
+
+
+________________
+
+
+MỤC LỤC
+LỜI CAM ĐOAN        1
+BẢNG MÔ TẢ ĐÓNG GÓP CỦA CÁC THÀNH VIÊN NHÓM        2
+MỤC LỤC        3
+DANH SÁCH HÌNH VẼ        8
+DANH SÁCH BẢNG        10
+DANH MỤC THUẬT NGỮ, TỪ VIẾT TẮT        12
+CHƯƠNG 1: ĐẶT VẤN ĐỀ        14
+CHƯƠNG 2: KIẾN THỨC NỀN TẢNG        17
+2.1. Tổng Quan Kiến Trúc Hệ Thống Và Cơ Chế Phối Hợp        18
+2.1.1. Mô Hình Kiến Trúc Client-Server        18
+2.1.2. Vai Trò Của Các Thành Phần Chính        18
+2.1.3. Cơ Chế Phối Hợp Giữa Các Thành Phần        19
+2.2. Công Nghệ Frontend        19
+2.2.1. ReactJS: Nền Tảng Cho Giao Diện Tương Tác Và Hiệu Suất Cao        19
+2.2.2. Tailwind CSS: Thiết Kế Giao Diện Nhanh Chóng, Nhất Quán Và Responsive        20
+2.2.3. Sự Phối Hợp Frontend: Nâng Cao Trải nghiệm Người Dùng        20
+2.3. Công Nghệ Backend        20
+2.3.1. FastAPI: Framework API Hiệu Suất Cao Và Dễ Sử Dụng        20
+2.3.2. Cơ Sở Dữ Liệu MySQL: Lưu Trữ Dữ Liệu Tin Cậy Và Linh Hoạt        21
+2.3.3. SQLAlchemy ORM Và Alembic: Quản Lý Dữ Liệu Và Cấu Trúc Cơ Sở Dữ liệu        21
+2.3.4. Bảo Mật (JWT): Xác Thực Và Bảo Vệ API        21
+2.4. Chatbot RAG        22
+2.4.1. Retrieval-Augmented Generation (RAG)        22
+2.4.2. LangChain Và LangGraph        22
+2.4.3. Vector Database Và Embedding        22
+2.4.4. Prompt Engineering Và Template        22
+2.5. Tổng Kết Chương        23
+CHƯƠNG 3: THU THẬP, PHÂN TÍCH, ĐẶC TẢ YÊU CẦU        24
+3.1. Thu Thập Yêu Cầu        24
+3.1.1. Yêu Cầu Chức Năng        24
+3.1.1.1. Yêu cầu chức năng dành cho Người dùng        24
+3.1.1.2. Yêu cầu chức năng dành cho Quản trị viên (Admin)        26
+3.1.2. Yêu Cầu Phi Chức Năng        27
+3.1.2.1. Hiệu năng hệ thống        27
+3.1.2.2. Yêu cầu xác thực và bảo mật        27
+3.1.2.3. CORS và kiểm soát truy cập        28
+3.1.2.4.  Giao diện người dùng (UI/UX)        28
+3.1.2.5.  Khả năng tương thích hệ thống        28
+3.2. Biểu Đồ Ca Sử Dụng        29
+3.2.1. Các Tác Nhân (Actors)        31
+3.2.2. Các Ca Sử Dụng (Use Cases)        31
+3.3. Mô Tả Chi Tiết Các Ca Sử Dụng        33
+3.3.1. Ca Sử Dụng: Đăng Nhập Hệ Thống        33
+3.3.2. Ca Sử Dụng: Người Dùng Đăng Ký Tài Khoản        34
+3.3.3. Ca Sử Dụng: Người Dùng Quên Mật Khẩu        35
+3.3.4. Ca Sử Dụng: Cập Nhật Thông Tin Cá Nhân        36
+3.3.5. Ca Sử Dụng: Người Dùng Lọc Sản Phẩm        37
+3.3.6. Ca Sử Dụng: Người Dùng Xem Chi Tiết Sản Phẩm        38
+3.3.7. Ca Sử Dụng: Người Dùng Quản Lý Giỏ Hàng        39
+3.3.8. Ca Sử Dụng: Người Dùng Thanh Toán        40
+3.3.9. Ca Sử Dụng: Người Dùng Đánh Giá Sản Phẩm        41
+3.3.10. Ca Sử Dụng: Người Dùng Quản Lý Sản Phẩm Yêu Thích        42
+3.3.11. Ca Sử Dụng: Người Dùng Quản Lý Thông Báo        43
+3.3.12. Ca Sử Dụng: Người Dùng Hỏi Chatbot        44
+3.3.13. Ca Sử Dụng: Người Dùng Gửi Phản Hồi, Báo Lỗi        45
+3.3.14. Ca Sử Dụng: Quản Trị Viên Quản Lý Sản Phẩm        46
+3.3.15. Ca Sử Dụng: Quản Trị Viên Quản Lý Danh Mục Sản Phẩm        47
+3.3.16. Ca Sử Dụng: Quản Trị Viên Quản Lý Đơn Hàng        48
+3.3.17. Ca Sử Dụng: Quản Trị Viên Quản Lý Người Dùng        49
+3.3.18. Ca Sử Dụng: Quản Trị Viên Quản Lý Đánh Giá Của Người Dùng        50
+3.3.19. Ca Sử Dụng: Quản Trị Viên Quản Lý Khuyến Mãi        51
+3.3.20. Ca Sử Dụng: Quản Trị Viên Gửi Thông Báo Cho Người Dùng        52
+3.3.21. Ca Sử Dụng: Quản Trị Viên Xem thống Kê        53
+3.3.22. Ca Sử Dụng: Quản Trị Viên Xem, Phản Hồi Lỗi Của Người Dùng        54
+3.3.23. Ca Sử Dụng: Quản Trị Viên Tạo Tài Khoản Admin Mới        55
+3.4. Biểu Đồ Hoạt Động        56
+3.4.1. Biểu Đồ Hoạt Động - Thanh Toán Đơn Hàng        56
+3.4.2. Biểu Đồ Hoạt Động - Quên Mật Khẩu        57
+3.4.3. Biểu Đồ Hoạt Động - Quản Lý Giỏ Hàng        58
+3.4.4. Biểu Đồ Hoạt Động - Cập Nhật Thông Tin Cá Nhân        59
+3.4.5. Biểu Đồ Hoạt Động - Gửi Phản Hồi, Báo Lỗi        60
+3.4.6. Biểu Đồ Hoạt Động - Quản Lý Đơn Hàng        61
+3.4.7. Biểu Đồ Hoạt Động - Quản Lý Đánh Giá Của Người Dùng        62
+3.4.8. Biểu Đồ Hoạt Động - Quản Lý Khuyến Mãi        63
+3.5. Tổng Kết Chương        64
+CHƯƠNG 4: PHÂN TÍCH, THIẾT KẾ HỆ THỐNG        65
+4.1. Kiến Trúc Hệ Thống        65
+4.1.1. Frontend (Client)        65
+4.1.2. Backend (Server)        66
+4.1.3. Chatbot        66
+4.2. Biểu Đồ Tuần Tự        66
+4.2.1. Biểu Đồ Tuần Tự - Đăng nhập        67
+4.2.2. Biểu Đồ Tuần Tự - Quên Mật Khẩu        68
+4.2.3. Biểu Đồ Tuần Tự - Đánh Giá Sản Phẩm        69
+4.2.4. Biểu đồ Tuần Tự - Cập Nhật Thông Tin Cá Nhân        70
+4.2.5. Biểu Đồ Tuần Tự - Xác Nhận Thanh Toán        71
+4.2.6. Biểu Đồ Tuần Tự - Quản Lý Đơn Hàng        72
+4.2.7. Biểu Đồ Tuần Tự - Quản Lý Phản Hồi Của Người Dùng        73
+4.2.8. Biểu Đồ Tuần Tự - Quản Lý Đánh Giá Của Người Dùng        74
+4.3. Cơ Sở Dữ Liệu        75
+4.3.1. Cấu Trúc Chính Của Cơ Sở Dữ Liệu        75
+4.3.2. Mô Tả Chi Tiết Các Bảng        76
+4.3.3. Quan Hệ Giữa Các Bảng        78
+4.3.4. Công Nghệ Sử Dụng        78
+4.3.5. Bảo Mật Dữ Liệu        78
+4.4. Tổng Kết Chương        79
+CHƯƠNG 5: THIẾT KẾ VÀ XÂY DỰNG HỆ THỐNG CHATBOT        80
+5.1. Mục Tiêu Và Phạm Vi Chatbot        80
+5.2. Lựa Chọn Công Nghệ        81
+5.3. Thu Thập Và Xử Lý Dữ Liệu        82
+5.4. Luồng hoạt động của chatbot        83
+5.5. Đánh Giá Và Cải Thiện Chatbot        86
+5.5.1. Đánh Giá        86
+5.5.2. Cải Thiện        86
+5.6. Tổng kết chương        87
+CHƯƠNG 6: CÀI ĐẶT VÀ KIỂM THỬ        88
+6.1. Giao Diện Hệ Thống        88
+6.1.1. Giao Diện Người Dùng Thông Thường (Khách Hàng)        89
+6.1.1.1. Giao diện Trang chủ        89
+6.1.1.2. Giao diện Đăng nhập        92
+6.1.1.3. Giao diện Đăng ký        93
+6.1.1.4. Giao diện Bộ lọc        95
+6.1.1.5. Giao diện Chi tiết sản phẩm        96
+6.1.1.6. Giao diện Giỏ hàng        98
+6.1.1.7. Giao diện Thanh toán        99
+6.1.1.8. Giao diện Thông tin tài khoản        101
+6.1.1.9. Giao diện Sản phẩm yêu thích        102
+6.1.1.10. Giao diện Quản lý thông báo        104
+6.1.1.11. Giao diện Đánh giá sản phẩm        105
+6.1.1.12. Giao diện Chatbot hỗ trợ        106
+6.1.1.13. Giao diện Báo lỗi        107
+6.1.2. Giao Diện Quản Trị Viên (Admin)        109
+6.1.2.1. Giao diện Trang chủ        109
+6.1.2.2. Giao diện Quản lý sản phẩm        110
+6.1.2.3. Giao diện Quản lý danh mục sản phẩm        111
+6.1.2.4. Giao diện Quản lý đơn hàng        113
+6.1.2.5. Giao diện Quản lý người dùng        114
+6.1.2.6. Giao diện Quản lý đánh giá sản phẩm        115
+6.1.2.7. Giao diện Quản lý khuyến mãi        116
+6.1.2.8. Giao diện Gửi thông báo        117
+6.1.2.9. Giao diện Quản lý báo lỗi        118
+6.2. Kiểm Thử Hệ Thống        120
+6.3. Tổng Kết Chương        129
+KẾT LUẬN        130
+TÀI LIỆU THAM KHẢO        131
+________________
+
+
+DANH SÁCH HÌNH VẼ
+Hình 3.1: Biểu đồ ca sử dụng..…………………………………………………30
+Hình 3.2: Biểu đồ hoạt động - Thanh toán đơn hàng…………………………..56
+Hình 3.3: Biểu đồ hoạt động - Người dùng quên mật khẩu.…………………...57
+Hình 3.4: Biểu đồ hoạt động - Quản lý giỏ hàng………………………………58
+Hình 3.5: Biểu đồ hoạt động - Cập nhật thông tin cá nhân…………………….59
+Hình 3.6: Biểu đồ hoạt động - Gửi phản hồi, báo lỗi…………………………..60
+Hình 3.7: Biểu đồ hoạt động - Quản lý đơn hàng.……………………………..61
+Hình 3.8: Biểu đồ hoạt động - Quản lý đánh giá của người dùng……………..62
+Hình 3.9: Biểu đồ hoạt động - Quản lý khuyến mãi…………………………...63
+Hình 4.1: Kiến trúc hệ thống…………………………………………………..65
+Hình 4.2: Biểu đồ tuần tự - Quy trình đăng nhập……………………………...67
+Hình 4.3: Biểu đồ tuần tự - Quy trình quên mật khẩu..………………………..68
+Hình 4.4: Biểu đồ tuần tự - Quy trình đánh giá sản phẩm……………………..69
+Hình 4.5: Biểu đồ tuần tự - Quy trình cập nhật thông tin cá nhân…………….70
+Hình 4.6: Biểu đồ tuần tự - Quy trình xác nhận thanh toán…………………...71
+Hình 4.7: Biểu đồ tuần tự - Quy trình quản lý đơn hàng………………………72
+Hình 4.8: Biểu đồ tuần tự - Quy trình quản lý phản hồi của người dùng……...73
+Hình 4.9: Biểu đồ tuần tự - Quy trình quản lý đánh giá người dùng………….74
+Hình 4.10: Biểu đồ lớp………………………………………………………...75
+Hình 5.1: Biểu đồ luồng hoạt động của chatbot……………………………….83
+Hình 6.1: Giao diện phần đầu trang và giới thiệu hệ thống…………………...90
+Hình 6.2: Giao diện danh sách sản phẩm mới ………………………………..91
+Hình 6.3: Giao diện chân trang………………………………………………..91
+Hình 6.4: Giao diện đăng nhập………………………………………………...93
+Hình 6.5: Giao diện đăng ký….……………………………………………….94
+Hình 6.6: Giao diện bộ lọc sản phẩm..………………………………………...95
+Hình 6.7: Giao diện chi tiết sản phẩm…………………………………………97
+Hình 6.8: Giao diện giỏ hàng….………………………………………………99
+Hình 6.9: Giao diện thanh toán………………………………………………100
+Hình 6.10: Giao diện thông tin tài khoản…………………………………….102
+Hình 6.11: Giao diện sản phẩm yêu thích……………………………………103
+Hình 6.12: Giao diện quản lý thông báo……………………………………..105
+Hình 6.13: Giao diện đánh giá sản phẩm…………………………………….106
+Hình 6.14: Giao diện chatbot hỗ trợ………………………………………….107
+Hình 6.15: Giao diện báo lỗi…………………………………………………108
+Hình 6.16: Giao diện trang chủ quản trị viên………………………………...110
+Hình 6.17: Giao diện quản lý sản phẩm..…………………………………….111
+Hình 6.18: Giao diện quản lý danh mục sản phẩm..……………………….....112
+Hình 6.19: Giao diện quản lý đơn hàng……………………………………...113
+Hình 6.20: Giao diện quản lý người dùng……………………………………115
+Hình 6.21: Giao diện quản lý đánh giá sản phẩm……………………………116
+Hình 6.22: Giao diện quản lý khuyến mãi……………………………………117
+Hình 6.23: Giao diện gửi thông báo..………………………………………...118
+Hình 6.24: Giao diện quản lý báo lỗi………………………………………...119
+
+
+
+
+
+
+
+
+DANH SÁCH BẢNG
+Bảng 3.1: Mô tả ca sử dụng Đăng nhập hệ thống……………………………...33
+Bảng 3.2: Mô tả ca sử dụng Người dùng đăng ký tài khoản…………………..34
+Bảng 3.3: Mô tả ca sử dụng Người dùng quên mật khẩu………………………35
+Bảng 3.4: Mô tả ca sử dụng Cập nhật thông tin cá nhân……………………….36
+Bảng 3.5: Mô tả ca sử dụng Người dùng lọc sản phẩm………………………..37
+Bảng 3.6: Mô tả ca sử dụng Người dùng xem chi tiết sản phẩm………………38
+Bảng 3.7: Mô tả ca sử dụng Người dùng quản lý giỏ hàng…………………….39
+Bảng 3.8: Mô tả ca sử dụng Người dùng thanh toán…………………………...40
+Bảng 3.9: Mô tả ca sử dụng Người dùng đánh giá sản phẩm…………………..41
+Bảng 3.10: Mô tả ca sử dụng Người dùng quản lý sản phẩm yêu thích...……...42
+Bảng 3.11: Mô tả ca sử dụng Người dùng quản lý thông báo………………….43
+Bảng 3.12: Mô tả ca sử dụng Người dùng hỏi chatbot…………………………44
+Bảng 3.13: Mô tả ca sử dụng Người dùng gửi báo lỗi/phản hồi……………….45
+Bảng 3.14: Mô tả ca sử dụng Quản trị viên quản lý sản phẩm………………....46
+Bảng 3.15: Mô tả ca sử dụng Quản trị viên quản lý danh mục sản phẩm..…….47
+Bảng 3.16: Mô tả ca sử dụng Quản trị viên quản lý đơn hàng..………………..48
+Bảng 3.17: Mô tả ca sử dụng Quản trị viên quản lý người dùng………………49
+Bảng 3.18: Mô tả ca sử dụng Quản trị viên quản lý đánh giá của người dùng...50
+Bảng 3.19: Mô tả ca sử dụng Quản trị viên quản lý khuyến mãi………………51
+Bảng 3.20: Mô tả ca sử dụng Quản trị viên gửi thông báo cho người dùng…...52
+Bảng 3.21: Mô tả ca sử dụng Quản trị viên xem thống kê……………………..53
+Bảng 3.22: Mô tả ca sử dụng Quản trị viên xem, phản hồi lỗi của người dùng..54
+Bảng 3.23: Mô tả ca sử dụng Quản trị viên tạo tài khoản Admin mới…………55
+Bảng 6.1. Danh sách các trường hợp kiểm thử hệ thống.……………………..128
+________________
+
+
+DANH MỤC THUẬT NGỮ, TỪ VIẾT TẮT
+Thuật Ngữ / Viết Tắt
+	Giải Thích
+	SRS
+	Software Requirements Specification – Tài liệu đặc tả yêu cầu phần mềm
+	UI
+	User Interface – Giao diện người dùng
+	UX
+	User Experience – Trải nghiệm người dùng
+	API
+	Application Programming Interface – Giao diện lập trình ứng dụng
+	JWT
+	JSON Web Token – Chuỗi mã hóa dùng để xác thực người dùng
+	OTP
+	One-Time Password – Mã xác thực một lần
+	LLM
+	Large Language Model – Mô hình ngôn ngữ lớn
+	RAG
+	Retrieval-Augmented Generation – Phương pháp tăng cường truy xuất cho chatbot
+	ORM
+	Object-Relational Mapping – Kỹ thuật ánh xạ giữa đối tượng và quan hệ trong cơ sở dữ liệu
+	SQL
+	Structured Query Language – Ngôn ngữ truy vấn cơ sở dữ liệu
+	SQLAlchemy
+	Thư viện ORM dùng trong Python để thao tác cơ sở dữ liệu
+	Alembic
+	Công cụ migration dùng để quản lý thay đổi cấu trúc cơ sở dữ liệu
+	MySQL
+	Hệ quản trị cơ sở dữ liệu quan hệ mã nguồn mở
+	SQLite
+	Cơ sở dữ liệu nhẹ dùng để lưu trữ cục bộ, ví dụ như lịch sử hội thoại
+	FastAPI
+	Framework Python để xây dựng API hiệu suất cao
+	ReactJS
+	Thư viện JavaScript xây dựng giao diện người dùng
+	LangChain
+	Framework hỗ trợ xây dựng ứng dụng AI sử dụng mô hình ngôn ngữ lớn với khả năng xử lý ngữ cảnh linh hoạt.
+	LangGraph
+	Thư viện mở rộng LangChain, hỗ trợ xây dựng luồng hội thoại AI phức tạp dưới dạng đồ thị trạng thái.
+	Vector Database
+	Cơ sở dữ liệu lưu trữ vector ngữ nghĩa phục vụ truy xuất thông tin
+	Embedding
+	Kỹ thuật biến văn bản hoặc dữ liệu thành vector số để mô hình hiểu và xử lý ngữ nghĩa
+	Chroma
+	Vector database mã nguồn mở chuyên lưu trữ và truy vấn embedding hiệu quả cho AI và ML.
+	Gemini
+	Mô hình ngôn ngữ lớn của Google, hỗ trợ chatbot với khả năng hiểu và tạo phản hồi tự nhiên, thông minh.
+	Locust
+	Công cụ kiểm thử hiệu năng mô phỏng người dùng ảo để đánh giá khả năng chịu tải của hệ thống.
+	bcrypt
+	Thư viện mã hóa mật khẩu mạnh, sử dụng thuật toán salted hashing để tăng cường bảo mật người dùng.
+	Python-dotenv
+	Thư viện Python giúp tải biến môi trường từ file .env, dùng để cấu hình ứng dụng an toàn và linh hoạt
+	Admin
+	Người quản trị hệ thống, có quyền truy cập và thao tác toàn bộ hệ thống
+	User
+	Người dùng đã đăng ký tài khoản trên hệ thống
+	Guest User
+	Người dùng truy cập hệ thống nhưng chưa đăng nhập hoặc chưa có tài khoản
+	Frontend
+	Phần giao diện mà người dùng trực tiếp tương tác
+	Backend
+	Phần xử lý logic nghiệp vụ, tương tác dữ liệu và cung cấp dịch vụ cho frontend
+	
+
+
+
+
+
+CHƯƠNG 1: ĐẶT VẤN ĐỀ
+Cùng với sự phát triển của xã hội, nhu cầu mua sắm thời trang, đặc biệt là quần áo, ngày càng trở nên phổ biến và thiết yếu đối với mọi tầng lớp người tiêu dùng. Việc lựa chọn những sản phẩm phù hợp với phong cách cá nhân không chỉ giúp khẳng định gu thẩm mỹ mà còn nâng cao chất lượng cuộc sống. Tuy nhiên, bên cạnh tiềm năng phát triển mạnh mẽ, các doanh nghiệp kinh doanh quần áo cũng đang đối mặt với nhiều thách thức trong việc quản lý hàng tồn kho, cập nhật mẫu mã, xử lý đơn hàng và chăm sóc khách hàng kịp thời, hiệu quả. Nhìn nhận thực trạng này, phần lớn các cửa hàng thời trang truyền thống đang dần chuyển mình sang mô hình kinh doanh trực tuyến. Mặc dù vậy, nhiều cửa hàng vẫn gặp không ít khó khăn trong việc vận hành các nền tảng bán hàng một cách bài bản, hiệu quả và có hệ thống, do hạn chế về nguồn lực kỹ thuật, kinh nghiệm quản trị cũng như khả năng tích hợp các công cụ hỗ trợ hiện đại. Việc quản lý sản phẩm rời rạc, hệ thống vận hành thủ công, thiếu tính đồng bộ giữa các bộ phận bán hàng, kho vận và tiếp thị khiến cho trải nghiệm người dùng bị gián đoạn, dễ mất khách hàng tiềm năng và gây thất thoát doanh thu. Đặc biệt, trong bối cảnh cạnh tranh khốc liệt của thị trường thương mại điện tử, một website bán hàng chuyên nghiệp, thân thiện và tối ưu hoá quy trình vận hành là yếu tố sống còn giúp doanh nghiệp thời trang tồn tại và phát triển bền vững.
+Hiện nay, trên thị trường đã xuất hiện nhiều hệ thống thương mại điện tử hỗ trợ bán quần áo trực tuyến như Shopify, Lazada, Tiki, hay các nền tảng mã nguồn mở như WooCommerce, OpenCart. Những hệ thống này phần nào đã góp phần giải quyết bài toán đưa sản phẩm thời trang đến gần hơn với người tiêu dùng thông qua giao diện trực quan, giỏ hàng tiện lợi, cổng thanh toán đa dạng và tích hợp đơn vị vận chuyển. Tuy nhiên, hầu hết các hệ thống này vẫn còn tồn tại nhiều hạn chế nhất định. Cụ thể, Shopify tuy thân thiện với người dùng nhưng chi phí duy trì cao, đặc biệt là khi mở rộng tính năng nâng cao hay tích hợp với hệ thống quản lý kho chuyên sâu. Các nền tảng thương mại điện tử như Lazada, Shopee, Tiki lại tập trung vào bán hàng đa ngành nên thiếu sự tuỳ biến và cá nhân hoá cho các shop thời trang nhỏ lẻ, đồng thời mức cạnh tranh trên các sàn này rất cao, khiến các cửa hàng khó giữ chân khách hàng lâu dài. Trong khi đó, các hệ thống mã nguồn mở như WooCommerce hay OpenCart yêu cầu người dùng có kiến thức kỹ thuật để vận hành và bảo trì, dễ gây ra gián đoạn nếu không có đội ngũ hỗ trợ kỹ thuật chuyên nghiệp. Chính vì những hạn chế đó, nhu cầu xây dựng một hệ thống website bán quần áo chuyên biệt, tối ưu cho người dùng Việt, dễ sử dụng, tiết kiệm chi phí, đồng thời vẫn đảm bảo đầy đủ các chức năng từ quản lý sản phẩm, xử lý đơn hàng, theo dõi kho đến chăm sóc khách hàng, là một nhu cầu cấp thiết và chính đáng. Đây cũng chính là động lực quan trọng thôi thúc chúng em nghiên cứu và xây dựng hệ thống hiện tại, một hệ thống chuyên biệt, tối ưu và phù hợp hơn với điều kiện vận hành thực tế tại thị trường Việt Nam.
+Từ những phân tích và thực trạng nêu trên, hệ thống website bán quần áo trực tuyến do chúng em xây dựng được thiết kế nhằm giải quyết triệt để những khó khăn mà các doanh nghiệp thời trang nhỏ và vừa thường gặp trong việc quản lý bán hàng, mở rộng thị trường và nâng cao trải nghiệm khách hàng. Hệ thống được thiết kế theo kiến trúc phân lớp hiện đại nhằm đảm bảo tính tách biệt giữa các thành phần, dễ dàng bảo trì và nâng cấp trong tương lai. Giao diện người dùng (frontend) được xây dựng bằng thư viện ReactJS, cho phép phát triển các thành phần giao diện động, có khả năng tái sử dụng cao và tối ưu hóa trải nghiệm người dùng. Lớp xử lý logic nghiệp vụ (backend) được phát triển bằng framework FastAPI – một công cụ mạnh mẽ trong hệ sinh thái Python, hỗ trợ lập trình bất đồng bộ, giúp tăng hiệu suất xử lý và khả năng đáp ứng của hệ thống. Dữ liệu được lưu trữ trong hệ quản trị cơ sở dữ liệu quan hệ MySQL, đảm bảo khả năng truy vấn nhanh, tính toàn vẹn dữ liệu và hỗ trợ tốt cho các chức năng thống kê, báo cáo trong quá trình vận hành. Thiết kế giao diện tuân theo chuẩn Material Design, sử dụng Tailwind CSS để đảm bảo UI/UX mượt mà, trực quan và dễ thao tác. Hệ thống bao gồm đầy đủ các chức năng cần thiết cho một nền tảng thương mại điện tử: từ đăng ký, đăng nhập, tìm kiếm và lọc sản phẩm, thêm vào giỏ hàng, thanh toán qua mã QR, theo dõi đơn hàng, đánh giá sản phẩm, cho đến giao diện quản trị để quản lý sản phẩm, người dùng, đơn hàng, chương trình khuyến mãi, thông báo và báo cáo thống kê. Đặc biệt, hệ thống tích hợp chatbot hỗ trợ trực tuyến, cho phép người dùng được tư vấn và hỗ trợ nhanh chóng mà không cần chờ nhân viên phản hồi – một tính năng hiện đại chưa được phổ biến ở các website thời trang quy mô vừa và nhỏ. Toàn bộ hệ thống đã được kiểm thử kỹ lưỡng, với các kịch bản kiểm thử từ chức năng đơn lẻ đến kiểm thử tích hợp và hiệu năng (stress test bằng Locust), nhằm đảm bảo độ ổn định, an toàn và bảo mật trong quá trình vận hành. Hệ thống đáp ứng tốt các yêu cầu về tốc độ phản hồi, khả năng xử lý nhiều người dùng cùng lúc, mã hóa dữ liệu (sử dụng JWT và bcrypt), và tuân thủ các chuẩn bảo mật phổ biến. Với kiến trúc linh hoạt, giao diện hiện đại và chức năng đầy đủ, hệ thống này không chỉ đáp ứng nhu cầu vận hành cơ bản mà còn sẵn sàng mở rộng tích hợp thêm các tính năng nâng cao trong tương lai.
+Tài liệu được trình bày thành 6 chương, sắp xếp theo trình tự logic từ việc xác định vấn đề đến triển khai và kiểm thử hệ thống. Mở đầu, chương 1 giới thiệu tổng quan bối cảnh ngành thương mại điện tử thời trang, các vấn đề mà doanh nghiệp nhỏ gặp phải, đánh giá các hệ thống tương tự, từ đó làm rõ lý do phát triển hệ thống hiện tại và giới thiệu cấu trúc tổng thể của báo cáo. Chương 2 cung cấp cơ sở lý thuyết và các công nghệ nền tảng được sử dụng trong quá trình xây dựng hệ thống như ReactJS, FastAPI, MySQL, Tailwind CSS, JWT và các nguyên lý xây dựng chatbot. Chương 3 thu thập và đặc tả yêu cầu chức năng, phi chức năng của hệ thống, đồng thời trình bày các mô hình như biểu đồ ca sử dụng, mô tả hành vi hệ thống và biểu đồ hoạt động. Chương 4 đi sâu vào thiết kế hệ thống bao gồm kiến trúc tổng thể, thiết kế cơ sở dữ liệu, biểu đồ lớp, biểu đồ tuần tự và các thành phần AI. Chương 5 trình bày quá trình xây dựng chatbot, từ dữ liệu đầu vào đến kỹ thuật RAG, cách tối ưu và đánh giá chatbot. Cuối cùng, chương 6 mô tả quá trình triển khai thực tế, giao diện hệ thống và thực hiện kiểm thử cả chức năng lẫn phi chức năng, bao gồm cả kiểm thử hiệu năng bằng công cụ Locust, nhằm đánh giá mức độ đáp ứng yêu cầu của hệ thống.
+________________
+CHƯƠNG 2: KIẾN THỨC NỀN TẢNG
+Hệ thống website thương mại điện tử bán quần áo này được xây dựng dựa trên tập hợp các công nghệ hiện đại nhằm đảm bảo hiệu năng, bảo mật và khả năng mở rộng linh hoạt. Giao diện người dùng được phát triển bằng ReactJS kết hợp với Tailwind CSS để mang lại trải nghiệm trực quan và tương thích với nhiều thiết bị. Phần backend sử dụng FastAPI – một framework Python hiệu suất cao, kết nối với cơ sở dữ liệu MySQL thông qua ORM SQLAlchemy và công cụ migration Alembic. Bảo mật hệ thống được đảm bảo nhờ cơ chế xác thực JWT và các tiêu chuẩn bảo vệ API phổ biến.
+Bên cạnh đó, hệ thống còn tích hợp một chatbot thông minh sử dụng mô hình RAG (Retrieval-Augmented Generation), được triển khai trên nền tảng LangChain và LangGraph. Dữ liệu nền tảng được chuyển hóa thành các vector ngữ nghĩa qua quá trình xử lý chuyên biệt. Các vector này được lưu trữ tối ưu trong cơ sở dữ liệu vector để phục vụ việc truy xuất thông tin theo ngữ cảnh. Hệ thống kết hợp thông tin truy xuất với prompt template, tạo điều kiện để mô hình ngôn ngữ lớn (LLM) tạo phản hồi tự nhiên và có ý nghĩa.
+Cuối cùng, hệ thống được xây dựng dựa trên mô hình client-server. Phần frontend, với kiến trúc component-based, tập trung vào việc cung cấp giao diện người dùng trực quan và xử lý các tương tác. Mọi hành động của người dùng sẽ kích hoạt các yêu cầu đến phần backend. Backend, được thiết kế để cung cấp các dịch vụ và quản lý dữ liệu, giao tiếp với frontend thông qua các API endpoint chuẩn RESTful, đảm bảo sự trao đổi thông tin có cấu trúc và bảo mật giữa hai thành phần.
+Tóm lại, hệ thống website thương mại điện tử này là một nền tảng mạnh mẽ, kết hợp giữa giao diện người dùng hiện đại và hiệu suất cao, một hệ thống chatbot thông minh hỗ trợ tương tác, và một kiến trúc client-server vững chắc. Chương này tiếp theo sẽ đi sâu vào từng công nghệ và thành phần đã được giới thiệu, làm rõ hơn về cách chúng phối hợp để tạo nên một trải nghiệm thương mại điện tử toàn diện và hiệu quả.
+
+
+
+
+
+
+2.1. Tổng Quan Kiến Trúc Hệ Thống Và Cơ Chế Phối Hợp
+Phần này sẽ cung cấp cái nhìn tổng quan về kiến trúc tổng thể của hệ thống website thương mại điện tử bán quần áo và làm rõ cơ chế phối hợp giữa các thành phần chính để mang lại trải nghiệm người dùng toàn diện và hiệu quả.
+2.1.1. Mô Hình Kiến Trúc Client-Server
+Hệ thống được xây dựng dựa trên mô hình kiến trúc client-server tiêu chuẩn. Trong mô hình này:
+- Client (Frontend): Đại diện cho giao diện mà khách hàng tương tác trực tiếp thông qua trình duyệt web. Frontend chịu trách nhiệm hiển thị thông tin sản phẩm, thu thập dữ liệu người dùng (tìm kiếm, thêm vào giỏ hàng,...), và gửi các yêu cầu đến server.
+- Server (Backend): Đại diện cho phần lõi của hệ thống, chịu trách nhiệm xử lý logic nghiệp vụ, quản lý dữ liệu, đảm bảo an ninh và cung cấp các dịch vụ cho frontend thông qua các API.
+2.1.2. Vai Trò Của Các Thành Phần Chính
+Hệ thống bao gồm ba thành phần chính phối hợp chặt chẽ để cung cấp đầy đủ chức năng của một nền tảng thương mại điện tử:
+- Frontend (Trải nghiệm Người dùng): Tập trung vào việc cung cấp một giao diện trực quan, thân thiện và dễ sử dụng cho khách hàng. Mục tiêu là tạo ra trải nghiệm duyệt sản phẩm mượt mà, quá trình mua hàng đơn giản và hiệu quả, đồng thời tương thích tốt trên nhiều loại thiết bị khác nhau. Frontend được xây dựng để tối ưu hóa tốc độ tải trang và khả năng tương tác, thu hút và giữ chân người dùng.
+- Backend (Xử lý Nghiệp vụ và Dữ liệu): Đảm nhiệm việc xử lý toàn bộ logic nghiệp vụ của hệ thống, bao gồm quản lý danh mục sản phẩm, xử lý đơn hàng, quản lý người dùng, thanh toán và các chức năng khác. Backend cũng chịu trách nhiệm lưu trữ, truy xuất và bảo vệ dữ liệu của hệ thống thông qua cơ sở dữ liệu. Hiệu suất và tính ổn định của backend là yếu tố then chốt để đảm bảo hoạt động liên tục và chính xác của toàn bộ hệ thống.
+- Chatbot (Hỗ trợ Tương tác Thông minh): Được tích hợp để cung cấp khả năng hỗ trợ khách hàng một cách tự động và hiệu quả. Chatbot sử dụng mô hình RAG (Retrieval-Augmented Generation) và LLM (Mô hình Ngôn ngữ Lớn) để hiểu câu hỏi của người dùng, truy xuất thông tin liên quan từ dữ liệu nền tảng, và tạo ra các phản hồi tự nhiên và hữu ích. Chatbot đóng vai trò quan trọng trong việc giải đáp thắc mắc, cung cấp thông tin sản phẩm, hỗ trợ quá trình mua hàng và nâng cao trải nghiệm tương tác của người dùng.
+2.1.3. Cơ Chế Phối Hợp Giữa Các Thành Phần
+Sự phối hợp giữa frontend, backend và chatbot diễn ra theo quy trình sau:
+1. Frontend gửi yêu cầu đến Backend thông qua API: Khi người dùng tương tác với giao diện (xem sản phẩm, thêm vào giỏ hàng, gửi yêu cầu thanh toán,...), frontend sẽ gửi các yêu cầu đến backend thông qua các API endpoint. Các API này được thiết kế theo kiến trúc RESTful, sử dụng các phương thức HTTP (GET, POST, PUT, DELETE) để thực hiện các hành động khác nhau trên tài nguyên.
+2. Backend xử lý yêu cầu và tương tác với dữ liệu: Backend nhận các yêu cầu từ frontend, tiến hành xử lý logic nghiệp vụ cần thiết (truy vấn thông tin sản phẩm từ cơ sở dữ liệu, tính toán giá trị đơn hàng, cập nhật trạng thái đơn hàng,...). Trong quá trình này, backend sẽ tương tác với cơ sở dữ liệu để lưu trữ, truy xuất và cập nhật thông tin.
+3. Chatbot sử dụng dữ liệu và LLM để hỗ trợ người dùng: Khi người dùng tương tác với chatbot, chatbot sẽ tiếp nhận câu hỏi, sử dụng các kỹ thuật xử lý ngôn ngữ tự nhiên để hiểu ý định của người dùng. Sau đó, dựa trên mô hình RAG, chatbot sẽ truy xuất các đoạn thông tin liên quan từ cơ sở dữ liệu vector và sử dụng LLM để tạo ra câu trả lời phù hợp và có ngữ cảnh.
+2.2. Công Nghệ Frontend
+Phần này trình bày về các công nghệ được sử dụng để xây dựng giao diện người dùng (frontend) của hệ thống website thương mại điện tử, tập trung vào cách chúng đóng góp vào trải nghiệm người dùng trực quan và linh hoạt.
+2.2.1. ReactJS: Nền Tảng Cho Giao Diện Tương Tác Và Hiệu Suất Cao
+ReactJS được lựa chọn làm nền tảng phát triển giao diện người dùng nhờ khả năng xây dựng các component tái sử dụng và quản lý trạng thái hiệu quả. Kiến trúc component-based giúp hệ thống dễ dàng mở rộng và bảo trì. Cơ chế Virtual DOM của ReactJS đảm bảo hiệu suất cập nhật giao diện nhanh chóng, mang lại trải nghiệm tương tác mượt mà cho người dùng trong quá trình duyệt sản phẩm và thực hiện các thao tác khác. Việc sử dụng custom hooks giúp tách biệt logic nghiệp vụ, làm cho mã nguồn frontend rõ ràng và dễ quản lý hơn.
+2.2.2. Tailwind CSS: Thiết Kế Giao Diện Nhanh Chóng, Nhất Quán Và Responsive
+Tailwind CSS là một framework CSS utility-first, cho phép xây dựng giao diện một cách nhanh chóng và nhất quán bằng cách áp dụng trực tiếp các class utility vào các phần tử HTML. Cách tiếp cận này giúp tăng tốc quá trình phát triển và đảm bảo tính đồng bộ về mặt giao diện trên toàn bộ hệ thống. Đặc biệt, khả năng responsive tích hợp của Tailwind CSS giúp giao diện tự động điều chỉnh để hiển thị tối ưu trên nhiều loại thiết bị, mang lại trải nghiệm người dùng linh hoạt dù họ truy cập bằng điện thoại, máy tính bảng hay máy tính để bàn.
+2.2.3. Sự Phối Hợp Frontend: Nâng Cao Trải nghiệm Người Dùng
+Sự kết hợp giữa ReactJS và Tailwind CSS cho phép xây dựng một giao diện frontend vừa có tính tương tác cao và hiệu suất tốt (ReactJS), vừa có thiết kế trực quan, nhất quán và đáp ứng trên mọi thiết bị (Tailwind CSS). Điều này đóng vai trò then chốt trong việc cung cấp một trải nghiệm người dùng thuận tiện, hấp dẫn và chuyên nghiệp, từ đó góp phần vào sự thành công của hệ thống thương mại điện tử.
+2.3. Công Nghệ Backend
+Phần này trình bày về các công nghệ được sử dụng để xây dựng phần máy chủ (backend) của hệ thống website thương mại điện tử bán quần áo, tập trung vào cách chúng cung cấp nền tảng mạnh mẽ cho việc xử lý nghiệp vụ, quản lý dữ liệu hiệu quả và đảm bảo an ninh cho hệ thống.
+2.3.1. FastAPI: Framework API Hiệu Suất Cao Và Dễ Sử Dụng
+FastAPI được lựa chọn làm framework xây dựng API cho backend nhờ hiệu suất cao và khả năng phát triển nhanh chóng. Nó cung cấp một cách tiếp cận hiện đại để định nghĩa các API endpoint rõ ràng và dễ bảo trì. FastAPI tích hợp sẵn validation dữ liệu mạnh mẽ và khả năng tự động tạo tài liệu API, giúp đơn giản hóa quá trình phát triển và tích hợp với frontend. Kiến trúc backend được xây dựng dựa trên các router để quản lý các chức năng khác nhau, model để ánh xạ với các bảng trong cơ sở dữ liệu, schema để validate các request, response và cơ sở dữ liệu quan hệ.
+2.3.2. Cơ Sở Dữ Liệu MySQL: Lưu Trữ Dữ Liệu Tin Cậy Và Linh Hoạt
+MySQL được sử dụng làm hệ quản trị cơ sở dữ liệu để lưu trữ toàn bộ dữ liệu của hệ thống một cách tin cậy và hiệu quả. Đây là một lựa chọn phổ biến với hiệu suất tốt và khả năng mở rộng, đáp ứng nhu cầu lưu trữ dữ liệu đa dạng của một hệ thống thương mại điện tử.
+2.3.3. SQLAlchemy ORM Và Alembic: Quản Lý Dữ Liệu Và Cấu Trúc Cơ Sở Dữ liệu
+SQLAlchemy ORM được sử dụng để tương tác với cơ sở dữ liệu MySQL thông qua các model, giúp việc quản lý dữ liệu trở nên dễ dàng và an toàn hơn. Alembic được sử dụng để quản lý các thay đổi cấu trúc cơ sở dữ liệu (migration) một cách có kiểm soát, đảm bảo tính nhất quán giữa các môi trường phát triển và sản xuất.
+2.3.4. Bảo Mật (JWT): Xác Thực Và Bảo Vệ API
+Cơ chế xác thực dựa trên JWT (JSON Web Tokens) được triển khai để bảo vệ các API endpoint và đảm bảo chỉ những người dùng đã được xác thực mới có quyền truy cập vào các chức năng của hệ thống. JWT cung cấp một phương thức an toàn và hiệu quả để xác thực người dùng và ủy quyền truy cập.
+Các công nghệ backend này phối hợp để cung cấp một nền tảng mạnh mẽ, an toàn và có khả năng mở rộng cho hệ thống thương mại điện tử, đáp ứng các yêu cầu về xử lý nghiệp vụ và quản lý dữ liệu.
+2.4. Chatbot RAG
+Phần này cung cấp kiến thức nền tảng về các công nghệ cốt lõi được sử dụng để xây dựng chatbot thông minh của hệ thống, giúp người đọc hiểu rõ cách chatbot hoạt động và khả năng của nó.
+2.4.1. Retrieval-Augmented Generation (RAG)
+Retrieval-Augmented Generation (RAG) là một kỹ thuật kết hợp truy xuất thông tin từ dữ liệu bên ngoài và khả năng tạo sinh ngôn ngữ của mô hình ngôn ngữ lớn (LLM). Chatbot sử dụng RAG để tìm kiếm thông tin liên quan đến câu hỏi của người dùng và sử dụng thông tin đó để tạo ra câu trả lời chính xác và phù hợp hơn.
+2.4.2. LangChain Và LangGraph
+LangChain là một framework mạnh mẽ giúp xây dựng các ứng dụng AI dựa trên LLM, bao gồm quản lý quy trình RAG và logic hội thoại. LangGraph là một phần mở rộng của LangChain, cho phép xây dựng các luồng hội thoại phức tạp hơn dưới dạng đồ thị trạng thái, giúp chatbot tương tác linh hoạt hơn.
+2.4.3. Vector Database Và Embedding
+Dữ liệu nền tảng được chuyển đổi thành các vector embedding (biểu diễn ý nghĩa ngữ cảnh) và lưu trữ trong vector database. Khi người dùng đặt câu hỏi, câu hỏi cũng được chuyển đổi thành vector và so sánh với các vector trong database để tìm kiếm thông tin liên quan dựa trên ý nghĩa.
+2.4.4. Prompt Engineering Và Template
+Prompt template được sử dụng để định dạng câu hỏi của người dùng, lời nhắn hệ thống và thông tin truy xuất được trước khi gửi đến LLM. Kỹ thuật prompt engineering giúp hướng dẫn LLM tạo ra các phản hồi hữu ích và phù hợp với ngữ cảnh.
+Tóm lại, chatbot thông minh của hệ thống sử dụng RAG, được hỗ trợ bởi LangChain và LangGraph, để truy xuất thông tin từ vector database và sử dụng LLM với prompt template để cung cấp các câu trả lời thông minh và phù hợp cho người dùng.
+2.5. Tổng Kết Chương
+Chương 2 đã cung cấp nền tảng kiến thức cần thiết để hiểu các công nghệ cốt lõi được sử dụng trong hệ thống website thương mại điện tử bán quần áo. Hệ thống được xây dựng trên mô hình client-server, với Frontend sử dụng ReactJS và Tailwind CSS để mang lại trải nghiệm người dùng trực quan và linh hoạt. Backend sử dụng FastAPI, MySQL, SQLAlchemy, Alembic và JWT để đảm bảo hiệu suất, bảo mật và quản lý dữ liệu hiệu quả. Đặc biệt, hệ thống tích hợp một chatbot thông minh dựa trên kiến trúc Retrieval-Augmented Generation (RAG), tận dụng các framework LangChain và LangGraph để cung cấp khả năng tương tác tự nhiên và chính xác. Dữ liệu cho chatbot được xử lý và lưu trữ trong vector database để hỗ trợ truy xuất ngữ nghĩa, và prompt template được sử dụng để định hướng phản hồi từ LLM. Việc hiểu rõ các công nghệ và nguyên lý hoạt động này là cơ sở quan trọng để tiếp tục đi sâu vào các yêu cầu cụ thể của hệ thống trong các chương tiếp theo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHƯƠNG 3: THU THẬP, PHÂN TÍCH, ĐẶC TẢ YÊU CẦU
+Chương này sẽ đặc tả chi tiết các yêu cầu của hệ thống website thương mại điện tử bán quần áo. Các yêu cầu này được thu thập thông qua quá trình phân tích nghiệp vụ và tương tác với các bên liên quan, bao gồm cả yêu cầu chức năng, mô tả các hành động mà hệ thống phải thực hiện để đáp ứng nhu cầu của người dùng; và yêu cầu phi chức năng, xác định các thuộc tính chất lượng cần thiết để đảm bảo hiệu suất, độ tin cậy và khả năng sử dụng của hệ thống. Để làm rõ hơn về tương tác giữa người dùng và hệ thống, chương này cũng bao gồm các biểu đồ và mô tả ca sử dụng, cùng với các biểu đồ hoạt động để mô tả các quy trình nghiệp vụ phức tạp. Các yêu cầu được trình bày một cách rõ ràng, có cấu trúc và có thể kiểm chứng, tạo cơ sở vững chắc cho giai đoạn thiết kế, phát triển và kiểm thử hệ thống.
+3.1. Thu Thập Yêu Cầu
+Phần này trình bày các yêu cầu đã được thu thập cho hệ thống website thương mại điện tử bán quần áo, được phân loại thành hai nhóm chính: yêu cầu chức năng (mô tả những gì hệ thống phải thực hiện) và yêu cầu phi chức năng (mô tả các thuộc tính chất lượng của hệ thống). Các yêu cầu này đóng vai trò là nền tảng để xây dựng các ca sử dụng, biểu đồ hoạt động và thiết kế chi tiết của hệ thống trong các giai đoạn phát triển tiếp theo.
+3.1.1. Yêu Cầu Chức Năng
+3.1.1.1. Yêu cầu chức năng dành cho Người dùng
+   * Yêu cầu 1: Chức năng Đăng ký Tài khoản
+Mô tả: Người dùng có thể tạo tài khoản mới bằng cách cung cấp tên, email và mật khẩu hợp lệ. Sau khi đăng ký thành công, hệ thống tạo giỏ hàng mới cho người dùng.
+   * Yêu cầu 2: Chức năng Đăng nhập
+Mô tả: Người dùng đăng nhập bằng email và mật khẩu. Nếu thông tin hợp lệ, hệ thống cấp quyền truy cập vào tài khoản.
+   * Yêu cầu 3: Chức năng Quên mật khẩu
+Mô tả: Người dùng có thể khôi phục mật khẩu bằng cách yêu cầu gửi mã OTP đến email đã đăng ký. Sau khi xác minh thành công, người dùng được phép đặt lại mật khẩu mới.
+   * Yêu cầu 4: Chức năng Cập nhật Thông tin Cá nhân
+Mô tả: Người dùng có thể thay đổi tên, email và mật khẩu sau khi xác minh danh tính qua mật khẩu hiện tại.
+   * Yêu cầu 5: Chức năng Xem và tìm kiếm sản phẩm
+Mô tả: Người dùng có thể duyệt danh mục sản phẩm, tìm kiếm theo từ khóa, lọc theo tiêu chí như kích cỡ, giá, đánh giá…
+   * Yêu cầu 6: Chức năng Xem chi tiết sản phẩm
+Mô tả: Hiển thị hình ảnh, tên, mô tả, giá, đánh giá, số lượng tồn kho của sản phẩm.
+   * Yêu cầu 7: Chức năng Quản lý giỏ hàng
+Mô tả: Người dùng có thể thêm, xóa sản phẩm trong giỏ và theo dõi tổng tiền tạm tính.
+   * Yêu cầu 8: Chức năng Thanh toán đơn hàng
+Mô tả: Người dùng có thể xác nhận thanh toán đơn hàng bằng mã QR, cung cấp thông tin giao hàng và theo dõi trạng thái thanh toán.
+   * Yêu cầu 9: Chức năng Theo dõi trạng thái đơn hàng
+Mô tả: Người dùng có thể theo dõi các trạng thái đơn như “Đang xử lý”, “Đã xác nhận”, “Đã hủy” thông qua giao diện cá nhân.
+   * Yêu cầu 10: Chức năng Đánh giá sản phẩm
+Mô tả: Người dùng có thể đánh giá và viết bình luận cho sản phẩm đã mua thành công.
+   * Yêu cầu 11: Chức năng Quản lý sản phẩm yêu thích
+Mô tả:Người dùng có thể thêm, xóa sản phẩm trong danh sách yêu thích để lưu lại sản phẩm quan tâm.
+   * Yêu cầu 12: Chức năng Xem thông báo
+Mô tả: Hệ thống gửi thông báo như khuyến mãi, cập nhật đơn hàng, và người dùng có thể xem, đánh dấu đã đọc hoặc xóa.
+   * Yêu cầu 13: Chức năng Tư vấn qua chatbot
+Mô tả: Người dùng có thể trò chuyện với chatbot để được hỗ trợ nhanh về sản phẩm, đơn hàng, hoặc cách sử dụng hệ thống.
+   * Yêu cầu 14: Chức năng Báo lỗi và phản hồi từ người dùng
+Mô tả: Người dùng có thể gửi báo lỗi hoặc phản hồi khi gặp sự cố trong quá trình sử dụng website. Hệ thống lưu báo cáo và gửi đến quản trị viên để xử lý.
+3.1.1.2. Yêu cầu chức năng dành cho Quản trị viên (Admin)
+      * Yêu cầu 15: Chức năng Quản lý sản phẩm
+Mô tả: Quản trị viên có thể thêm mới, tìm kiếm và cập nhật số lượng tồn kho của sản phẩm theo từng kích cỡ.
+      * Yêu cầu 16: Chức năng Quản lý danh mục sản phẩm
+Mô tả: Quản trị viên có thể tạo mới các danh mục của sản phẩm.
+      * Yêu cầu 17: Chức năng Quản lý đơn hàng
+Mô tả: Quản trị viên xem, xác nhận hoặc hủy đơn hàng đang chờ xử lý, theo dõi lịch sử đơn hàng.
+      * Yêu cầu 18: Chức năng Quản lý người dùng
+Mô tả: Quản trị viên có thể xem chi tiết tài khoản, lịch sử đơn hàng và đánh giá của người dùng. Có thể gửi thông báo trực tiếp đến từng người.
+      * Yêu cầu 19: Chức năng Quản lý đánh giá sản phẩm
+Mô tả: Quản trị viên có thể xem tất cả đánh giá của người dùng, xóa đánh giá không phù hợp khỏi hệ thống.
+      * Yêu cầu 20: Chức năng Quản lý khuyến mãi
+Mô tả: Quản trị viên có thể tạo mới hoặc kết thúc các chiến dịch giảm giá theo danh mục sản phẩm; Xem lịch sử các đợt giảm giá.
+      * Yêu cầu 21: Chức năng Gửi thông báo cho người dùng
+Mô tả: Quản trị viên có thể gửi thông báo hàng loạt hoặc riêng lẻ đến người dùng, gồm tiêu đề, nội dung và ghi nhận lịch sử gửi.
+      * Yêu cầu 22: Chức năng Xem báo cáo & thống kê
+Mô tả:  Hệ thống hiển thị thống kê doanh thu, số đơn hàng, người dùng, đánh giá,... dưới dạng số liệu, bảng và biểu đồ.
+      * Yêu cầu 23: Chức năng Xem và phản hồi lỗi của người dùng
+Mô tả: Quản trị viên có thể xem các lỗi do người dùng gửi lên và phản hồi lại qua hệ thống. Phản hồi sẽ được gửi đến cho người dùng tương ứng.
+      * Yêu cầu 24: Chức năng Tạo tài khoản quản trị viên mới
+Mô tả: Quản trị viên có thể tạo tài khoản admin mới bằng cách nhập email và mật khẩu phù hợp.
+3.1.2. Yêu Cầu Phi Chức Năng
+Bên cạnh các yêu cầu chức năng trên, hệ thống cũng cần đáp ứng các yêu cầu phi chức năng nhằm đảm bảo hiệu năng, tính bảo mật, khả năng sử dụng và khả năng tương thích với các nền tảng phổ biến. Các yêu cầu này đóng vai trò quan trọng trong việc đảm bảo hệ thống vận hành ổn định và mang lại trải nghiệm nhất quán cho người dùng. Cụ thể:
+3.1.2.1. Hiệu năng hệ thống
+Mô tả: Hệ thống phải duy trì thời gian phản hồi và xử lý hợp lý ngay cả khi có nhiều người dùng truy cập đồng thời.
+Tiêu chí đánh giá:
+- Thời gian phản hồi cho các thao tác phổ biến (tải trang, thêm sản phẩm vào giỏ, thanh toán): ≤ 3 giây.
+- Hệ thống phải phục vụ tối thiểu 30 người dùng đồng thời mà không gây gián đoạn dịch vụ.
+Phương pháp kiểm tra: 
+- Sử dụng công cụ Locust để mô phỏng tải và đo lường hiệu năng.
+- Xác minh qua báo cáo load test: tỷ lệ lỗi < 1%.
+3.1.2.2. Yêu cầu xác thực và bảo mật
+Mô tả: Hệ thống sử dụng xác thực JWT để bảo vệ tài nguyên và đảm bảo an toàn thông tin người dùng.
+Tiêu chí đánh giá:
+- Mã truy cập (access token) hết hạn sau tối đa 30 phút (có thể cấu hình).
+- Mật khẩu được mã hóa bằng bcrypt.
+- Người dùng phải đăng nhập để truy cập vào tài nguyên riêng tư (giỏ hàng, đơn hàng…).
+- OTP được sử dụng trong các hành động: khôi phục mật khẩu và xác minh tài khoản.
+Phương pháp kiểm tra: 
+- Kiểm thử bảo mật với công cụ kiểm tra token JWT, xác thực API.
+- Thử nghiệm đăng nhập sai → hệ thống phản hồi lỗi xác thực.
+- Xác minh hệ thống lưu đúng mật khẩu đã mã hóa (bcrypt hash).
+3.1.2.3. CORS và kiểm soát truy cập
+Mô tả: Hệ thống áp dụng cơ chế CORS (Cross-Origin Resource Sharing) để giới hạn truy cập từ các nguồn không hợp lệ.
+Tiêu chí đánh giá:
+- Chỉ các domain hợp lệ được phép gọi API.
+- Các request bị từ chối đúng theo cấu hình CORS khi vi phạm.
+Phương pháp kiểm tra:
+- Thực hiện request từ domain không hợp lệ và xác minh phản hồi bị chặn.
+- Kiểm tra log hệ thống để xác nhận hành vi chặn đúng.
+3.1.2.4.  Giao diện người dùng (UI/UX)
+Mô tả: Hệ thống giao diện được thiết kế theo nguyên tắc Material Design, thân thiện và trực quan với người dùng.
+Tiêu chí đánh giá:
+- Giao diện nhất quán về màu sắc, font chữ, nút bấm, bố cục theo Material Design.
+- Người dùng thực hiện các thao tác chính (tìm sản phẩm, thêm giỏ hàng, thanh toán) với không quá 5 bước.
+Phương pháp kiểm tra:
+- Kiểm thử sử dụng (usability testing) với người dùng thật.
+- Đánh giá UI qua checklist kiểm định Material Design.
+3.1.2.5.  Khả năng tương thích hệ thống
+Mô tả: Ứng dụng web hoạt động ổn định trên các nền tảng trình duyệt và hệ điều hành phổ biến.
+Tiêu chí đánh giá:
+- Hỗ trợ ít nhất các trình duyệt: Chrome, Firefox, Edge (phiên bản 2 năm gần nhất).
+- Tương thích với Windows 10/11 (hiển thị đúng và không lỗi chức năng).
+Phương pháp kiểm tra: 
+- Kiểm thử thủ công trên các trình duyệt và hệ điều hành nêu trên.
+- Sử dụng công cụ như BrowserStack để kiểm thử tương thích.
+- Xác nhận không có lỗi CSS, JS hoặc UI vỡ layout.
+3.2. Biểu Đồ Ca Sử Dụng
+Biểu đồ ca sử dụng dưới đây mô tả các tác nhân chính tương tác với hệ thống và các chức năng chính mà hệ thống cung cấp. Các tác nhân bao gồm người dùng cuối (khách hàng) và quản trị viên (admin). Mỗi ca sử dụng thể hiện một chức năng cụ thể mà người dùng có thể thực hiện, như đăng ký, mua hàng, hoặc quản lý sản phẩm. Biểu đồ giúp hình dung mối quan hệ giữa tác nhân và chức năng, là cơ sở để phát triển chi tiết các ca sử dụng và thiết kế hệ thống.
+  
+
+Hình 3.1: Biểu đồ ca sử dụng - trình bày biểu đồ ca sử dụng của hệ thống quản lý bán hàng thời trang. Biểu đồ mô tả các chức năng chính mà hệ thống cung cấp cho các tác nhân khác nhau. Trong biểu đồ, mỗi tác nhân (actor) tương tác với các ca sử dụng (use case) tương ứng với các chức năng mà họ có thể thực hiện trong hệ thống. Mục đích của biểu đồ là minh họa mối quan hệ giữa các tác nhân và các chức năng của hệ thống một cách trực quan và dễ hiểu.
+3.2.1. Các Tác Nhân (Actors)
+a. Person (tổng quát):
+Là tác nhân chung cho tất cả người dùng, kế thừa bởi các tác nhân cụ thể.
+         * Person with an account: là người sử dụng website mà có tài khoản, bao gồm User và Admin 
+         * Customer user: là khách sử dụng website (không phải admin) bao gồm User và Guest user
+b. User:
+Người dùng khách đã đăng ký tài khoản
+c. Guest User:
+Người dùng chưa đăng nhập hoặc chưa có tài khoản
+d. Admin:
+Người quản trị hệ thống, có quyền quản lý toàn diện
+3.2.2. Các Ca Sử Dụng (Use Cases)
+         1. Use Cases chung cho tất cả người dùng web (Person): 
+Login: Đăng nhập.
+Sign up: Đăng ký tài khoản.
+Forget password: quên mật khẩu.
+         2. Use Cases cho người dùng có tài khoản:
+Manage personal information: quản lý thông tin cá nhân.
+Log out: Đăng xuất.
+         3. Use Cases cho người dùng khách: 
+Filter products: lọc sản phẩm (theo tên, thể loại, …).
+View product details: xem thông tin chi tiết một sản phẩm, mở rộng từ filter products, người dùng có thể xem thông tin chi tiết của một sản phẩm khi lọc được sản phẩm đó hoặc nếu thấy sản phẩm đó ngay trên trang chủ thì có thể xem thông tin chi tiết luôn.
+         4. Use Cases cho người dùng khách có tài khoản: 
+Manage reviews: mở rộng từ view product details, người dùng có tài khoản có thể viết, sửa, xóa bài đánh giá của mình trong trang thông tin chi tiết sản phẩm.
+Manage cart: quản lý giỏ hàng.
+Pay: bao gồm manage cart, người dùng phải vào giỏ hàng của mình để thực hiện thanh toán.
+Manage favourite products: quản lý sản phẩm yêu thích.
+Manage notifications: quản lý thông báo.
+Ask chatbot: hỏi chatbot
+Add reports: thêm phản hồi, báo lỗi cho admin xử lý.
+         5. Use Cases cho admin: 
+Manage users: quản lý người dùng khách.
+Send notifications: gửi thông báo cho người dùng khách.
+Manage products: quản lý sản phẩm.
+Manage orders: quản lý đơn hàng.
+Manage user’s reviews: quản lý đánh giá của người dùng khách.
+Manage sales: quản lý khuyến mãi.
+Manage reports: quản lý phản hồi, báo lỗi
+View analytics: Xem thống kê.
+        
+
+
+
+
+
+
+3.3. Mô Tả Chi Tiết Các Ca Sử Dụng
+3.3.1. Ca Sử Dụng: Đăng Nhập Hệ Thống
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Đăng nhập
+	Tác nhân chính
+	Người dùng, Quản trị viên
+	Trigger
+	Người dùng hoặc quản trị viên truy cập trang web và bắt đầu đăng nhập
+	Điều kiện tiên quyết
+	- Giao diện đăng nhập đã được hiển thị
+- Kết nối internet ổn định
+	Luồng chính
+	1. Nhập email và mật khẩu vào form
+2. Nhấn nút “Đăng nhập”
+3. Hệ thống gửi thông tin đến server
+4. Server xác thực và trả về session token nếu hợp lệ
+	Luồng thay thế
+	- Nhấn “Quên mật khẩu” để chuyển đến giao diện khôi phục
+- Nhấn “Hiện mật khẩu” để xem mật khẩu rõ ràng trên form
+	Luồng ngoại lệ
+	- Nhập sai định dạng email (ví dụ thiếu @)
+- Tài khoản không tồn tại hoặc sai mật khẩu
+- Server không phản hồi (hệ thống đang bảo trì)
+	Hậu điều kiện
+	- Hệ thống khởi tạo phiên làm việc hợp lệ cho người dùng hoặc quản trị viên
+- Giao diện chính phù hợp với vai trò (dashboard hoặc trang chủ) được hiển thị để bắt đầu sử dụng hệ thống
+	Bảng 3.1: Mô tả ca sử dụng "Đăng nhập hệ thống". Người dùng hoặc quản trị viên bắt đầu quá trình bằng cách chọn chức năng "Đăng nhập" trên giao diện chính. Hệ thống yêu cầu nhập email và mật khẩu để xác thực thông tin đăng nhập. Nếu thông tin chính xác, người dùng được cấp quyền truy cập vào hệ thống với vai trò tương ứng. Nếu không hợp lệ, hệ thống hiển thị thông báo lỗi phù hợp. Ngoài ra, các tùy chọn như "Hiện mật khẩu" hoặc "Quên mật khẩu" cũng được hỗ trợ nhằm nâng cao trải nghiệm người dùng.
+
+
+
+
+3.3.2. Ca Sử Dụng: Người Dùng Đăng Ký Tài Khoản
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Đăng ký tài khoản
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng chọn chức năng "Đăng ký" trên giao diện chính
+	Điều kiện tiên quyết
+	- Giao diện đăng ký đã được hiển thị
+- Kết nối internet ổn định
+	Luồng chính
+	1. Người dùng nhập họ tên, email, password và xác nhận password vào form đăng ký
+2. Hệ thống kiểm tra định dạng và tính hợp lệ của các trường
+3. Nếu hợp lệ, hệ thống gửi thông tin đến server
+4. Server lưu thông tin và phản hồi kết quả
+5. Hệ thống thông báo đăng ký thành công và chuyển đến giao diện đăng nhập
+	Luồng thay thế
+	- Người dùng nhấn “Hiện mật khẩu” để hiển thị rõ password và confirm password
+- Người dùng nhấn “Đăng nhập” để quay lại giao diện đăng nhập nếu đã có tài khoản
+	Luồng ngoại lệ
+	- Tên bị bỏ trống → Thông báo yêu cầu nhập tên
+- Email sai định dạng → Thông báo lỗi
+- Password không đủ mạnh → Thông báo lỗi
+- Xác nhận password không khớp → Thông báo “Mật khẩu không khớp”
+- Email đã tồn tại → Thông báo “Email đã được đăng ký”
+- Kết nối server thất bại → Thông báo lỗi kết nối
+	Hậu điều kiện
+	- Tài khoản mới được lưu trữ thành công trong hệ thống
+- Người dùng có thể đăng nhập bằng thông tin vừa đăng ký
+	Bảng 3.2: Mô tả ca sử dụng "Người dùng đăng ký tài khoản". Người dùng hoặc quản trị viên bắt đầu quá trình bằng cách chọn chức năng "Đăng nhập" trên giao diện chính. Hệ thống yêu cầu nhập email và mật khẩu để xác thực thông tin đăng nhập. Nếu thông tin chính xác, người dùng được cấp quyền truy cập vào hệ thống với vai trò tương ứng. Nếu không hợp lệ, hệ thống hiển thị thông báo lỗi phù hợp. Ngoài ra, các tùy chọn như "Hiện mật khẩu" hoặc "Quên mật khẩu" cũng được hỗ trợ nhằm nâng cao trải nghiệm người dùng.
+________________
+3.3.3. Ca Sử Dụng: Người Dùng Quên Mật Khẩu
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Quên mật khẩu
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng chọn liên kết “Quên mật khẩu” trên giao diện đăng nhập
+	Điều kiện tiên quyết
+	- Giao diện đăng nhập đã được hiển thị
+- Kết nối internet ổn định
+	Luồng chính
+	1. Người dùng chọn “Quên mật khẩu”
+2. Hệ thống yêu cầu nhập email đã đăng ký
+3. Người dùng nhập email và xác nhận
+4. Hệ thống gửi mã OTP về email
+5. Người dùng nhập mã OTP
+6. Hệ thống xác minh mã OTP
+7. Nếu đúng, hệ thống cho phép nhập mật khẩu mới
+8. Người dùng nhập và xác nhận mật khẩu mới
+9. Hệ thống lưu mật khẩu mới và hiển thị thông báo thành công
+	Luồng thay thế
+	Người dùng quay lại đăng nhập nếu nhớ mật khẩu
+	Luồng ngoại lệ
+	- Email không đúng định dạng → Thông báo lỗi định dạng
+- Email không tồn tại → Hiển thị “Email chưa được đăng ký”
+- Password không đủ mạnh → Thông báo lỗi
+- Mã OTP sai → Hiển thị thông báo lỗi
+- Kết nối gửi email lỗi → Thông báo “Không thể gửi mã OTP, vui lòng thử lại sau”
+	Hậu điều kiện
+	- Mật khẩu mới được cập nhật thành công
+- Người dùng có thể đăng nhập bằng mật khẩu mới
+	Bảng 3.3: Mô tả ca sử dụng "Người dùng quên mật khẩu". Người dùng bắt đầu quá trình bằng cách chọn chức năng "Quên mật khẩu" trên giao diện đăng nhập. Hệ thống yêu cầu người dùng nhập email đã đăng ký để khởi tạo quá trình khôi phục. Nếu email tồn tại, hệ thống gửi mã OTP đến địa chỉ email tương ứng. Người dùng nhập đúng mã OTP sẽ được phép đặt lại mật khẩu mới; ngược lại, hệ thống hiển thị thông báo lỗi phù hợp.
+________________
+3.3.4. Ca Sử Dụng: Cập Nhật Thông Tin Cá Nhân
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Cập nhật thông tin cá nhân
+	Tác nhân chính
+	Người dùng, Quản trị viên
+	Trigger
+	Người dùng hoặc quản trị viên chọn chức năng "Cài đặt" trên giao diện chính
+	Điều kiện tiên quyết
+	- Đã đăng nhập vào hệ thống
+- Kết nối internet ổn định
+- Giao diện xác minh mật khẩu đã hiển thị sau khi chọn "Cài đặt"
+	Luồng chính
+	1. Người dùng hoặc quản trị viên chọn "Cài đặt"
+2. Hệ thống yêu cầu xác minh mật khẩu hiện tại
+3. Nhập mật khẩu và nhấn xác nhận
+4. Nếu đúng → hiển thị form cập nhật (tên, email, mật khẩu mới)
+5. Nhập thông tin muốn thay đổi
+6. Hệ thống kiểm tra định dạng và tính hợp lệ
+7. Nếu hợp lệ → gửi thông tin đến server
+8. Server lưu và phản hồi kết quả
+9. Hệ thống hiển thị thông báo thành công
+	Luồng thay thế
+	Người dùng hoặc quản trị viên có thể nhấn "Hiện mật khẩu" để xem mật khẩu hiện tại hoặc mật khẩu mới rõ ràng
+	Luồng ngoại lệ
+	- Mật khẩu xác minh sai → Thông báo "Mật khẩu không đúng"
+- Tên, email bị bỏ trống → Thông báo yêu cầu nhập
+- Email sai định dạng → Thông báo lỗi định dạng
+- New password yếu → Thông báo lỗi
+- Email đã tồn tại → Thông báo "Email đã được đăng ký"
+	Hậu điều kiện
+	Thông tin cá nhân được cập nhật thành công trên hệ thống
+	Bảng 3.4: Mô tả ca sử dụng "Cập nhật thông tin cá nhân". Người dùng hoặc quản trị viên chọn chức năng "Cài đặt" để bắt đầu cập nhật thông tin cá nhân. Hệ thống yêu cầu xác minh bằng mật khẩu hiện tại trước khi cho phép thay đổi. Sau khi xác minh thành công, có thể sửa tên, email hoặc mật khẩu mới. Hệ thống kiểm tra tính hợp lệ và lưu thông tin nếu hợp lệ, đồng thời thông báo kết quả.
+
+
+3.3.5. Ca Sử Dụng: Người Dùng Lọc Sản Phẩm
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Lọc sản phẩm
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng chọn chức năng “Bộ lọc” trên giao diện danh sách sản phẩm
+	Điều kiện tiên quyết
+	- Giao diện danh sách sản phẩm đã được hiển thị
+- Kết nối internet ổn định
+- Hệ thống có sẵn các sản phẩm để lọc
+	Luồng chính
+	1. Người dùng nhấn nút "Bộ lọc" trên giao diện sản phẩm
+2. Hệ thống hiển thị bảng tùy chọn bộ lọc
+3. Người dùng chọn tiêu chí lọc
+4. Nhấn "Áp dụng” để lọc
+5. Hệ thống gửi yêu cầu đến server và hiển thị danh sách kết quả phù hợp
+	Luồng thay thế
+	- Người dùng đóng bộ lọc mà không áp dụng
+- Người dùng bỏ chọn điều kiện lọc để xem thêm sản phẩm
+- Người dùng nhấn "Clear" để xóa toàn bộ bộ lọc
+	Luồng ngoại lệ
+	- Không có sản phẩm phù hợp → thông báo "Không tìm thấy sản phẩm phù hợp"
+- Lỗi kết nối → thông báo "Không thể tải dữ liệu"
+	Hậu điều kiện
+	Danh sách sản phẩm hiển thị theo đúng các tiêu chí lọc đã chọn
+	Bảng 3.5: Mô tả ca sử dụng "Người dùng lọc sản phẩm". Người dùng chọn chức năng "Filter" để tìm kiếm sản phẩm theo các tiêu chí cụ thể như kích cỡ, khoảng giá, đánh giá và đối tượng sử dụng. Hệ thống hiển thị danh sách bộ lọc, xử lý yêu cầu và trả về kết quả phù hợp. Người dùng có thể áp dụng, thay đổi hoặc xóa các bộ lọc tùy ý. Trong trường hợp không có kết quả hoặc xảy ra lỗi kết nối, hệ thống sẽ hiển thị thông báo tương ứng.
+
+
+
+
+
+
+3.3.6. Ca Sử Dụng: Người Dùng Xem Chi Tiết Sản Phẩm
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Xem chi tiết sản phẩm
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng nhấn vào một sản phẩm bất kỳ trong danh sách sản phẩm
+	Điều kiện tiên quyết
+	- Danh sách sản phẩm đã hiển thị
+- Kết nối internet ổn định
+	Luồng chính
+	1. Người dùng nhấn vào sản phẩm trong danh sách
+2. Hệ thống gửi yêu cầu đến server
+3. Server trả về thông tin chi tiết sản phẩm gồm: Hình ảnh, Tên sản phẩm, Kích cỡ có sẵn, Mô tả ,Đánh giá, Số lượng tồn
+4. Hệ thống hiển thị giao diện chi tiết
+5. Người dùng có thể: Chọn size, Thêm vào giỏ hàng, Thêm vào yêu thích, Đọc đánh giá
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Lỗi kết nối → thông báo "Không thể tải thông tin sản phẩm"
+- Sản phẩm đã bị xóa → thông báo "Sản phẩm không còn tồn tại"
+	Hậu điều kiện
+	- Thông tin sản phẩm được hiển thị thành công
+- Người dùng có thể thực hiện các thao tác tiếp theo như thêm vào giỏ hàng hoặc yêu thích
+	Bảng 3.6: Mô tả ca sử dụng "Người dùng xem chi tiết sản phẩm". Khi người dùng chọn một sản phẩm bất kỳ từ danh sách, hệ thống sẽ hiển thị toàn bộ thông tin chi tiết về sản phẩm. Dữ liệu này bao gồm hình ảnh, giá, kích cỡ, mô tả, đánh giá, và số lượng tồn kho. Ca sử dụng này giúp người dùng dễ dàng đưa ra quyết định mua hàng, đồng thời có thể thực hiện các thao tác như thêm vào giỏ, thêm vào danh sách yêu thích hoặc quay lại danh sách sản phẩm.
+
+
+
+
+
+
+3.3.7. Ca Sử Dụng: Người Dùng Quản Lý Giỏ Hàng
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Quản lý giỏ hàng
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng nhấn vào nút "Thêm vào giỏ hàng" từ trang chi tiết sản phẩm
+	Điều kiện tiên quyết
+	- Người dùng đã đăng nhập vào hệ thống
+- Kết nối internet ổn định
+- Sản phẩm còn hàng
+	Luồng chính
+	1. Người dùng nhấn "Thêm vào giỏ hàng" tại sản phẩm mong muốn
+2. Hệ thống hiển thị thông báo "Đã thêm vào giỏ hàng"
+3. Người dùng truy cập trang giỏ hàng
+4. Tại đây, người dùng có thể: Xem danh sách sản phẩm, Xoá sản phẩm, Xem tổng giá trị tạm tính
+5. Người dùng nhấn "Tiến hành thanh toán"
+	Luồng thay thế
+	Người dùng có thể lưu sản phẩm trong giỏ để quay lại sau nếu chưa muốn thanh toán ngay
+	Luồng ngoại lệ
+	Sản phẩm hết hàng → hiển thị "Sản phẩm này hiện đã hết hàng"
+	Hậu điều kiện
+	- Giỏ hàng được cập nhật đúng theo hành động của người dùng
+- Dữ liệu giỏ hàng được lưu trong tài khoản người dùng
+	Bảng 3.7: Mô tả ca sử dụng "Người dùng quản lý giỏ hàng". Người dùng thêm sản phẩm mong muốn vào giỏ hàng từ trang chi tiết sản phẩm. Trong giao diện giỏ hàng, người dùng có thể xem, chỉnh sửa hoặc xoá sản phẩm, đồng thời kiểm tra tổng giá trị tạm tính của đơn hàng. Hệ thống hỗ trợ lưu trạng thái giỏ hàng và xử lý các lỗi như hết hàng hoặc mất kết nối để đảm bảo trải nghiệm mượt mà.
+
+
+
+
+
+
+3.3.8. Ca Sử Dụng: Người Dùng Thanh Toán
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Thanh toán
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng nhấn nút "Tiến hành thanh toán" sau khi kiểm tra giỏ hàng
+	Điều kiện tiên quyết
+	- Người dùng đã đăng nhập vào hệ thống
+- Kết nối internet ổn định
+- Giỏ hàng có ít nhất một sản phẩm
+	Luồng chính
+	1. Người dùng nhấn "Xác nhận thanh toán"
+2. Hệ thống hiển thị form nhập: số điện thoại, địa chỉ, ghi chú
+3. Người dùng nhập thông tin và nhấn "Confirm"
+4. Hệ thống kiểm tra định dạng và tồn kho
+5. Nếu hợp lệ: tạo đơn hàng ở trạng thái "Chờ xác nhận thanh toán" và hiển thị mã QR
+6. Người dùng quét mã QR để thanh toán
+7. Admin kiểm tra giao dịch và cập nhật trạng thái đơn
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Số điện thoại không hợp lệ → hiển thị lỗi
+- Địa chỉ để trống → yêu cầu nhập lại
+- Sản phẩm hết hàng → thông báo lỗi
+	Hậu điều kiện
+	Đơn hàng được tạo và lưu trên hệ thống với trạng thái "Chờ xác nhận thanh toán"
+	Bảng 3.8: Mô tả ca sử dụng "Người dùng thanh toán". Sau khi kiểm tra giỏ hàng, người dùng thực hiện quy trình thanh toán bằng cách nhập thông tin giao hàng và quét mã QR để thanh toán. Hệ thống tạo đơn hàng với trạng thái chờ xác nhận, chờ admin kiểm tra giao dịch trước khi đơn hàng được xử lý. Ca sử dụng đảm bảo xác minh thông tin kỹ lưỡng và xử lý các ngoại lệ phát sinh trong quá trình đặt hàng.
+
+
+
+
+
+
+3.3.9. Ca Sử Dụng: Người Dùng Đánh Giá Sản Phẩm
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Đánh giá sản phẩm
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng truy cập mục "Lịch sử đơn hàng", sau đó chọn sản phẩm đã mua để đánh giá
+	Điều kiện tiên quyết
+	- Người dùng đã đăng nhập vào hệ thống
+- Kết nối internet ổn định
+- Có ít nhất một đơn hàng đã mua thành công
+	Luồng chính
+	1. Người dùng truy cập mục "Tài khoản cá nhân"
+2. Chọn "Lịch sử đơn hàng"
+3. Chọn đơn hàng chứa sản phẩm cần đánh giá
+4. Nhấn "Đánh giá sản phẩm"
+5. Nhập số sao và nội dung đánh giá
+6. Nhấn "Gửi", hệ thống kiểm tra và lưu lên server
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	Lỗi kết nối khi gửi đánh giá → thông báo “Không thể gửi đánh giá, vui lòng thử lại sau”
+	Hậu điều kiện
+	- Đánh giá được lưu và liên kết đúng với sản phẩm, người dùng
+- Đánh giá được hiển thị tại trang chi tiết sản phẩm
+	Bảng 3.9: Mô tả ca sử dụng "Người dùng đánh giá sản phẩm". Người dùng sau khi mua hàng có thể truy cập lịch sử đơn hàng để đánh giá sản phẩm đã nhận. Hệ thống đảm bảo chỉ người đã mua mới có thể đánh giá và liên kết chính xác đánh giá với sản phẩm tương ứng. Tính năng này giúp cải thiện độ tin cậy và minh bạch trong hệ thống.
+
+
+
+
+
+
+
+
+
+
+3.3.10. Ca Sử Dụng: Người Dùng Quản Lý Sản Phẩm Yêu Thích
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Quản lý sản phẩm yêu thích
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng nhấn vào biểu tượng “Thêm vào yêu thích” tại trang sản phẩm hoặc danh sách sản phẩm
+	Điều kiện tiên quyết
+	- Người dùng đã đăng nhập vào hệ thống
+- Kết nối internet ổn định
+	Luồng chính
+	1. Người dùng duyệt sản phẩm
+2. Nhấn biểu tượng "Thêm vào yêu thích" để lưu sản phẩm vào danh sách yêu thích
+3. Hệ thống kiểm tra và thêm vào danh sách (nếu chưa có)
+4. Người dùng truy cập danh sách yêu thích để xem chi tiết hoặc xóa sản phẩm khỏi danh sách
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Người dùng chưa đăng nhập → thông báo "Vui lòng đăng nhập để sử dụng tính năng yêu thích"
+- Lỗi kết nối khi thêm → hiển thị "Không thể thêm sản phẩm vào yêu thích"
+	Hậu điều kiện
+	- Danh sách sản phẩm yêu thích được cập nhật theo hành động người dùng
+- Danh sách được lưu và duy trì sau khi đăng xuất/đăng nhập lại
+	Bảng 3.10: Mô tả ca sử dụng "Người dùng quản lý sản phẩm yêu thích". Người dùng có thể thêm hoặc xóa sản phẩm khỏi danh sách yêu thích bằng biểu tượng trái tim trên giao diện sản phẩm. Danh sách được lưu vào tài khoản và có thể truy cập lại sau. Hệ thống đảm bảo trải nghiệm người dùng liền mạch và thuận tiện khi quản lý sản phẩm quan tâm.
+
+
+
+
+
+
+3.3.11. Ca Sử Dụng: Người Dùng Quản Lý Thông Báo
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Quản lý thông báo
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng nhấn vào biểu tượng “Thông báo”
+	Điều kiện tiên quyết
+	- Người dùng đã đăng nhập vào hệ thống
+- Kết nối internet ổn định
+- Hệ thống đã có thông báo được gửi đến người dùng
+	Luồng chính
+	1. Người dùng nhấn vào biểu tượng thông báo
+2. Hệ thống hiển thị danh sách thông báo
+3. Người dùng xem chi tiết, đánh dấu, hoặc xóa thông báo
+4. Trạng thái được lưu
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Lỗi kết nối khi tải → hiển thị "Không thể tải thông báo, vui lòng thử lại"
+- Lỗi khi xóa → hiển thị "Xoá không thành công, vui lòng thử lại"
+	Hậu điều kiện
+	Danh sách và trạng thái thông báo được cập nhật trong tài khoản người dùng
+	Bảng 3.11: Mô tả ca sử dụng "Người dùng quản lý thông báo". Khi người dùng truy cập khu vực thông báo, hệ thống sẽ hiển thị danh sách các thông báo liên quan như đơn hàng, khuyến mãi, đánh giá,... Người dùng có thể xem chi tiết, đánh dấu đã đọc/chưa đọc hoặc xóa thông báo. Trạng thái tương tác được lưu giữ nhằm cá nhân hóa trải nghiệm người dùng.
+
+
+
+
+
+
+
+
+
+
+3.3.12. Ca Sử Dụng: Người Dùng Hỏi Chatbot
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Hỏi chatbot
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng nhấn vào biểu tượng Chatbot ở góc màn hình
+	Điều kiện tiên quyết
+	- Người dùng đã đăng nhập vào hệ thống
+- Kết nối internet ổn định
+- Website đã tích hợp chatbot và chatbot đang hoạt động
+	Luồng chính
+	1. Người dùng nhấn biểu tượng Chatbot
+2. Cửa sổ chatbot mở và hiển thị lời chào
+3. Người dùng nhập câu hỏi
+4. Chatbot phản hồi
+5. Người dùng tiếp tục hoặc đóng
+	Luồng thay thế
+	Nếu chatbot không hiểu câu hỏi → hiển thị: “Xin lỗi, tôi chưa hiểu câu hỏi của bạn. Bạn có thể hỏi lại hoặc liên hệ với nhân viên hỗ trợ”
+	Luồng ngoại lệ
+	- Lỗi kết nối → “Không thể kết nối đến chatbot, vui lòng thử lại sau.”
+- Chatbot bảo trì/quá tải → “Chatbot hiện đang bận. Vui lòng quay lại sau.”
+	Hậu điều kiện
+	Người dùng nhận được thông tin hoặc tư vấn nhanh chóng từ chatbot
+	Bảng 3.12: Mô tả ca sử dụng "Người dùng hỏi chatbot". Người dùng có thể truy cập chatbot ở góc màn hình để đặt câu hỏi liên quan đến sản phẩm, đơn hàng hoặc trợ giúp. Chatbot phản hồi tự động dựa trên dữ liệu được tích hợp. Trong trường hợp không hiểu hoặc có lỗi, chatbot sẽ cung cấp thông báo phù hợp, đảm bảo trải nghiệm người dùng không bị gián đoạn.
+
+
+
+
+
+
+3.3.13. Ca Sử Dụng: Người Dùng Gửi Phản Hồi, Báo Lỗi
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Gửi báo lỗi/phản hồi
+	Tác nhân chính
+	Người dùng
+	Trigger
+	Người dùng nhấn vào nút “Báo lỗi” ở góc dưới màn hình
+	Điều kiện tiên quyết
+	- Người dùng đã đăng nhập vào hệ thống
+- Kết nối internet ổn định
+	Luồng chính
+	1. Người dùng nhấn nút “Báo lỗi”
+2. Hệ thống hiển thị form báo lỗi gồm trường nhập nội dung
+3. Người dùng nhập mô tả sự cố
+4. Nhấn “Gửi”
+5. Hệ thống lưu thông tin và gửi đến quản trị viên
+	Luồng thay thế
+	Người dùng có thể hủy bỏ thao tác nếu không muốn gửi nữa
+	Luồng ngoại lệ
+	- Không có kết nối internet → hiển thị “Không thể gửi phản hồi, vui lòng kiểm tra kết nối.”
+- Nội dung để trống → yêu cầu nhập nội dung trước khi gửi
+	Hậu điều kiện
+	Phản hồi/báo lỗi của người dùng được ghi nhận và gửi đến hệ thống quản trị để xử lý
+	Bảng 3.13: Mô tả ca sử dụng "Người dùng gửi báo lỗi/phản hồi". Khi gặp sự cố trong quá trình sử dụng, người dùng có thể nhấn vào nút "Báo lỗi" ở góc dưới giao diện. Một form nhập nội dung sẽ xuất hiện để người dùng mô tả lỗi hoặc ý kiến. Sau khi gửi, hệ thống tiếp nhận thông tin và chuyển đến bộ phận quản trị để xử lý, đảm bảo cải thiện trải nghiệm người dùng.
+
+
+
+
+
+
+3.3.14. Ca Sử Dụng: Quản Trị Viên Quản Lý Sản Phẩm
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Quản lý sản phẩm
+	Tác nhân chính
+	Quản trị viên
+	Trigger
+	Quản trị viên nhấn vào Quick Action và chọn “Add Product” hoặc tìm sản phẩm hiện có để cập nhật
+	Điều kiện tiên quyết
+	- Quản trị viên đã đăng nhập hệ thống
+- Hệ thống kết nối ổn định
+	Luồng chính
+	1. Truy cập giao diện quản trị
+2. Nhấn Quick Action → Add Product
+3. Nhập các thông tin sản phẩm: tên, mô tả, giá, danh mục, số lượng, ảnh…
+4. Nhấn “Xác nhận” để thêm sản phẩm
+5. Để cập nhật số lượng sản phẩm → tìm theo tên
+6. Hệ thống hiển thị sản phẩm
+7. Quản trị viên sửa số lượng và nhấn “Lưu thay đổi”
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Thêm sản phẩm thất bại → hiển thị “Thêm sản phẩm thất bại, vui lòng kiểm tra thông tin”
+- Không tìm thấy sản phẩm → thông báo “Không tìm thấy sản phẩm tương ứng”
+	Hậu điều kiện
+	- Sản phẩm mới được thêm thành công vào hệ thống
+- Hoặc số lượng sản phẩm hiện có được cập nhật chính xác
+	Bảng 3.14: Mô tả ca sử dụng "Quản trị viên quản lý sản phẩm". Chức năng này cho phép quản trị viên thêm mới hoặc cập nhật thông tin sản phẩm. Quản trị viên có thể nhập các thông tin như tên, mô tả, giá, ảnh, số lượng... để lưu vào hệ thống. Ngoài ra, họ có thể tìm kiếm sản phẩm hiện có để điều chỉnh số lượng tồn kho. Hệ thống hiển thị thông báo lỗi nếu thêm sản phẩm thất bại hoặc không tìm thấy sản phẩm cần cập nhật.
+
+
+
+
+
+
+3.3.15. Ca Sử Dụng: Quản Trị Viên Quản Lý Danh Mục Sản Phẩm
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Quản lý danh mục sản phẩm
+	Tác nhân chính
+	Quản trị viên
+	Trigger
+	Quản trị viên nhấn vào Quick Action và chọn “View Category”
+	Điều kiện tiên quyết
+	- Quản trị viên đã đăng nhập hệ thống
+- Hệ thống kết nối ổn định
+	Luồng chính
+	1. Quản trị viên truy cập giao diện quản trị
+2. Nhấn Quick Action → View Category
+3. Hệ thống hiển thị danh sách danh mục sản phẩm
+4. Quản trị viên có thể nhấn vào từng danh mục để xem chi tiết
+5. Hoặc nhấn “Thêm danh mục” để tạo mới
+6. Nhập tên, mô tả và xác nhận để thêm danh mục
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Lỗi khi tạo danh mục → hiển thị “Không thể tạo danh mục, vui lòng thử lại”
+- Lỗi kết nối → không thể tải hoặc cập nhật danh sách danh mục
+	Hậu điều kiện
+	Danh mục mới được thêm và lưu trong hệ thống
+	Bảng 3.15: Mô tả ca sử dụng "Quản trị viên quản lý danh mục sản phẩm". Chức năng này cho phép quản trị viên xem, thêm và quản lý các danh mục đang có trong hệ thống. Quản trị viên nhấn vào "Quick Action" → chọn "View Category" để hiển thị danh sách danh mục. Tại đây, họ có thể nhấn vào từng danh mục để xem chi tiết hoặc nhấn "Thêm danh mục" để tạo mới. Mỗi thay đổi sẽ được cập nhật vào hệ thống và hiển thị ngay trong danh sách danh mục.
+
+
+
+
+
+
+3.3.16. Ca Sử Dụng: Quản Trị Viên Quản Lý Đơn Hàng
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Quản lý đơn hàng
+	Tác nhân chính
+	Quản trị viên
+	Trigger
+	Quản trị viên nhấn “Quick Action” → “Pending Orders” hoặc chọn “Order History” từ giao diện
+	Điều kiện tiên quyết
+	- Quản trị viên đã đăng nhập hệ thống
+- Hệ thống kết nối ổn định
+	Luồng chính
+	1. Quản trị viên truy cập giao diện quản trị
+2. Nhấn “Quick Action” → chọn “Pending Orders”
+3. Hệ thống hiển thị danh sách đơn hàng đang chờ
+4. Quản trị viên nhấn “Confirm” hoặc “Cancel”
+5. Trạng thái đơn hàng được cập nhật
+6. Có thể xem toàn bộ lịch sử đơn hàng trong “Order History”
+	Luồng thay thế
+	Nếu không có đơn hàng chờ xác nhận → hiển thị “Không có đơn hàng nào đang chờ”
+	Luồng ngoại lệ
+	- Cập nhật trạng thái thất bại → hiển thị “Cập nhật trạng thái thất bại, vui lòng thử lại”
+- Mất kết nối → hiển thị “Không thể tải danh sách đơn hàng”
+	Hậu điều kiện
+	- Trạng thái đơn hàng được cập nhật
+- Lịch sử đơn hàng được lưu trữ đầy đủ
+- Người dùng được thông báo về thay đổi trạng thái đơn hàng
+	Bảng 3.16: Mô tả ca sử dụng "Quản trị viên quản lý đơn hàng". Quản trị viên có thể truy cập nhanh vào danh sách đơn hàng đang chờ xác nhận thông qua nút “Quick Action”. Tại đây, họ xem thông tin đơn hàng và thực hiện xác nhận hoặc hủy nếu cần. Ngoài ra, quản trị viên có thể theo dõi toàn bộ lịch sử đơn hàng trong mục “Order History”. Trạng thái đơn hàng được cập nhật và người dùng sẽ nhận được thông báo tương ứng.
+
+
+
+
+
+
+3.3.17. Ca Sử Dụng: Quản Trị Viên Quản Lý Người Dùng
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Quản lý người dùng
+	Tác nhân chính
+	Quản trị viên
+	Trigger
+	Quản trị viên chọn mục “Customers” trên giao diện quản trị
+	Điều kiện tiên quyết
+	- Quản trị viên đã đăng nhập hệ thống
+- Hệ thống kết nối ổn định
+	Luồng chính
+	1.  Quản trị viên truy cập giao diện quản trị
+2. Nhấn vào mục “Customers”
+3. Hệ thống hiển thị danh sách người dùng
+4. Chọn một người dùng cụ thể
+5. Hệ thống hiển thị thông tin chi tiết và các tùy chọn: Gửi thông báo, xem đơn hàng, xem đánh giá
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	Không có
+	Hậu điều kiện
+	- Thông tin người dùng được hiển thị đầy đủ
+- Quản trị viên thực hiện được các thao tác như gửi thông báo, xem đơn hàng và đánh giá
+	Bảng 3.17: Mô tả ca sử dụng "Quản trị viên quản lý người dùng". Quản trị viên có thể quản lý người dùng bằng cách truy cập mục “Customers” trong giao diện quản trị. Tại đây, họ xem danh sách người dùng và truy cập thông tin chi tiết từng người. Quản trị viên có thể gửi thông báo, xem đơn hàng và đánh giá của người dùng đó. Hệ thống đảm bảo hiển thị đầy đủ dữ liệu và hỗ trợ các hành động liên quan.
+
+
+
+
+
+
+
+
+3.3.18. Ca Sử Dụng: Quản Trị Viên Quản Lý Đánh Giá Của Người Dùng
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Quản lý đánh giá của người dùng
+	Tác nhân chính
+	Quản trị viên
+	Trigger
+	Quản trị viên nhấn vào mục “Reviews” trên giao diện quản trị
+	Điều kiện tiên quyết
+	- Quản trị viên đã đăng nhập hệ thống
+- Hệ thống kết nối ổn định
+- Hệ thống có đánh giá từ người dùng
+	Luồng chính
+	1. Quản trị viên truy cập giao diện quản trị
+2. Chọn “Reviews” trên thanh điều hướng
+3. Hệ thống hiển thị danh sách đánh giá
+4. Đọc và xác định đánh giá không phù hợp
+5. Nhấn biểu tượng thùng rác để xóa
+6. Đánh giá bị xóa khỏi hệ thống
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Lỗi khi xóa → “Xóa không thành công, vui lòng thử lại sau”
+- Mất kết nối → “Không thể tải đánh giá, vui lòng kiểm tra kết nối”
+	Hậu điều kiện
+	- Đánh giá không phù hợp được xoá khỏi danh sách
+- Dữ liệu đánh giá được cập nhật trong hệ thống
+	Bảng 3.18: Mô tả ca sử dụng "Quản trị viên quản lý đánh giá của người dùng". Quản trị viên có thể theo dõi và quản lý các đánh giá của người dùng trong hệ thống. Tại mục “Reviews”, quản trị viên xem nội dung, số sao và thời gian đánh giá. Họ có thể xóa những đánh giá không phù hợp để đảm bảo nội dung minh bạch. Hệ thống cập nhật dữ liệu ngay khi đánh giá bị xóa.
+
+
+
+
+
+
+3.3.19. Ca Sử Dụng: Quản Trị Viên Quản Lý Khuyến Mãi
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Quản lý khuyến mãi
+	Tác nhân chính
+	Quản trị viên
+	Trigger
+	Quản trị viên nhấn vào nút “Quick Action” và chọn “Start Sale Campaign”
+	Điều kiện tiên quyết
+	- Quản trị viên đã đăng nhập hệ thống
+- Hệ thống kết nối ổn định
+- Có danh mục sản phẩm có thể áp dụng khuyến mãi
+	Luồng chính
+	1. Truy cập giao diện quản trị
+2. Nhấn “Quick Action” → chọn “Start Sale Campaign”
+3. Nhập thông tin chiến dịch (danh mục, % giảm)
+4. Xác nhận khởi động chiến dịch
+5. Hệ thống áp dụng và hiển thị khuyến mãi
+	Luồng thay thế
+	Nếu có chiến dịch đang diễn ra, chọn “Active Sale” để xem và có thể “End Campaign” để kết thúc
+	Luồng ngoại lệ
+	- Lỗi khi khởi động chiến dịch → “Khởi động chiến dịch không thành công, vui lòng thử lại”
+- Lỗi khi kết thúc chiến dịch → “Kết thúc chiến dịch thất bại”
+	Hậu điều kiện
+	- Sản phẩm thuộc danh mục được hiển thị với nhãn giảm giá
+- Thông tin khuyến mãi được lưu trong hệ thống
+- Trạng thái khuyến mãi được cập nhật khi kết thúc chiến dịch
+	Bảng 3.19: Mô tả ca sử dụng "Quản trị viên quản lý khuyến mãi". Quản trị viên có thể tạo và quản lý các chiến dịch khuyến mãi từ giao diện quản trị. Sau khi chọn danh mục sản phẩm và mức giảm giá, hệ thống áp dụng giảm giá và hiển thị nhãn khuyến mãi cho người dùng. Trong trường hợp có chiến dịch đang chạy, quản trị viên cũng có thể kết thúc chiến dịch. Mọi thông tin khuyến mãi được lưu lại để quản lý và theo dõi.
+
+
+
+
+
+
+3.3.20. Ca Sử Dụng: Quản Trị Viên Gửi Thông Báo Cho Người Dùng
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Gửi thông báo cho người dùng
+	Tác nhân chính
+	Quản trị viên
+	Trigger
+	Quản trị viên nhấn nút “Quick Action” và chọn “Create Notification” hoặc chọn người dùng cụ thể rồi chọn “Send Notification”
+	Điều kiện tiên quyết
+	- Quản trị viên đã đăng nhập vào hệ thống
+- Hệ thống hoạt động bình thường và có kết nối internet
+- Có ít nhất một người dùng trong hệ thống
+	Luồng chính
+	1. Quản trị viên nhấn “Quick Action” → chọn “Create Notification” để gửi cho toàn bộ người dùng
+2. Hoặc quản trị viên vào “Customers”, chọn người dùng cụ thể rồi nhấn “Send Notification”
+3. Nhập tiêu đề và nội dung thông báo
+4. Nhấn xác nhận gửi
+5. Hệ thống gửi thông báo đến người dùng tương ứng và lưu thông tin gửi
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Lỗi kết nối mạng → hiển thị “Không thể gửi thông báo, vui lòng thử lại”
+- Lỗi hệ thống khi gửi → hiển thị “Có lỗi xảy ra, gửi thất bại”
+	Hậu điều kiện
+	- Thông báo được lưu trong hệ thống
+- Người dùng nhận được thông báo cá nhân
+- Thời gian gửi và nội dung thông báo được ghi nhận vào log quản trị
+	Bảng 3.20: Mô tả ca sử dụng "Quản trị viên gửi thông báo cho người dùng". Quản trị viên có thể gửi thông báo đến toàn bộ người dùng hoặc gửi riêng cho từng người dùng cụ thể thông qua giao diện quản trị. Khi thực hiện, quản trị viên nhập tiêu đề và nội dung thông báo, sau đó hệ thống sẽ phân phối thông báo tới các tài khoản người dùng đã đăng ký. Hệ thống lưu lại thông báo và ghi nhận thời gian gửi, đồng thời hiển thị thông báo tương ứng trên phần thông báo cá nhân của người dùng. Nếu có lỗi trong quá trình gửi hoặc thông tin không đầy đủ, hệ thống sẽ thông báo lỗi và yêu cầu quản trị viên thực hiện lại.
+3.3.21. Ca Sử Dụng: Quản Trị Viên Xem thống Kê
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Xem thống kê
+	Tác nhân chính
+	Quản trị viên
+	Trigger
+	Quản trị viên nhấn vào nút “Statistic” trên giao diện quản trị
+	Điều kiện tiên quyết
+	- Quản trị viên đã đăng nhập hệ thống
+- Hệ thống kết nối ổn định
+	Luồng chính
+	1.Quản trị viên truy cập giao diện quản trị
+2. Nhấn vào nút “Statistic” trên thanh công cụ hoặc dashboard
+3. Hệ thống hiển thị thống kê gồm:
+ - Tổng số đơn hàng
+ - Tổng doanh thu
+ - Tổng số khách hàng
+ - Tổng số lượt đánh giá….
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Mất kết nối → thông báo “Không thể tải dữ liệu thống kê, vui lòng kiểm tra kết nối”
+- Lỗi máy chủ → hiển thị “Có lỗi xảy ra, không thể hiển thị thống kê”
+	Hậu điều kiện
+	- Quản trị viên xem được các chỉ số thống kê một cách rõ ràng
+- Dữ liệu được hiển thị chính xác, phục vụ đánh giá và ra quyết định quản trị
+	Bảng 3.21: Mô tả ca sử dụng "Quản trị viên xem thống kê". Quản trị viên có thể xem tổng quan các chỉ số hoạt động của hệ thống thông qua giao diện thống kê. Hệ thống hiển thị dữ liệu như tổng số đơn hàng, doanh thu, số lượng người dùng,… dưới dạng số liệu trực quan. Tính năng giúp quản trị viên đánh giá hiệu quả kinh doanh và đưa ra quyết định phù hợp. Thống kê luôn được cập nhật theo thời gian thực để đảm bảo tính chính xác.
+
+
+3.3.22. Ca Sử Dụng: Quản Trị Viên Xem, Phản Hồi Lỗi Của Người Dùng
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Xem, phản hồi lỗi của người dùng
+	Tác nhân chính
+	Quản trị viên
+	Trigger
+	Quản trị viên nhấn vào mục “Reported Issues” trên giao diện quản trị
+	Điều kiện tiên quyết
+	- Quản trị viên đã đăng nhập hệ thống
+- Hệ thống kết nối ổn định
+	Luồng chính
+	1. Quản trị viên truy cập giao diện quản trị
+2. Nhấn vào “Reported Issues”
+3. Hệ thống hiển thị danh sách các lỗi được gửi bởi người dùng
+4. Quản trị viên nhấn vào từng lỗi để phản hồi
+5. Hệ thống gửi phản hồi đến người dùng
+6. Lỗi đã phản hồi sẽ không hiển thị nữa
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Gửi phản hồi lỗi → “Không thể gửi phản hồi, vui lòng thử lại”
+- Mất kết nối → “Không thể tải danh sách lỗi, vui lòng kiểm tra kết nối
+	Hậu điều kiện
+	- Người dùng nhận được phản hồi về lỗi đã gửi
+- Báo lỗi được đánh dấu là đã xử lý và không còn hiển thị trên danh sách lỗi chờ xử lý của quản trị viên
+	Bảng 3.22: Mô tả ca sử dụng "Quản trị viên xem, phản hồi lỗi của người dùng". Quản trị viên có thể truy cập mục "Reported Issues" để xem các lỗi người dùng đã gửi. Mỗi lỗi có thể được xem chi tiết và phản hồi trực tiếp. Phản hồi được gửi đến người dùng, đồng thời lỗi sẽ được đánh dấu là đã xử lý. Các lỗi đã phản hồi sẽ tự động ẩn khỏi danh sách hiển thị để tránh xử lý trùng lặp.
+
+
+
+
+
+
+3.3.23. Ca Sử Dụng: Quản Trị Viên Tạo Tài Khoản Admin Mới
+Thành phần
+	Nội dung
+	Tên ca sử dụng
+	Tạo tài khoản admin mới
+	Tác nhân chính
+	Quản trị viên
+	Trigger
+	Quản trị viên nhấn nút “New Admin” trên giao diện quản trị
+	Điều kiện tiên quyết
+	- Quản trị viên đã đăng nhập hệ thống
+- Hệ thống kết nối ổn định
+	Luồng chính
+	1. Quản trị viên truy cập giao diện quản trị
+2. Nhấn vào nút “New Admin”
+3. Nhập email và mật khẩu cho tài khoản quản trị mới
+4. Hệ thống kiểm tra định dạng hợp lệ
+5. Quản trị viên xác nhận tạo tài khoản
+6. Hệ thống tạo tài khoản mới và lưu vào cơ sở dữ liệu
+	Luồng thay thế
+	Không có
+	Luồng ngoại lệ
+	- Lỗi khi tạo tài khoản → hiển thị “Tạo tài khoản thất bại, vui lòng thử lại”
+- Mất kết nối → “Không thể kết nối tới máy chủ, vui lòng thử lại sau
+	Hậu điều kiện
+	Tài khoản quản trị mới được tạo thành công và có thể đăng nhập
+	Bảng 3.23: Mô tả ca sử dụng "Quản trị viên tạo tài khoản Admin mới". Quản trị viên có thể tạo tài khoản quản trị mới bằng cách nhấn nút “New Admin” trong giao diện hệ thống. Sau đó, nhập email và mật khẩu theo định dạng yêu cầu. Nếu hợp lệ, hệ thống sẽ tạo và lưu tài khoản mới. Tài khoản admin mới có thể sử dụng để đăng nhập và thực hiện các chức năng quản trị.
+
+
+3.4. Biểu Đồ Hoạt Động
+Mục này trình bày các biểu đồ hoạt động cho những ca sử dụng có nghiệp vụ phức tạp trong hệ thống. Mỗi biểu đồ mô tả luồng hoạt động chính và các luồng phụ, giúp làm rõ cách hệ thống tương tác với người dùng và xử lý dữ liệu. Các biểu đồ này được xây dựng nhằm hỗ trợ quá trình phân tích, thiết kế và phát triển phần mềm một cách chính xác và hiệu quả hơn.
+3.4.1. Biểu Đồ Hoạt Động - Thanh Toán Đơn Hàng
+  
+
+Hình 3.2: Biểu đồ hoạt động – Thanh toán đơn hàng. Biểu đồ thể hiện luồng xử lý khi người dùng tiến hành thanh toán đơn hàng. Người dùng nhập thông tin giao hàng gồm số điện thoại, địa chỉ và ghi chú, sau đó hệ thống kiểm tra tính hợp lệ và tình trạng tồn kho. Nếu hợp lệ và còn hàng, hệ thống tạo đơn ở trạng thái “Chờ xác nhận thanh toán” và hiển thị mã QR để quét thanh toán. Quản trị viên xác minh giao dịch và cập nhật trạng thái đơn hàng; nếu có lỗi hoặc hết hàng, hệ thống thông báo tương ứng.
+3.4.2. Biểu Đồ Hoạt Động - Quên Mật Khẩu
+  
+
+Hình 3.3: Biểu đồ hoạt động – Người dùng quên mật khẩu. Biểu đồ thể hiện luồng xử lý khi người dùng tiến hành lấy lại mật khẩu khi quên. Người dùng bắt đầu bằng cách chọn chức năng “Quên mật khẩu” và nhập email đã đăng ký. Hệ thống kiểm tra định dạng email, nếu hợp lệ sẽ gửi mã OTP đến email đó. Người dùng nhập mã OTP, hệ thống xác minh mã OTP đúng thì cho phép người dùng nhập mật khẩu mới. Sau khi nhập và xác nhận mật khẩu mới, hệ thống kiểm tra độ mạnh của mật khẩu và xác nhận email có tồn tại trong hệ thống trước khi lưu mật khẩu mới. Nếu có lỗi trong các bước như định dạng email không đúng, mã OTP sai, mật khẩu không đủ mạnh hoặc email không tồn tại, hệ thống sẽ hiển thị thông báo lỗi tương ứng.
+
+
+
+
+
+
+
+
+
+
+3.4.3. Biểu Đồ Hoạt Động - Quản Lý Giỏ Hàng
+  
+
+Hình 3.4: Biểu đồ hoạt động – Quản lý giỏ hàng. Biểu đồ thể hiện luồng xử lý khi người dùng thêm sản phẩm vào giỏ hàng và quản lý nội dung trong giỏ. Sau khi người dùng nhấn “Thêm vào giỏ hàng” từ trang chi tiết sản phẩm, hệ thống kiểm tra tình trạng còn hàng và hiển thị thông báo tương ứng. Người dùng sau đó có thể truy cập giỏ hàng để xem danh sách sản phẩm, tổng giá trị tạm tính, thực hiện thao tác xoá sản phẩm hoặc lựa chọn lưu lại giỏ hàng nếu chưa muốn thanh toán ngay. Khi người dùng quyết định thanh toán, hệ thống chuyển sang bước xử lý tiếp theo trong quy trình mua hàng.
+3.4.4. Biểu Đồ Hoạt Động - Cập Nhật Thông Tin Cá Nhân
+  
+
+Hình 3.5: Biểu đồ hoạt động – Cập nhật thông tin cá nhân. Biểu đồ thể hiện luồng xử lý khi người dùng thực hiện cập nhật thông tin cá nhân trong hệ thống. Sau khi chọn chức năng “Cài đặt”, người dùng được yêu cầu xác minh bằng mật khẩu hiện tại. Nếu mật khẩu chính xác, hệ thống hiển thị giao diện cập nhật cho phép thay đổi tên, email hoặc mật khẩu mới. Hệ thống kiểm tra các trường không bị bỏ trống và xác thực đồng thời định dạng email cùng độ mạnh của mật khẩu mới. Nếu hợp lệ và email chưa tồn tại, thông tin được gửi đến server để lưu lại. Ngược lại, hệ thống hiển thị các thông báo lỗi phù hợp nếu có sai sót trong quá trình xác minh hoặc nhập liệu.
+
+
+
+
+
+
+
+
+
+
+
+
+3.4.5. Biểu Đồ Hoạt Động - Gửi Phản Hồi, Báo Lỗi
+  
+
+Hình 3.6: Biểu đồ hoạt động – Gửi phản hồi, báo lỗi. Biểu đồ thể hiện luồng xử lý khi người dùng gửi phản hồi hoặc báo lỗi đến hệ thống. Sau khi nhấn nút “Báo lỗi”, hệ thống sẽ hiện form để người dùng nhập nội dung phản ánh. Hệ thống yêu cầu người dùng điền mô tả sự cố và nhấn “Gửi”. Trước khi gửi, hệ thống kiểm tra kết nối internet và xác nhận nội dung không để trống. Nếu hợp lệ, thông tin được lưu và chuyển đến bộ phận quản trị để tiếp nhận. Trường hợp không có kết nối hoặc người dùng chưa nhập nội dung, hệ thống hiển thị thông báo lỗi phù hợp nhằm đảm bảo quá trình gửi phản hồi diễn ra đầy đủ và chính xác.
+
+
+
+
+
+
+
+
+
+
+3.4.6. Biểu Đồ Hoạt Động - Quản Lý Đơn Hàng
+  
+
+Hình 3.7: Biểu đồ hoạt động – Quản lý đơn hàng. Biểu đồ thể hiện luồng xử lý khi quản trị viên thực hiện quản lý các đơn hàng trong hệ thống. Sau khi đăng nhập, quản trị viên có thể sử dụng chức năng “Quick Action” để truy cập nhanh vào danh sách đơn hàng đang chờ xác nhận. Hệ thống hiển thị danh sách các đơn hàng, cho phép quản trị viên xác nhận hoặc hủy từng đơn hàng. Sau khi thực hiện hành động, trạng thái đơn hàng sẽ được cập nhật tương ứng. Nếu không có đơn hàng nào chờ xử lý hoặc xảy ra lỗi kết nối, hệ thống sẽ hiển thị thông báo phù hợp. Quản trị viên cũng có thể truy cập mục “Order History” để xem lại toàn bộ lịch sử giao dịch và đảm bảo quá trình theo dõi đơn hàng được thực hiện đầy đủ và chính xác.
+
+
+
+
+
+
+3.4.7. Biểu Đồ Hoạt Động - Quản Lý Đánh Giá Của Người Dùng
+  
+
+Hình 3.8: Biểu đồ hoạt động – Quản lý đánh giá của người dùng. Biểu đồ thể hiện luồng xử lý khi quản trị viên truy cập và quản lý các đánh giá từ người dùng trong hệ thống. Sau khi đăng nhập và chọn mục “Reviews” trên giao diện quản trị, hệ thống hiển thị danh sách các đánh giá hiện có. Quản trị viên đọc và xác định các đánh giá không phù hợp, có thể chọn xóa từng đánh giá bằng cách nhấn biểu tượng thùng rác. Hệ thống xử lý yêu cầu xóa, cập nhật dữ liệu và phản hồi kết quả. Trường hợp lỗi xóa hoặc mất kết nối, hệ thống hiển thị thông báo phù hợp nhằm đảm bảo quá trình quản lý diễn ra thuận lợi và hiệu quả.
+
+
+
+
+3.4.8. Biểu Đồ Hoạt Động - Quản Lý Khuyến Mãi
+  
+
+Hình 3.9: Biểu đồ hoạt động – Quản lý khuyến mãi. Biểu đồ thể hiện luồng xử lý khi quản trị viên tạo và quản lý các chiến dịch khuyến mãi trong hệ thống. Quản trị viên truy cập giao diện quản trị, chọn “Quick Action”, chọn “Start sale campaign” và khởi động chiến dịch khuyến mãi bằng cách nhập danh mục sản phẩm và tỷ lệ giảm giá. Hệ thống áp dụng giảm giá, hiển thị nhãn khuyến mãi trên sản phẩm thuộc danh mục được chọn. Trong trường hợp có chiến dịch đang diễn ra, quản trị viên có thể xem và kết thúc chiến dịch. Nếu có lỗi trong quá trình khởi động hoặc kết thúc chiến dịch, hệ thống sẽ hiển thị thông báo lỗi phù hợp, đảm bảo quản lý khuyến mãi diễn ra chính xác và hiệu quả.
+
+
+3.5. Tổng Kết Chương
+Chương 3 đã trình bày chi tiết quá trình thu thập, phân tích và đặc tả các yêu cầu cho hệ thống website thương mại điện tử bán quần áo. Các yêu cầu được phân thành hai nhóm chính: yêu cầu chức năng và yêu cầu phi chức năng.
+Phần yêu cầu chức năng bao gồm các thao tác quan trọng cho cả người dùng và quản trị viên. Người dùng có thể thực hiện các hành động như đăng ký, đăng nhập, tìm kiếm và lọc sản phẩm, thêm vào giỏ hàng, thanh toán, đánh giá sản phẩm, quản lý tài khoản, tương tác với chatbot và gửi phản hồi. Quản trị viên có quyền quản lý sản phẩm, danh mục, đơn hàng, người dùng, đánh giá, chương trình khuyến mãi, thống kê, cũng như gửi thông báo.
+Phần yêu cầu phi chức năng tập trung vào các yếu tố đảm bảo chất lượng hệ thống như hiệu năng, tính bảo mật (JWT, bcrypt), khả năng mở rộng, tương thích trình duyệt, giao diện thân thiện (tuân theo Material Design) và cơ chế kiểm soát truy cập (CORS).
+Ngoài ra, chương còn trình bày biểu đồ ca sử dụng và mô tả chi tiết từng ca sử dụng, giúp mô tả rõ ràng các tương tác giữa hệ thống và các tác nhân (người dùng, quản trị viên), từ luồng chính đến các trường hợp ngoại lệ.
+Đặc biệt, chương này cũng giới thiệu biểu đồ hoạt động, dùng để minh họa các quy trình nghiệp vụ phức tạp theo dòng chảy hành động. Biểu đồ này giúp trực quan hóa các bước thực hiện một chức năng cụ thể và làm rõ cách hệ thống xử lý các tình huống theo thứ tự logic, hỗ trợ tốt cho việc thiết kế và lập trình sau này.
+Tổng thể, chương 3 đóng vai trò nền tảng quan trọng, cung cấp đầy đủ thông tin và cơ sở cần thiết để triển khai các bước thiết kế và phát triển hệ thống ở các chương tiếp theo.
+
+
+
+
+
+
+
+
+CHƯƠNG 4: PHÂN TÍCH, THIẾT KẾ HỆ THỐNG
+4.1. Kiến Trúc Hệ Thống  
+Hình 4.1: Kiến trúc hệ thống - Sơ đồ minh họa kiến trúc tổng thể của hệ thống, bao gồm ba lớp chính: Frontend (Client) đảm nhiệm giao diện và tương tác người dùng, Backend (Server) xử lý logic nghiệp vụ, định tuyến API và tích hợp các module như Chatbot RAG, và Data Layer.
+Hệ thống website bán quần áo, được tích hợp chatbot cơ bản, được thiết kế tuân theo mô hình kiến trúc client-server kết hợp với kiến trúc phân lớp (layered architecture) nhằm đảm bảo khả năng mở rộng, bảo trì và phân tách rõ ràng các chức năng. Kiến trúc hệ thống được chia thành các thành phần chính sau:
+4.1.1. Frontend (Client)
+Hệ thống frontend của ứng dụng được xây dựng theo mô hình Single Page Application (SPA) sử dụng ReactJS. Toàn bộ ứng dụng được chia thành các component độc lập nhằm tăng tính tái sử dụng và dễ dàng bảo trì. Việc điều hướng giữa các trang được thực hiện thông qua thư viện React Router, hỗ trợ phân quyền giữa các tuyến đường công khai (public routes) và tuyến đường yêu cầu xác thực (private routes). Trạng thái của ứng dụng được quản lý bằng React Hooks cho các trạng thái cục bộ và Context API cho các trạng thái toàn cục như xác thực người dùng hoặc thông báo hệ thống. Hệ thống hỗ trợ xác thực người dùng bằng cách sử dụng token lưu trữ trong localStorage; token này được gửi kèm theo mỗi yêu cầu đến backend thông qua header Authorization. Tất cả dữ liệu cần thiết được lấy từ backend thông qua các API RESTful, sử dụng thư viện axios để xử lý giao tiếp. Giao diện được thiết kế bằng TailwindCSS, giúp việc phát triển nhanh chóng và thống nhất về mặt hiển thị.
+4.1.2. Backend (Server)
+         * Lớp API: định nghĩa các RESTful API thông qua các router của FastAPI, mỗi tập chức năng chính của hệ thống (sản phẩm, người dùng, đơn hàng, chatbot...) sẽ có một router riêng.
+         * Lớp models: định nghĩa các mô hình dữ liệu (ORM models) sử dụng SQLAlchemy để ánh xạ với các bảng trong cơ sở dữ liệu.
+         * Lớp schema: định nghĩa các schema sử dụng Pydantic để xác thực và định dạng dữ liệu đầu vào (request) và đầu ra (response) cho mỗi API.
+         * Lớp database: cấu hình, kết nối và khởi tạo cơ sở dữ liệu mySQL.
+4.1.3. Chatbot
+         * Thành phần chatbot được triển khai thông qua một router riêng trong lớp API.
+         * Chatbot cơ bản dùng kiến trúc RAG, tích hợp các thành phần như vector database, mô hình ngôn ngữ lớn đồng thời có khả năng kết nối trực tiếp với cơ sở dữ liệu chính.
+         * Chatbot cũng có một cơ sở dữ liệu SQLite để lưu trữ tin nhắn phục vụ việc quản lý ngữ cảnh.
+4.2. Biểu Đồ Tuần Tự
+Mục này sẽ trình bày các biểu đồ tuần tự nhằm mô tả chi tiết cách các đối tượng trong hệ thống tương tác với nhau theo trình tự thời gian để hoàn thành một số ca sử dụng quan trọng. Mục tiêu là thể hiện rõ luồng dữ liệu và các bước xử lý giữa các thành phần như frontend, backend, cơ sở dữ liệu, và các dịch vụ liên quan. Thông qua các biểu đồ này, người đọc có thể hiểu rõ hơn về cách hệ thống hoạt động trong thực tế, từ đó hỗ trợ tốt cho việc phát triển, kiểm thử và bảo trì hệ thống.
+4.2.1. Biểu Đồ Tuần Tự - Đăng nhập
+  Hình 4.2: Biểu đồ tuần tự – Quy trình đăng nhập. Biểu đồ tuần tự này mô tả luồng xử lý khi người dùng đăng nhập vào hệ thống. Quá trình bắt đầu từ giao diện, nơi người dùng nhập email và mật khẩu, sau đó hệ thống kiểm tra định dạng email. Nếu hợp lệ, thông tin được gửi đến API để xác thực với cơ sở dữ liệu. Hệ thống sẽ phản hồi lỗi hoặc trả về token và chuyển hướng người dùng đến dashboard tùy theo kết quả xác thực.
+4.2.2. Biểu Đồ Tuần Tự - Quên Mật Khẩu
+  
+
+Hình 4.3: Biểu đồ tuần tự – Quy trình quên mật khẩu. Biểu đồ tuần tự này minh họa quy trình người dùng khôi phục mật khẩu khi quên. Người dùng nhập email để nhận mã OTP qua email, hệ thống tạo và gửi OTP mà không hiển thị lại cho người dùng. Sau khi nhập OTP, hệ thống xác minh và nếu hợp lệ, cho phép người dùng đặt mật khẩu mới. Tùy theo kết quả xác thực OTP và kiểm tra email, hệ thống phản hồi thành công hoặc lỗi tương ứng. Nếu OTP sai, hệ thống yêu cầu nhập lại, nếu Email không tồn tại, sẽ có thông báo lỗi khi nhập mật khẩu mới.
+
+
+4.2.3. Biểu Đồ Tuần Tự - Đánh Giá Sản Phẩm
+  
+
+Hình 4.4: Biểu đồ tuần tự – Quy trình đánh giá sản phẩm. Biểu đồ tuần tự này mô tả quy trình người dùng gửi đánh giá sản phẩm. Người dùng nhập nội dung đánh giá và gửi qua giao diện (UI), sau đó hệ thống chuyển dữ liệu đánh giá đến API. API sẽ xử lý và lưu thông tin vào cơ sở dữ liệu, đồng thời phản hồi xác nhận đã lưu thành công. Giao diện sau đó hiển thị thông báo thành công cho người dùng để xác nhận rằng đánh giá đã được ghi nhận. Quy trình này giúp đảm bảo rằng mọi đánh giá từ người dùng đều được lưu trữ và xử lý một cách chính xác, phục vụ cho việc hiển thị và quản lý sau này. Ngoài ra, hệ thống có thể sử dụng các đánh giá này để cải thiện chất lượng sản phẩm và trải nghiệm người dùng.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.2.4. Biểu đồ Tuần Tự - Cập Nhật Thông Tin Cá Nhân
+  
+
+Hình 4.5: Biểu đồ tuần tự – Quy trình cập nhật thông tin cá nhân. Biểu đồ tuần tự này thể hiện quy trình người dùng cập nhật thông tin cá nhân như tên, email hoặc mật khẩu. Người dùng truy cập phần cài đặt, xác thực mật khẩu hiện tại và nếu hợp lệ, hệ thống hiển thị biểu mẫu chỉnh sửa. Sau khi người dùng nhập thông tin mới, hệ thống kiểm tra tính hợp lệ và gửi dữ liệu cập nhật đến API. API xử lý và lưu thông tin vào cơ sở dữ liệu, sau đó phản hồi trạng thái thành công hoặc lỗi để hiển thị thông báo phù hợp cho người dùng.
+4.2.5. Biểu Đồ Tuần Tự - Xác Nhận Thanh Toán
+  
+
+Hình 4.6: Biểu đồ tuần tự – Quy trình xác nhận thanh toán. Biểu đồ tuần tự này minh họa quy trình xác nhận thanh toán đơn hàng. Khi quản trị viên thực hiện xác nhận, hệ thống gửi yêu cầu xác nhận đến API với ID đơn hàng. API truy vấn đơn hàng từ cơ sở dữ liệu và kiểm tra trạng thái. Nếu đơn hàng không ở trạng thái chờ thanh toán, hệ thống trả về lỗi. Nếu hợp lệ, hệ thống cập nhật trạng thái đơn hàng thành “Đã thanh toán”, ghi thời điểm xác nhận, và tạo đơn hàng mới nếu cần. Kết quả được trả về giao diện cùng thông báo thành công.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.2.6. Biểu Đồ Tuần Tự - Quản Lý Đơn Hàng
+  
+
+Hình 4.7: Biểu đồ tuần tự – Quy trình quản lý đơn hàng. Biểu đồ thể hiện hai thao tác quan trọng của quản trị viên trong việc quản lý đơn hàng: xác nhận và hủy đơn. Khi quản trị viên xác nhận đơn hàng, hệ thống gửi yêu cầu đến API để cập nhật trạng thái đơn hàng thành "Đã thanh toán" trong cơ sở dữ liệu. Ngược lại, khi thực hiện hủy đơn hàng, API sẽ xóa đơn hàng tương ứng và cập nhật lại số lượng tồn kho sản phẩm trong kho. Sau mỗi thao tác, hệ thống phản hồi kết quả và hiển thị thông báo tương ứng trên giao diện. Quy trình này giúp đảm bảo tính chính xác và hiệu quả trong việc xử lý đơn hàng và quản lý kho.
+
+
+
+
+
+
+4.2.7. Biểu Đồ Tuần Tự - Quản Lý Phản Hồi Của Người Dùng
+  
+
+
+
+Hình 4.8: Biểu đồ tuần tự – Quy trình quản lý phản hồi của người dùng. Biểu đồ này mô tả quy trình quản trị viên xử lý các phản hồi lỗi từ người dùng. Khi truy cập trang phản hồi, hệ thống gửi yêu cầu lấy danh sách lỗi từ API, API truy vấn cơ sở dữ liệu và trả về dữ liệu phản hồi lỗi. Giao diện hiển thị danh sách để quản trị viên lựa chọn và gửi phản hồi tương ứng. Phản hồi này được gửi tới API và lưu vào cơ sở dữ liệu. Sau khi lưu thành công, hệ thống gửi thông báo xác nhận tới giao diện, kết thúc quy trình.
+
+
+
+
+
+
+
+
+
+
+4.2.8. Biểu Đồ Tuần Tự - Quản Lý Đánh Giá Của Người Dùng
+  
+
+Hình 4.9: Biểu đồ tuần tự – Quy trình quản lý đánh giá người dùng. Biểu đồ mô tả quy trình quản trị viên xem và xóa các đánh giá không phù hợp từ người dùng. Khi truy cập trang đánh giá, giao diện gửi yêu cầu đến API để lấy danh sách đánh giá từ cơ sở dữ liệu. Danh sách sau đó được hiển thị trên giao diện để quản trị viên theo dõi và đánh giá nội dung. Khi chọn đánh giá cần xóa, giao diện gửi yêu cầu xóa đến API và hệ thống xác nhận sau khi xóa thành công. Giao diện hiển thị thông báo xác nhận, hoàn tất quy trình quản lý đánh giá.
+
+
+4.3. Cơ Sở Dữ Liệu
+4.3.1. Cấu Trúc Chính Của Cơ Sở Dữ Liệu
+  Hình 4.10: Biểu đồ lớp -  mô tả cấu trúc logic của các thực thể trong hệ thống quản lý bán hàng thời trang. Mỗi lớp trong biểu đồ đại diện cho một thực thể chính của hệ thống và tương ứng với một bảng trong cơ sở dữ liệu MySQL. Các lớp thể hiện các thuộc tính đặc trưng của từng thực thể cùng với các phương thức liên quan nếu có. Biểu đồ cũng mô tả các mối quan hệ giữa các lớp nhằm phản ánh liên kết dữ liệu trong hệ thống một cách trực quan và logic.
+Hệ thống sử dụng cơ sở dữ liệu quan hệ MySQL với các bảng sau:
+         * USERS: Lưu trữ thông tin và tài khoản người dùng
+         * PRODUCTS: Lưu trữ thông tin sản phẩm thời trang
+         * CATEGORIES: Phân loại sản phẩm
+         * ORDERS: Quản lý đơn hàng
+         * ORDER_DETAILS: Chi tiết sản phẩm trong đơn hàng
+         * REVIEWS: Thông tin đánh giá sản phẩm của người dùng
+         * NOTIFICATIONS: Thông báo cho người dùng
+         * FAVOURITES: Sản phẩm yêu thích của người dùng
+         * ADMINS: Lưu trữ thông tin và tài khoản quản trị viên hệ thống
+         * SALES: Thông tin khuyến mãi
+         * REPORTS: Báo cáo từ người dùng
+4.3.2. Mô Tả Chi Tiết Các Bảng
+         1. Bảng users
+         * id: Khóa chính
+         * email: Email người dùng (duy nhất)
+         * password: Mật khẩu đã được mã hóa
+         * fullname: Họ tên đầy đủ
+         2. Bảng products
+         * id: Khóa chính
+         * name: Tên sản phẩm
+         * description: Mô tả sản phẩm
+         * quantity_in_stock: Số lượng tồn kho
+         * old_price: Giá cũ (nếu có)
+         * price: Giá hiện tại
+         * size: Kích cỡ (S, M, L, XL, XXL)
+         * age_gender: Đối tượng (Men, Women, Kids, Babies)
+         * category_id: Khóa ngoại tới bảng categories
+         * image: Đường dẫn hình ảnh
+         3. Bảng categories
+         * id: Khóa chính
+         * name: Tên danh mục (duy nhất)
+         * description: Mô tả danh mục
+         4. Bảng orders
+         * id: Khóa chính
+         * user_id: Khóa ngoại tới bảng users
+         * status: Trạng thái đơn hàng (Paid, Pending, Unpaid)
+         * description: Mô tả đơn hàng
+         * created_at: Thời gian tạo
+         * started_payment_at: Thời gian bắt đầu thanh toán
+         * confirmed_at: Thời gian đơn hàng được xác nhận đã thanh toán
+         5. Bảng order_details
+         * id: Khóa chính
+         * order_id: Khóa ngoại tới bảng orders
+         * product_id: Khóa ngoại tới bảng products
+         * quantity: Số lượng sản phẩm
+         * priceEach: Giá mỗi sản phẩm
+         6. Bảng reviews
+         * id: Khóa chính
+         * product_id: Khóa ngoại tới bảng products
+         * user_id: Khóa ngoại tới bảng users
+         * rating: Đánh giá (1-5)
+         * comment: Bình luận
+         * created_at: Thời gian tạo
+         7. Bảng notifications
+         * id: Khóa chính
+         * user_id: Khóa ngoại tới bảng users
+         * title: Tiêu đề thông báo
+         * message: Nội dung thông báo
+         * is_read: Trạng thái đã đọc hay chưa
+         * created_at: Thời gian tạo
+         8. Bảng favourites
+         * id: Khóa chính
+         * user_id: Khóa ngoại tới bảng users
+         * product_id: Khóa ngoại tới bảng products
+         9. Bảng admins
+         * id: Khóa chính
+         * email: Email quản trị viên (duy nhất)
+         * password: Mật khẩu đã được mã hóa
+         * fullname: Họ tên đầy đủ
+         10. Bảng sales
+         * id: Khóa chính
+         * age_gender: Đối tượng áp dụng (Men, Women, Kids, Babies)
+         * category_id: Khóa ngoại tới bảng categories
+         * discount_percentage: Phần trăm giảm giá
+         * start_date: Ngày bắt đầu
+         * end_date: Ngày kết thúc
+         11. Bảng reports
+         * id: Khóa chính
+         * user_id: Khóa ngoại tới bảng users
+         * message: Nội dung báo cáo
+         * created_at: Thời gian tạo
+4.3.3. Quan Hệ Giữa Các Bảng
+         * Một user có thể có nhiều orders, reviews, notifications, favourites và reports
+         * Một product thuộc về một category và có thể có nhiều reviews và favourites
+         * Một order thuộc về một user và có nhiều order_details
+         * Một category có thể có nhiều products và sales
+4.3.4. Công Nghệ Sử Dụng
+         * SQLAlchemy: ORM (Object-Relational Mapping) để tương tác với cơ sở dữ liệu bằng cách ánh xạ các model với các bảng.
+         * Alembic: Quản lý phiên bản và migration cơ sở dữ liệu.
+4.3.5. Bảo Mật Dữ Liệu
+         * Mật khẩu người dùng được mã hóa bằng bcrypt trước khi lưu vào cơ sở dữ liệu.
+         * Xác thực người dùng thông qua JWT (JSON Web Token).
+         * Kiểm soát quyền truy cập dữ liệu thông qua middleware xác thực.
+4.4. Tổng Kết Chương
+Chương 4 đã trình bày chi tiết về thiết kế hệ thống với sự tập trung vào tính mô-đun, khả năng mở rộng và hiệu suất. Kiến trúc client-server kết hợp với kiến trúc phân lớp và tích hợp công nghệ chatbot cho phép hệ thống không chỉ đáp ứng các yêu cầu cơ bản của một nền tảng thương mại điện tử thời trang mà còn cung cấp trải nghiệm người dùng nâng cao thông qua hỗ trợ tư vấn.
+Các biểu đồ tuần tự đã minh họa rõ ràng luồng tương tác giữa người dùng và quản trị viên với hệ thống trong những ca sử dụng quan trọng, trong khi thiết kế cơ sở dữ liệu đảm bảo việc lưu trữ và truy xuất thông tin hiệu quả và hợp lý. Đặc biệt, thành phần chatbot AI đã được tích hợp một cách liền mạch vào kiến trúc tổng thể, tạo ra một điểm khác biệt quan trọng cho hệ thống.
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHƯƠNG 5: THIẾT KẾ VÀ XÂY DỰNG HỆ THỐNG CHATBOT
+Mục tiêu của chương này là trình bày chi tiết quá trình thiết kế, lựa chọn công nghệ, xây dựng dữ liệu huấn luyện, triển khai và đánh giá chatbot tích hợp trong hệ thống. Nội dung bao gồm từ việc xác định mục tiêu và phạm vi của chatbot, đến các phương pháp xây dựng dữ liệu, lựa chọn mô hình, thiết lập các tham số huấn luyện, định dạng prompt, cũng như chiến lược cải thiện hiệu suất và chất lượng phản hồi.
+Chương này sẽ làm rõ các lý do kỹ thuật và nghiệp vụ cho từng lựa chọn, đồng thời đảm bảo rằng quy trình phát triển chatbot phù hợp với mục tiêu tổng thể của hệ thống, hỗ trợ hiệu quả các loại câu hỏi, ngữ cảnh và yêu cầu thực tế từ phía người dùng.
+5.1. Mục Tiêu Và Phạm Vi Chatbot
+         * Chatbot được thiết kế với mục tiêu chính là nâng cao trải nghiệm người dùng trên nền tảng thương mại điện tử thời trang thông qua việc cung cấp hỗ trợ tự động, chính xác cho khách hàng trong quá trình mua hàng trên website mà không cần một đội ngũ hỗ trợ khách hàng 24/7.
+         * Chatbot được thiết kế để xử lý ba loại câu hỏi chính:
+         1. Truy vấn thông tin sản phẩm và dữ liệu: Bao gồm các câu hỏi về sản phẩm, giá cả, tình trạng đơn hàng, khuyến mãi, và các thông tin liên quan đến dữ liệu trong cơ sở dữ liệu. Ví dụ: "Có những sản phẩm nào đang giảm giá?", "Đơn hàng của tôi đang ở đâu?", "Hiển thị các áo sơ mi nam size L".
+         2. Hướng dẫn sử dụng website: Trả lời các câu hỏi về cách sử dụng các tính năng của website, quy trình đặt hàng, thanh toán, và các thao tác khác. Ví dụ: "Làm thế nào để thêm sản phẩm vào giỏ hàng?", "Cách lọc sản phẩm theo kích cỡ?", "Làm sao để theo dõi đơn hàng?".
+         3. Giao tiếp chung và hỗ trợ khác: Xử lý các câu chào, hội thoại thông thường và các câu hỏi không thuộc hai loại trên. Ví dụ: "Xin chào", "Cảm ơn bạn", "Bạn có thể giúp tôi không?".
+         * Phạm vi hỗ trợ ngữ cảnh: chatbot được thiết kế để duy trì ngữ cảnh trong suốt cuộc hội thoại, bao gồm:
+         *  Lưu trữ lịch sử hội thoại: Ghi nhớ một số lượng các câu hỏi và câu trả lời trước đó trong cùng một phiên chat.
+         * Hiểu ngữ cảnh người dùng: Nhận diện thông tin người dùng đã đăng nhập để cung cấp thông tin cá nhân hóa.
+         * Theo dõi chủ đề: Duy trì chủ đề hội thoại và hiểu các câu hỏi tiếp theo có liên quan.
+         * Quản lý bộ nhớ: Tóm tắt và lưu trữ thông tin quan trọng khi hội thoại kéo dài.
+5.2. Lựa Chọn Công Nghệ
+         * Google Gemini API (cụ thể là model gemini-2.0-flash) được chọn làm nền tảng chính cho chatbot vì những lý do sau:
+         * Hiệu suất cao: Gemini là một trong những mô hình ngôn ngữ lớn (LLM) mạnh mẽ và phổ biến hiện nay, mang lại khả năng xử lý nhanh và chính xác.
+         * Tích hợp dễ dàng: Việc tích hợp đơn giản, chỉ cần tài khoản Google và API key là có thể sử dụng ngay trong dự án.
+         * Chi phí hợp lý: Google cung cấp giới hạn miễn phí khá lớn, giúp tiết kiệm chi phí trong giai đoạn phát triển và thử nghiệm.
+         * Hỗ trợ đa ngôn ngữ: Gemini có khả năng xử lý tiếng Việt tốt, phù hợp với các ứng dụng hướng đến người dùng Việt Nam.
+         * LangChain: là một framework mạnh mẽ dùng để phát triển các ứng dụng dựa trên mô hình ngôn ngữ lớn (LLM). Nó đơn giản hóa toàn bộ vòng đời phát triển ứng dụng AI – từ giai đoạn xây dựng, kiểm thử cho đến triển khai sản phẩm.
+         * LangGraph: là một thư viện mở rộng dành riêng cho LangChain, giúp tổ chức các ứng dụng LLM thành luồng xử lý có cấu trúc dạng đồ thị (graph-based workflows). Điều này cho phép xây dựng các ứng dụng AI có trạng thái, giúp duy trì lịch sử hội thoại hoặc logic giữa các bước xử lý.
+
+
+         * Vector Database:
+         * Chroma: Cơ sở dữ liệu vector được sử dụng để lưu trữ cục bộ hoặc phân tán các vector embeddings một cách hiệu quả.
+         * Google Generative AI Embeddings (gemini-embedding-exp-03-07): Mô hình embedding của google giúp dịch văn bản thành vector sau đó thêm vào cơ sở dữ liệu vector để phục vụ cho việc tìm kiếm ngữ nghĩa và xử lý ngôn ngữ.
+         * Các công bổ sung:
+         * SQLite: Lưu trữ trạng thái (lịch sử chat).
+         * Python-dotenv: Quản lý biến môi trường.
+5.3. Thu Thập Và Xử Lý Dữ Liệu
+         * Nguồn dữ liệu: Chatbot sử dụng dữ liệu chủ yếu từ hai nguồn chính:
+         * Cơ sở dữ liệu MySQL: Là cơ sở dữ liệu chính của hệ thống, chứa thông tin về sản phẩm, người dùng, đơn hàng, và các dữ liệu nghiệp vụ khác
+         * Tài liệu hướng dẫn sử dụng: File văn bản (.txt) chứa hướng dẫn chi tiết về cách sử dụng website.
+         * Bộ câu hỏi-đáp mẫu: Tập hợp các câu hỏi thường gặp và câu trả lời chuẩn dùng cho đánh giá chatbot (được lưu trong file .csv).
+         * Cách xử lý dữ liệu:
+         * Tài liệu hướng dẫn được chia nhỏ thành các chunks kích thước 1000 kí tự và overlap là 200 kí tự 
+         * Mỗi đoạn được chuyển đổi thành vector embedding sử dụng mô hình gemini-embedding-exp-03-07 của Google sau đó được lưu vào trong Chroma vector store.
+
+5.4. Luồng hoạt động của chatbot
+  
+
+
+
+
+
+Hình 5.1: Biểu đồ luồng hoạt động của chatbot - mô tả luồng xử lý của chatbot trong mỗi câu hỏi. Cấu trúc biểu đồ cơ bản là một đồ thị với mỗi node là một hàm xử lý.  Phân loại câu hỏi người dùng và định tuyến đến các nhánh xử lý phù hợp như truy vấn dữ liệu, hội thoại xã giao, hoặc hướng dẫn sử dụng.
+            * Chatbot được thiết kế với kiến trúc đồ thị (LangGraph), luồng hoạt động được chia thành các giai đoạn rõ ràng, cho phép xử lý linh hoạt và mở rộng dễ dàng.
+            * Tổng quan luồng xử lý: Luồng xử lý của chatbot được thể hiện qua đồ thị có hướng với các node xử lý:
+            * Quản lý bộ nhớ 
+            * Phân loại câu hỏi 
+            * Định tuyến câu hỏi 
+            * Xử lý theo loại câu hỏi 
+            * Tương tác với công cụ (nếu cần)
+            * Tạo câu trả lời cuối cùng
+
+
+            * Cấu trúc đồ thị xử lý: toàn bộ luồng xử lý được định nghĩa thông qua đồ thị StateGraph.
+            * Để duy trì trạng thái giữa các phiên chat, chatbot sử dụng SQLite làm bộ nhớ lưu trữ: Điều này cho phép phân tích lịch sử hội thoại để cải thiện độ chính xác.
+
+               *  Chi tiết các bước xử lý:
+a. Khởi tạo và quản lý bộ nhớ
+Khi người dùng gửi câu hỏi, hệ thống bắt đầu bằng việc quản lý số lượng tin nhắn trong lịch sử.
+Kiểm tra số lượng tin nhắn trong hội thoại (bao gồm cả tin nhắn người dùng, tin nhắn AI, tin nhắn hệ thống và tin nhắn công cụ), nếu vượt quá ngưỡng (20 tin nhắn), tóm tắt 10 tin nhắn đầu tiên.
+Thay thế các tin nhắn đã tóm tắt bằng một tin nhắn hệ thống chứa bản tóm tắt.
+b. Phân loại câu hỏi
+Sau khi quản lý bộ nhớ, chatbot phân loại câu hỏi thành một trong ba loại:
+Phân loại bằng một prompt giúp mô hình xác định loại câu hỏi:
+               * Loại 1: Truy vấn thông tin sản phẩm và dữ liệu
+               * Loại 2: Hướng dẫn sử dụng website
+               * Loại 3: Giao tiếp chung và hỗ trợ khác
+c. Định tuyến câu hỏi
+Dựa trên kết quả phân loại, định tuyến câu hỏi đến node xử lý phù hợp.
+d. Xử lý theo loại câu hỏi
+               * Xử lý câu hỏi loại 1 (Truy vấn dữ liệu)
+Đối với câu hỏi liên quan đến dữ liệu sản phẩm, chatbot sử dụng SQL Agent để tạo và thực thi truy vấn. Quá trình này bao gồm:
+               * Tạo prompt hệ thống với thông tin về dialect SQL và user_id
+               * Gắn các công cụ SQL với mô hình ngôn ngữ
+               * Tạo truy vấn SQL dựa trên câu hỏi người dùng
+               * Thực thi truy vấn và định dạng kết quả thành câu trả lời tự nhiên
+               * Xử lý câu hỏi loại 2 (Hướng dẫn sử dụng)
+Đối với câu hỏi về cách sử dụng website, chatbot sử dụng RAG để truy xuất thông tin từ tài liệu hướng dẫn. Quá trình này bao gồm:
+               * Truy xuất các đoạn văn liên quan từ tài liệu hướng dẫn
+               * Kết hợp các đoạn văn thành một đoạn ngữ cảnh
+               * Tạo câu trả lời dựa trên ngữ cảnh và câu hỏi
+               * Xử lý câu hỏi loại 3 (Giao tiếp chung)
+Đối với câu chào và giao tiếp thông thường, chatbot sử dụng prompt đơn giản.
+e. Tương tác với công cụ (Tool Calling)
+Đối với câu hỏi loại 1, chatbot có thể cần thực hiện nhiều lần gọi công cụ để hoàn thiện câu trả lời.
+Nếu câu trả lời chứa tool_calls, chatbot sẽ:
+               * Chuyển hướng đến node tool_node để thực thi công cụ
+               * Nhận kết quả từ công cụ
+               * Quay lại node generate_query_and_answer để tiếp tục xử lý
+f. Tạo câu trả lời cuối cùng
+Sau khi hoàn thành xử lý, chatbot trả về câu trả lời cuối cùng cho người dùng thông qua API endpoint.
+               * Kiến trúc đồ thị mang lại nhiều lợi ích:
+               * Mô-đun hóa: Mỗi node xử lý một nhiệm vụ cụ thể, dễ dàng bảo trì và mở rộng
+               * Linh hoạt: Dễ dàng thêm các node mới hoặc thay đổi luồng xử lý
+               * Khả năng theo dõi: Có thể theo dõi trạng thái của hội thoại tại mỗi bước
+               * Tái sử dụng: Các thành phần có thể được tái sử dụng trong các ứng dụng khác
+5.5. Đánh Giá Và Cải Thiện Chatbot
+5.5.1. Đánh Giá
+               * Phương pháp đánh giá:
+               * Sử dụng bộ dữ liệu câu hỏi-đáp.
+               * Gửi câu hỏi đến chatbot và nhận câu trả lời.
+               * Sử dụng một prompt để đánh giá độ tương đồng của câu trả lời chatbot với câu trả lời trong bộ dữ liệu.
+               * Phân loại kết quả thành "correct" hoặc "incorrect".
+5.5.2. Cải Thiện
+               * Nâng cao khả năng quản lý và khai thác lịch sử hội thoại:
+               * Áp dụng giải pháp lưu trữ lịch sử chat vào vector store kết hợp với truy vấn ngữ nghĩa (semantic search).
+               * Khi người dùng đặt câu hỏi hoặc tương tác với chatbot, hệ thống có thể so khớp ngữ nghĩa với các đoạn hội thoại đã lưu trong vector store để tìm lại thông tin có liên quan. Cách làm này giúp chatbot có khả năng "nhớ lại" các trao đổi cũ một cách linh hoạt, chính xác và tự nhiên hơn thay vì chỉ dựa vào một đoạn context cố định gần nhất.
+               * Lợi ích: tăng khả năng ghi nhớ và phản hồi theo ngữ cảnh dài hạn.
+               * Cải thiện prompts: 
+               * Thêm các hướng dẫn chi tiết để phân biệt rõ ràng giữa các loại câu hỏi trong prompt phân loại câu hỏi.
+               * Cải thiện prompt truy vấn sql với các hướng dẫn chi tiết và cụ thể hơn.
+               * Cải Thiện Tài Liệu Hướng Dẫn: cải thiện cấu trúc tài liệu để dễ dàng truy xuất thông tin, cải thiện thêm thông tin chi tiết các trang.
+               * Áp dụng thêm chức năng tự định hướng đến trang mà người dùng hỏi, tự động thực hiện các thao tác như thêm vào giỏ hàng, phần yêu thích, thanh toán, …
+5.6. Tổng kết chương
+        Chương 5 đã trình bày quy trình thiết kế và phát triển chatbot, từ việc xác định mục tiêu, lựa chọn công nghệ phù hợp, thu thập và xử lý dữ liệu, xây dựng luồng hoạt động, đến đánh giá và cải tiến sau triển khai. Hệ thống chatbot được xây dựng nhằm hỗ trợ người dùng tra cứu thông tin sản phẩm hiệu quả, với khả năng mở rộng và phản hồi theo ngữ cảnh. Đặc biệt, hướng cải tiến sử dụng vector store và truy vấn ngữ nghĩa giúp nâng cao khả năng ghi nhớ và tương tác tự nhiên của chatbot.
+
+
+
+
+
+
+
+
+
+
+CHƯƠNG 6: CÀI ĐẶT VÀ KIỂM THỬ
+6.1. Giao Diện Hệ Thống
+Giao diện người dùng của hệ thống website thương mại điện tử bán quần áo được thiết kế hướng đến trải nghiệm trực quan, hiện đại và dễ sử dụng cho cả người dùng thông thường và quản trị viên. Giao diện được xây dựng bằng ReactJS kết hợp với Tailwind CSS, đảm bảo tính thống nhất và hiệu quả trong việc hiển thị và thao tác. Hệ thống tuân thủ Material Design, tạo nên sự nhất quán về mặt thẩm mỹ và bố cục giữa các trang giao diện.
+Toàn bộ giao diện được tổ chức rõ ràng theo các nhóm chức năng chính:
+-   Đối với người dùng (khách hàng): giao diện tập trung vào trải nghiệm mua sắm mượt mà với thanh điều hướng đơn giản, hiển thị nổi bật các sản phẩm, bộ lọc tìm kiếm thông minh, giỏ hàng tiện lợi và quy trình thanh toán nhanh chóng. Ngoài ra, người dùng có thể dễ dàng truy cập khu vực tài khoản cá nhân, lịch sử đơn hàng, sản phẩm yêu thích, và chatbot hỗ trợ.
+-   Đối với quản trị viên (admin): giao diện quản trị được thiết kế dưới dạng dashboard, cung cấp cái nhìn tổng quan về các chỉ số vận hành và truy cập nhanh đến các chức năng như quản lý sản phẩm, đơn hàng, người dùng, khuyến mãi, thống kê và phản hồi người dùng. 
+Các thành phần giao diện được tái sử dụng linh hoạt và tối ưu hóa hiệu suất nhờ kiến trúc component-based của ReactJS. Tailwind CSS được sử dụng để tùy chỉnh nhanh giao diện theo phong cách hiện đại, đồng thời hỗ trợ tốt khả năng mở rộng trong tương lai.
+Tất cả các giao diện trong hệ thống đều đảm bảo tiêu chí:
+-   Người dùng thao tác đơn giản, không quá 5 bước để hoàn tất các tác vụ chính.
+-   Có thông báo trực quan khi thành công, thất bại hoặc xảy ra lỗi.
+-   Hệ thống hiển thị rõ ràng các trạng thái, như đơn hàng đang xử lý, đã xác nhận, hết hàng, đã xảy ra lỗi….
+Sau đây sẽ đi sâu vào trình bày cụ thể từng trang giao diện chính của hệ thống, bao gồm cả giao diện người dùng thông thường và giao diện quản trị viên.
+6.1.1. Giao Diện Người Dùng Thông Thường (Khách Hàng)
+6.1.1.1. Giao diện Trang chủ
+               1. Mô tả chức năng
+Trang chủ là giao diện đầu tiên người dùng nhìn thấy khi truy cập website. Giao diện này đóng vai trò là trung tâm điều hướng đến các chức năng chính như xem sản phẩm, đăng nhập, tìm kiếm, xem thông báo, truy cập giỏ hàng, yêu thích và trò chuyện với chatbot. Ngoài ra, trang chủ còn giới thiệu tổng quan về website và hiển thị danh sách sản phẩm mới nhất (New Arrivals) nhằm thu hút người dùng.
+               2. Thành phần chính
+               * Tên website: Logo/tiêu đề trang, cho phép quay về trang chủ khi bấm vào.
+               * Thanh tìm kiếm: Cho phép người dùng nhập từ khóa để tìm kiếm sản phẩm.
+               * Biểu tượng chuông: Hiển thị danh sách thông báo nếu người dùng đã đăng nhập.
+               * Biểu tượng trái tim: Truy cập danh sách sản phẩm yêu thích (chỉ khi đã đăng nhập).
+               * Biểu tượng giỏ hàng: Xem danh sách sản phẩm trong giỏ hàng hiện tại (chỉ khi đã đăng nhập).
+               * Biểu tượng chat: Mở cửa sổ chatbot để đặt câu hỏi, nhờ tư vấn (chỉ khi đã đăng nhập).
+               * Nút Login / Sign up: Hiển thị nếu người dùng chưa đăng nhập. Cho phép truy cập vào trang đăng nhập hoặc đăng ký tài khoản.
+               * Avatar người dùng: Hiển thị khi đã đăng nhập. Cho phép truy cập các chức năng: xem thông tin tài khoản, cập nhật thông tin, và đăng xuất.
+               * Thanh điều hướng: Các liên kết đến các trang chính: Home, New Arrivals, Clothing, Accessories, About, Contact, Sale.
+               * Giới thiệu website: Đoạn mô tả ngắn về thương hiệu, sứ mệnh, hoặc dịch vụ.
+               * Danh sách sản phẩm New Arrivals: Hiển thị sản phẩm mới nhất theo dạng lưới. Mỗi sản phẩm có hình ảnh, tên, giá.
+               * Thông tin website: Bao gồm thông tin liên hệ, địa chỉ, số điện thoại.
+               * Liên kết mạng xã hội:Liên kết đến các trang mạng xã hội như Facebook, Instagram,...
+               3. Hành động người dùng
+               * Tìm kiếm sản phẩm: Nhập từ khóa vào thanh tìm kiếm và nhận kết quả đề xuất hoặc chuyển đến trang kết quả tìm kiếm.
+               * Xem thông báo: Nhấp vào biểu tượng chuông để xem thông báo cá nhân (nếu đã đăng nhập).
+               * Xem sản phẩm yêu thích: Nhấp vào biểu tượng trái tim để truy cập danh sách sản phẩm đã đánh dấu yêu thích (chỉ với tài khoản đã đăng nhập).
+               * Xem giỏ hàng: Nhấp vào biểu tượng giỏ hàng để xem danh sách sản phẩm đã thêm vào đơn hàng hiện tại (chỉ với tài khoản đã đăng nhập).
+               * Trò chuyện với chatbot: Nhấp vào biểu tượng đoạn chat để mở cửa sổ chatbot và bắt đầu trò chuyện.
+               * Đăng nhập/Đăng ký: Nhấp vào nút Login hoặc Sign up để truy cập trang đăng nhập hoặc tạo tài khoản mới.
+               * Xem thông tin tài khoản: Khi đã đăng nhập, nhấn vào avatar để xem menu tài khoản và chọn các mục như: cập nhật thông tin, đăng xuất.
+               * Chuyển trang: Nhấn vào các liên kết trong thanh điều hướng (New Arrivals, Clothing, Sale, ...) để chuyển trang.
+               * Xem chi tiết sản phẩm: Nhấn vào hình ảnh hoặc tên sản phẩm trong mục New Arrivals để xem thông tin chi tiết.
+               4. Hình minh họa giao diện
+  
+
+Hình 6.1: Giao diện phần đầu trang và giới thiệu hệ thống. Hình này minh họa phần đầu trang của giao diện trang chủ, bao gồm logo, thanh tìm kiếm, các biểu tượng chức năng (thông báo, giỏ hàng, yêu thích, chatbot), nút đăng nhập/đăng ký (chưa đăng nhập) hoặc avatar người dùng(đã đăng nhập - hình trên là giao diện đã đăng nhập), cùng thanh điều hướng dẫn đến các trang chính. Ngay bên dưới là khu vực giới thiệu ngắn gọn về website, nhằm truyền tải sứ mệnh, định hướng và điểm nổi bật của hệ thống. Cách bố trí trực quan giúp người dùng dễ dàng định vị và thao tác ngay từ lần truy cập đầu tiên. Đây là phần quan trọng trong việc xây dựng ấn tượng ban đầu và dẫn dắt trải nghiệm người dùng trên toàn hệ thống.
+
+
+  
+
+Hình 6.2: Giao diện danh sách sản phẩm mới (New Arrivals). Hình này minh họa khu vực hiển thị danh sách các sản phẩm mới trên trang chủ. Mỗi sản phẩm được trình bày theo dạng thẻ (card) với hình ảnh, tên sản phẩm, giá bán và nút xem chi tiết. Người dùng có thể nhấn vào từng sản phẩm để được chuyển đến trang chi tiết tương ứng. Thiết kế danh sách sản phẩm theo dạng lưới giúp tối ưu không gian hiển thị và tăng trải nghiệm mua sắm trực quan.
+  
+
+Hình 6.3: Giao diện chân trang. Hình này minh họa khu vực chân trang của giao diện trang chủ, nơi cung cấp các thông tin bổ sung và liên kết quan trọng cho người dùng. Footer bao gồm các liên kết đến các trang như Giới thiệu, Liên Hệ cũng như các biểu tượng mạng xã hội. Các liên kết nhanh được lặp lại ở cuối trang giúp người dùng dễ dàng truy cập mà không cần cuộn ngược lên đầu. Thiết kế này góp phần hoàn thiện trải nghiệm điều hướng và củng cố độ tin cậy của website.
+6.1.1.2. Giao diện Đăng nhập
+1.  Mô tả chức năng
+Giao diện Đăng nhập cho phép người dùng truy cập vào hệ thống bằng cách nhập địa chỉ email và mật khẩu. Đây là bước xác thực tài khoản bắt buộc để sử dụng các chức năng cá nhân hóa như giỏ hàng, yêu thích, thông báo và trò chuyện với chatbot. Nếu người dùng nhập sai thông tin hoặc để trống, hệ thống sẽ hiển thị thông báo lỗi tương ứng. Giao diện cũng cung cấp các liên kết hỗ trợ như quên mật khẩu hoặc tạo tài khoản mới.
+2.  Thành phần chính
+               * Trường Email: Nhập địa chỉ email người dùng (bắt buộc).
+               * Trường Password: Nhập mật khẩu người dùng (bắt buộc).
+               * Nút Login: Gửi thông tin để xác thực đăng nhập.
+               * Thông báo lỗi: Hiển thị khi có lỗi như:
++  Để trống trường email hoặc mật khẩu.
++  Email sai định dạng.
++  Tài khoản không tồn tại hoặc sai mật khẩu.
+               * Liên kết "Quên mật khẩu?": Chuyển đến giao diện khôi phục mật khẩu.
+               * Liên kết "Tạo tài khoản mới": Chuyển sang giao diện đăng ký tài khoản.
+3.  Hành động người dùng
+                  * Nhập thông tin: Người dùng điền email và mật khẩu.
+                  * Đăng nhập: Nhấn nút "Login" để gửi thông tin xác thực.
+                  * Khôi phục mật khẩu: Nhấp "Quên mật khẩu?" để chuyển hướng đến chức năng đặt lại mật khẩu.
+                  * Chuyển sang đăng ký: Nhấp "Tạo tài khoản mới" để sang giao diện đăng ký.
+4.  Hình minh họa giao diện
+  
+
+Hình 6.4: Giao diện đăng nhập. Giao diện hiển thị hai trường nhập email và mật khẩu kèm theo nút "Login" ở bên dưới. Khi người dùng nhập sai thông tin hoặc để trống, hệ thống sẽ hiển thị thông báo lỗi tương ứng ngay bên trên nút “Login”. Các liên kết hỗ trợ "Quên mật khẩu?" và "Tạo tài khoản mới" được đặt phía dưới và bên cạnh form đăng nhập, giúp người dùng dễ dàng chuyển hướng. Giao diện có thể hiển thị trạng thái đang xử lý (loading) khi đang xác thực đăng nhập.
+6.1.1.3. Giao diện Đăng ký
+1.  Mô tả chức năng
+Giao diện Đăng ký cho phép người dùng tạo tài khoản mới để sử dụng các chức năng cá nhân hóa của hệ thống. Người dùng cần điền đầy đủ các trường thông tin như họ tên, email, mật khẩu và xác nhận mật khẩu. Hệ thống sẽ kiểm tra và hiển thị lỗi nếu thông tin không hợp lệ như email sai định dạng, mật khẩu yếu, hoặc mật khẩu xác nhận không khớp. Khi đăng ký thành công, người dùng sẽ được chuyển sang giao diện đăng nhập.
+2.  Thành phần chính
+                  * Trường Name: Nhập họ và tên người dùng (bắt buộc).
+                  * Trường Email: Nhập địa chỉ email (bắt buộc, đúng định dạng).
+                  * Trường Password: Nhập mật khẩu (bắt buộc, đủ mạnh).
+                  * Trường Confirm Password: Xác nhận lại mật khẩu (bắt buộc).
+                  * Nút Sign up: Gửi thông tin đăng ký để tạo tài khoản.
+                  * Thông báo lỗi: Hiển thị khi có lỗi như:
++  Bỏ trống các trường thông tin.
++  Email không hợp lệ.
++  Mật khẩu quá yếu.
++  Mật khẩu xác nhận không khớp
+                  * Thông báo thành công: Hiển thị khi đăng ký thành công và chuyển hướng sang giao diện đăng nhập.
+                  * Liên kết "Đã có tài khoản? Đăng nhập": Chuyển sang giao diện đăng nhập cho người đã có tài khoản.
+3.  Hành động người dùng
+                     * Nhập thông tin: Người dùng điền đầy đủ các trường yêu cầu.
+                     * Đăng ký: Nhấn nút "Sign up" để gửi thông tin.
+                     * Chuyển sang đăng nhập: Nhấp "Đã có tài khoản? Đăng nhập" để chuyển sang giao diện đăng nhập.
+4.  Hình minh họa giao diện
+  
+
+Hình 6.5: Giao diện đăng ký. Giao diện đăng ký bao gồm các trường: Họ tên, Email, Mật khẩu và Xác nhận mật khẩu, cùng nút "Sign Up" để gửi thông tin. Nếu người dùng để trống trường, nhập sai định dạng email, mật khẩu quá yếu hoặc xác nhận mật khẩu không khớp, hệ thống sẽ hiển thị thông báo lỗi tương ứng ngay bên dưới. Sau khi đăng ký thành công, người dùng sẽ nhận được thông báo xác nhận và được chuyển hướng sang trang đăng nhập. Giao diện cũng hiển thị liên kết “Đã có tài khoản? Đăng nhập” ở cuối form để người dùng dễ dàng chuyển sang trang đăng nhập nếu cần.
+6.1.1.4. Giao diện Bộ lọc
+1.  Mô tả chức năng
+Giao diện bộ lọc cho phép người dùng tìm kiếm sản phẩm theo các tiêu chí cụ thể như đối tượng sử dụng, kích thước, khoảng giá và đánh giá sao. Bộ lọc được kích hoạt khi người dùng nhấn vào nút "Filter" nằm phía trên danh sách sản phẩm. Sau khi người dùng chọn hoặc nhập các tiêu chí mong muốn và nhấn “Apply”, hệ thống sẽ hiển thị các sản phẩm phù hợp bên dưới. Trường hợp không có sản phẩm thỏa mãn tiêu chí, một thông báo “Không tìm thấy sản phẩm” sẽ được hiển thị.
+2.  Thành phần chính
+                     * Tiêu chí "Đối tượng sử dụng": Chọn một trong các tùy chọn: Men, Women, Kid, Baby (chỉ chọn được một mục).
+                     * Tiêu chí "Size": Checkbox cho các kích cỡ: S, M, L, XL, XXL (có thể chọn nhiều).
+                     * Tiêu chí "Giá": Gồm hai trường nhập liệu: Min price và Max price.
+                     * Tiêu chí "Đánh giá": Gồm hai trường nhập liệu: Min rating và Max rating (thang điểm 1 đến 5).
+                     * Nút "Apply": Dùng để áp dụng các tiêu chí lọc và hiển thị kết quả.
+                     * Tùy chọn bỏ lọc: Mỗi tiêu chí đã chọn đều có nút “X” để loại bỏ riêng tiêu chí đó mà không cần reset toàn bộ bộ lọc.
+3.  Hành động người dùng
+                     * Chọn các tiêu chí lọc phù hợp
+                     * Nhấn Apply để áp dụng bộ lọc và hiển thị danh sách sản phẩm tương ứng.
+                     * Người dùng có thể nhấn vào nút “X” bên cạnh từng tiêu chí đã chọn để bỏ lọc riêng lẻ và xem lại danh sách sản phẩm cập nhật theo tiêu chí còn lại.
+4.  Hình minh họa giao diện
+
+
+  
+
+	  
+
+	  
+
+	  
+
+	
+
+Hình 6.6: Giao diện bộ lọc sản phẩm. Hình minh họa giao diện bộ lọc sản phẩm được hiển thị sau khi người dùng nhấn nút "Filter". Giao diện cho phép chọn đối tượng sử dụng (Men, Women, Kid, Baby), chọn nhiều size, nhập khoảng giá và khoảng đánh giá sao. Người dùng có thể nhấn "Apply" để áp dụng bộ lọc và xem các sản phẩm phù hợp được hiển thị phía dưới. Trong trường hợp không có sản phẩm nào thỏa mãn, hệ thống sẽ thông báo “Không tìm thấy sản phẩm”.
+6.1.1.5. Giao diện Chi tiết sản phẩm
+1.  Mô tả chức năng
+Giao diện Chi tiết sản phẩm cho phép người dùng xem đầy đủ thông tin về một sản phẩm cụ thể. Giao diện này cung cấp hình ảnh, tên, giá, đánh giá, mô tả chi tiết, và các lựa chọn như chọn size, số lượng tồn kho, thêm vào giỏ hàng hoặc đánh dấu yêu thích. Đây là bước trung gian quan trọng giúp người dùng đưa ra quyết định mua hàng hoặc thêm sản phẩm vào danh sách yêu thích.
+2.  Thành phần chính
+                     * Hình ảnh sản phẩm: Một hoặc nhiều hình ảnh minh họa sản phẩm (có thể chuyển đổi nếu có nhiều ảnh).
+                     * Tên sản phẩm: Tiêu đề rõ ràng, dễ đọc.
+                     * Giá sản phẩm: Giá hiện tại của sản phẩm.
+                     * Giá gốc (nếu có): Hiển thị giá cũ nếu sản phẩm đang được giảm giá (gạch ngang giá gốc).
+                     * Đánh giá (Rating): Hiển thị điểm trung bình (trên thang điểm 5) và số lượng đánh giá.
+                     * Size: Danh sách các kích cỡ có thể chọn (ví dụ: S, M, L, XL, XXL).
+                     * Tồn kho theo size: Số lượng sản phẩm còn lại ứng với mỗi size được hiển thị khi người dùng chọn size.
+                     * Nút “Thêm vào yêu thích” (Add to Wishlist): Cho phép người dùng thêm sản phẩm vào danh sách yêu thích (chỉ khi đã đăng nhập).
+                     * Nút “Thêm vào giỏ hàng” (Add to Cart): Thêm sản phẩm với size đã chọn vào giỏ hàng (chỉ khi còn hàng).
+                     * Mô tả sản phẩm (Description): Thông tin chi tiết về chất liệu, kiểu dáng, nguồn gốc,...
+                     * Đánh giá từ khách hàng (Review): Danh sách các bình luận và đánh giá từ người dùng đã mua sản phẩm, kèm theo tên, sao, và nội dung nhận xét.
+3.  Hành động người dùng
+                     * Đọc đánh giá và điểm số rating để tham khảo chất lượng sản phẩm.
+                     * Chọn size và chọn số lượng để thêm vào giỏ hàng.
+                     * Nhấn nút “Thêm vào yêu thích” để lưu sản phẩm vào danh sách yêu thích cá nhân (nếu đã đăng nhập).
+                     * Nhấn nút “Thêm vào giỏ hàng” sau khi chọn size và số lượng, để thêm sản phẩm vào đơn hàng hiện tại (nếu còn hàng).
+                     * Đọc mô tả sản phẩm để hiểu thêm về chi tiết kỹ thuật hoặc thương hiệu.
+                     * Đọc các đánh giá từ khách hàng trước đó để tham khảo thực tế sử dụng sản phẩm.
+4.  Hình minh họa giao diện
+  
+
+Hình 6.7: Giao diện chi tiết sản phẩm. Hình minh họa thể hiện giao diện chi tiết của một sản phẩm khi người dùng nhấp vào xem từ danh sách sản phẩm. Tại đây, người dùng có thể xem ảnh lớn của sản phẩm, tên, giá hiện tại, giá gốc nếu có khuyến mãi, và điểm đánh giá từ khách hàng. Giao diện cũng hiển thị các tùy chọn chọn size, kiểm tra số lượng tồn kho theo size, cùng các nút chức năng như thêm vào yêu thích, thêm vào giỏ hàng. Phía dưới là phần mô tả chi tiết sản phẩm và danh sách đánh giá từ người dùng trước đó.
+6.1.1.6. Giao diện Giỏ hàng
+1.  Mô tả chức năng
+Giao diện Giỏ hàng cho phép người dùng xem, quản lý và cập nhật các sản phẩm đã thêm vào giỏ hàng trước khi tiến hành thanh toán. Đây là bước trung gian giúp người dùng rà soát lại đơn hàng, điều chỉnh số lượng hoặc loại bỏ sản phẩm không còn cần thiết.
+2.  Thành phần chính
+                     * Danh sách sản phẩm trong giỏ: Mỗi sản phẩm được hiển thị bao gồm ảnh, tên sản phẩm, size đã chọn, số lượng, đơn giá và thành tiền.
+                     * Nút xóa sản phẩm: Cho phép người dùng loại bỏ một sản phẩm khỏi giỏ hàng.
+                     * Tổng số tiền: Tính toán tổng chi phí của tất cả sản phẩm hiện có trong giỏ. Sẽ tự động cập nhật khi người dùng thay đổi số lượng hoặc xóa sản phẩm.
+                     * Nút “Proceed to Checkout”: Điều hướng người dùng đến quy trình thanh toán.
+                     * Thông báo giỏ hàng trống: Nếu không có sản phẩm nào trong giỏ, hệ thống sẽ hiển thị thông báo “Không có sản phẩm trong giỏ hàng.”
+                     * Nút “Shop Now”: Hiển thị khi giỏ hàng trống, cho phép người dùng quay lại trang danh sách sản phẩm để tiếp tục mua sắm.
+3.  Hành động người dùng
+                     * Xem sản phẩm đã thêm: Người dùng có thể xem chi tiết sản phẩm đã chọn, bao gồm size và số lượng.
+                     * Xóa sản phẩm: Người dùng có thể loại bỏ sản phẩm không mong muốn bằng cách nhấn vào nút xóa.
+                     * Theo dõi tổng tiền: Hệ thống sẽ tự động cập nhật tổng số tiền khi có thay đổi trong danh sách sản phẩm.
+                     * Tiến hành thanh toán: Khi đã hài lòng với đơn hàng, người dùng nhấn nút “Proceed to Checkout” để bắt đầu quy trình thanh toán.
+                     * Tiếp tục mua sắm: Nếu giỏ hàng trống, người dùng có thể nhấn “Shop Now” để quay lại trang sản phẩm và thêm hàng mới vào giỏ.
+4.  Hình minh họa giao diện
+
+
+  
+
+	  
+
+	Hình 6.8: Giao diện giỏ hàng. Hình minh họa thể hiện hai trạng thái chính của giao diện giỏ hàng. Bên trái là giao diện khi người dùng đã thêm sản phẩm vào giỏ, hiển thị đầy đủ thông tin như hình ảnh sản phẩm, tên, size, số lượng, đơn giá và tổng tiền. Giao diện này cũng cung cấp các nút chức năng để xóa sản phẩm hoặc tiến hành thanh toán. Bên phải là giao diện khi giỏ hàng trống, hiển thị thông báo "Không có sản phẩm trong giỏ hàng" và nút “Shop Now” cho phép người dùng quay lại trang danh sách sản phẩm để tiếp tục mua sắm.
+6.1.1.7. Giao diện Thanh toán
+1.  Mô tả chức năng
+Giao diện thanh toán cho phép người dùng hoàn tất đơn hàng sau khi chọn mua sản phẩm. Tại đây, người dùng cần cung cấp đầy đủ thông tin nhận hàng và thực hiện chuyển khoản thanh toán theo hướng dẫn. Hệ thống sẽ xác minh thông tin và chờ quản trị viên xác nhận đơn hàng.
+2.  Thành phần chính
+                     * Trường nhập số điện thoại: Người dùng nhập số điện thoại liên hệ (yêu cầu đúng 10 chữ số).
+                     * Trường nhập địa chỉ: Người dùng nhập địa chỉ giao hàng chi tiết.
+                     * Trường ghi chú đơn hàng: Người dùng nhập thêm ghi chú, bắt buộc phải điền.
+                     * Nút "Confirm": Sau khi điền đầy đủ 3 trường bắt buộc, người dùng bấm để xác nhận.
+                     * Mã QR: Hiển thị sau khi xác nhận, dùng để quét và chuyển khoản.
+                     * Số tiền cần chuyển: Hiển thị rõ ràng, yêu cầu chuyển đúng số tiền.
+                     * Nút "Done": Bấm khi đã hoàn tất chuyển khoản để hệ thống ghi nhận và chuyển trạng thái đơn hàng sang "chờ xác nhận".
+                     * Thông báo lỗi: Hiển thị nếu người dùng chưa điền đủ thông tin hoặc điền sai định dạng (như số điện thoại không hợp lệ).
+3.  Hành động người dùng
+                     * Nhập số điện thoại (10 chữ số).
+                     * Nhập địa chỉ giao hàng.
+                     * Nhập ghi chú đơn hàng.
+                     * Bấm nút “Confirm” để xác nhận thông tin thanh toán.
+                     * Người dùng quét mã QR và chuyển đúng số tiền.
+                     * Bấm “Done” để thông báo đã thanh toán và đợi đơn hàng được quản trị viên xác nhận.
+4.  Hình minh họa giao diện
+  
+
+	  
+
+	Hình 6.9: Giao diện thanh toán. Giao diện bên trái mô tả bước nhập thông tin bắt buộc gồm số điện thoại (đúng 10 chữ số), địa chỉ giao hàng và ghi chú đơn hàng. Nếu người dùng không điền hoặc điền sai định dạng, hệ thống sẽ hiển thị thông báo lỗi yêu cầu nhập đúng. Sau khi hoàn tất thông tin và nhấn nút xác nhận, giao diện bên phải hiển thị mã QR cùng tổng số tiền cần thanh toán. Người dùng tiến hành quét mã và chuyển khoản đúng số tiền hiển thị, sau đó bấm “Done” để hoàn tất quá trình thanh toán và đợi đơn hàng được xác nhận bởi quản trị viên.
+6.1.1.8. Giao diện Thông tin tài khoản
+1.  Mô tả chức năng
+Giao diện Thông tin tài khoản cho phép người dùng xem tổng quan và truy cập các thông tin cá nhân liên quan đến tài khoản của mình. Đây là nơi tập trung các tiện ích quản lý thông tin và lịch sử hoạt động của người dùng như đơn hàng đã đặt, sản phẩm yêu thích, giỏ hàng, thông tin thanh toán, đánh giá sản phẩm đã viết và các báo cáo đã gửi. Giao diện này giúp người dùng dễ dàng theo dõi và quản lý toàn bộ dữ liệu cá nhân trên hệ thống.
+2.  Thành phần chính
+                     * Ảnh đại diện (avatar): Hiển thị ảnh đại diện của người dùng.
+                     * Tên tài khoản (name): Hiển thị tên đầy đủ của người dùng.
+                     * Email: Hiển thị địa chỉ email đang sử dụng.
+                     * Danh sách liên kết truy cập nhanh đến các mục thông tin cá nhân:
++  Order History: Xem lịch sử các đơn hàng đã đặt.
++  Favorite Product: Xem danh sách các sản phẩm đã thêm vào mục yêu thích.
++  Cart: Truy cập nhanh vào giỏ hàng hiện tại.
++  Payment Information: Hiển thị và chỉnh sửa thông tin thanh toán.
++  My Reviews: Xem các đánh giá sản phẩm mà người dùng đã gửi.
++  Reported History: Xem lại các báo cáo hoặc phản hồi người dùng đã gửi cho hệ thống.
+3.  Hành động người dùng
+                        * Xem ảnh đại diện, tên và email hiện tại của tài khoản.
+                        * Nhấp vào từng liên kết để truy cập các thông tin tương ứng như đơn hàng đã đặt, sản phẩm yêu thích hoặc các đánh giá.
+                        * Truy cập nhanh giỏ hàng hoặc thông tin thanh toán.
+                        * Kiểm tra các đánh giá sản phẩm và lịch sử báo cáo đã gửi để theo dõi hoạt động tương tác với hệ thống.
+4.  Hình minh họa giao diện
+  
+
+Hình 6.10: Giao diện thông tin tài khoản. Hình minh họa thể hiện giao diện tài khoản cá nhân của người dùng, bao gồm ảnh đại diện, tên và địa chỉ email được hiển thị ở phần bên trái. Bên phải là danh sách các liên kết chức năng như: lịch sử đơn hàng (Order History), sản phẩm yêu thích (Favorite Product), giỏ hàng (Cart), thông tin thanh toán (Payment Information), đánh giá của tôi (My Reviews), và lịch sử báo cáo (Reported History). Giao diện được thiết kế rõ ràng, giúp người dùng dễ dàng truy cập và quản lý toàn bộ thông tin cá nhân liên quan đến tài khoản của mình.
+6.1.1.9. Giao diện Sản phẩm yêu thích
+1.  Mô tả chức năng
+Giao diện Sản phẩm yêu thích cho phép người dùng xem danh sách các sản phẩm đã đánh dấu là yêu thích. Đây là nơi tập trung các sản phẩm mà người dùng quan tâm và có thể dễ dàng quay lại để mua. Giao diện cũng hỗ trợ người dùng quản lý danh sách này bằng cách xóa các sản phẩm không còn muốn theo dõi.
+2.  Thành phần chính
+                        * Danh sách sản phẩm yêu thích: Hiển thị dưới dạng lưới, mỗi sản phẩm gồm hình ảnh, tên, giá, và các nút chức năng.
+                        * Nút xóa khỏi yêu thích: Gắn liền với từng sản phẩm, cho phép người dùng xóa nhanh sản phẩm khỏi danh sách.
+                        * Thông báo trống: Hiển thị khi không có sản phẩm nào trong danh sách yêu thích.
+                        * Nút “Explore Now”: Chuyển hướng đến danh sách sản phẩm để người dùng có thể dễ dàng thêm sản phẩm mới vào danh sách yêu thích.
+3.  Hành động người dùng
+                        * Xem sản phẩm yêu thích: Người dùng có thể duyệt các sản phẩm đã được thêm vào mục yêu thích.
+                        * Xóa sản phẩm khỏi danh sách: Người dùng nhấn nút xóa trên từng sản phẩm để gỡ sản phẩm đó khỏi danh sách yêu thích.
+                        * Khám phá thêm sản phẩm: Khi danh sách rỗng, người dùng có thể nhấn nút “Explore Now” để chuyển đến trang sản phẩm và tiếp tục thêm sản phẩm yêu thích mới.
+                        * Bấm vào sản phẩm yêu thích để tiến hành mua.
+4.  Hình minh họa giao diện
+  
+
+	  
+
+	Hình 6.11: Giao diện sản phẩm yêu thích. Hình minh họa hiển thị hai trạng thái của giao diện quản lý yêu thích. Ở hình bên trái là danh sách yêu thích khi có sản phẩm: các sản phẩm được hiển thị theo dạng lưới, mỗi mục có ảnh đại diện, tên sản phẩm, giá và nút để xóa khỏi danh sách. Người dùng có thể thao tác dễ dàng để xem chi tiết hoặc loại bỏ sản phẩm không còn quan tâm. Ở hình bên phải là giao diện khi danh sách yêu thích đang rỗng: hiển thị thông báo không có sản phẩm yêu thích kèm theo nút “Explore Now” giúp người dùng chuyển nhanh đến trang danh sách sản phẩm để tiếp tục khám phá và thêm sản phẩm vào yêu thích.
+6.1.1.10. Giao diện Quản lý thông báo
+1.  Mô tả chức năng
+Giao diện quản lý thông báo cho phép người dùng theo dõi các thông báo quan trọng liên quan đến hoạt động mua sắm, đơn hàng, đánh giá, và các cập nhật từ hệ thống. Người dùng có thể dễ dàng truy cập, xem chi tiết, đánh dấu trạng thái đọc/chưa đọc và thực hiện xóa thông báo theo nhu cầu.
+2.  Thành phần chính
+                        * Biểu tượng chuông thông báo ở phần header, hiển thị số lượng thông báo chưa đọc.
+                        * Dropdown thông báo, chứa danh sách tiêu đề các thông báo theo thứ tự thời gian.
+                        * Chi tiết thông báo, bao gồm nội dung đầy đủ và thời gian nhận.
+                        * Nút "Mark as unread" để đánh dấu lại trạng thái chưa đọc.
+                        * Nút "X" cạnh từng thông báo để xóa thông báo riêng lẻ.
+                        * Nút "Clear all" để xóa toàn bộ thông báo.
+3.  Hành động người dùng
+                        * Nhấn vào biểu tượng chuông để xem danh sách thông báo mới nhất.
+                        * Bấm vào từng title thông báo để xem chi tiết nội dung và thời gian nhận.
+                        * Sau khi đọc xong, người dùng có thể nhấn "Mark as unread" để chuyển thông báo về trạng thái chưa đọc.
+                        * Để xóa thông báo, người dùng có thể:
++  Bấm vào nút "X" ở góc phải từng tiêu đề để xóa riêng lẻ.
++  Bấm vào "Clear all" để xóa toàn bộ thông báo cùng lúc.
+4.  Hình minh họa giao diện
+  
+
+Hình 6.12: Giao diện quản lý thông báo. Hình minh họa thể hiện giao diện chi tiết khi người dùng chọn một thông báo cụ thể. Trong dropdown, mỗi thông báo được hiển thị dưới dạng tiêu đề cùng với dấu "x" để xóa nhanh. Giao diện chi tiết cung cấp đầy đủ nội dung, thời gian nhận thông báo và tùy chọn đánh dấu chưa đọc thông qua nút "Mark as unread". Các thông báo chưa đọc được làm nổi bật để người dùng dễ nhận biết.
+6.1.1.11. Giao diện Đánh giá sản phẩm
+1.  Mô tả chức năng
+Giao diện này cho phép người dùng gửi đánh giá (review) cho các sản phẩm mà họ đã mua và thanh toán thành công. Người dùng có thể truy cập phần đánh giá thông qua chi tiết đơn hàng và lựa chọn sản phẩm cần đánh giá. Mỗi đánh giá sẽ góp phần cải thiện chất lượng sản phẩm cũng như trải nghiệm mua sắm của cộng đồng người dùng.
+2.  Thành phần chính
+                           * Tên, ảnh, size và số lượng mỗi size của sản phẩm
+                           * Trường nhập nội dung đánh giá (review).
+                           * Thành phần chọn mức đánh giá (rating) từ 1 đến 5 sao.
+                           * Nút Submit để gửi đánh giá.
+3.  Hành động người dùng
+                           * Người dùng truy cập vào phần Order History, chọn đơn hàng đã thanh toán.
+                           * Tại danh sách sản phẩm trong đơn, người dùng chọn nút Đánh giá tương ứng với sản phẩm muốn review.
+                           * Nhập nội dung đánh giá vào ô văn bản.
+                           * Chọn số sao mong muốn từ 1 đến 5.
+                           * Nhấn nút Submit để hoàn tất việc gửi đánh giá.
+4.  Hình minh họa giao diện
+  
+
+Hình 6.13: Giao diện đánh giá sản phẩm. Hình minh họa thể hiện giao diện chi tiết khi người dùng chọn một thông báo cụ thể. Trong dropdown, mỗi thông báo được hiển thị dưới dạng tiêu đề cùng với dấu "x" để xóa nhanh. Giao diện chi tiết cung cấp đầy đủ nội dung, thời gian nhận thông báo và tùy chọn đánh dấu chưa đọc thông qua nút "Mark as unread". Các thông báo chưa đọc được làm nổi bật để người dùng dễ nhận biết.
+6.1.1.12. Giao diện Chatbot hỗ trợ
+1.  Mô tả chức năng
+Giao diện Chatbot hỗ trợ giúp người dùng nhanh chóng nhận được câu trả lời cho các thắc mắc liên quan đến sản phẩm, đơn hàng, thanh toán và các chức năng khác trên trang web. Chatbot sử dụng trí tuệ nhân tạo để phản hồi dựa trên nội dung người dùng nhập vào. Lịch sử trò chuyện được lưu trong suốt phiên đăng nhập để tiện theo dõi.
+2.  Thành phần chính
+                           * Danh sách các câu hỏi gợi ý (nếu chưa có lịch sử chat).
+                           * Lịch sử trò chuyện (nếu đã từng nhắn).
+                           * Vùng nhập nội dung để đặt câu hỏi.
+                           * Khu vực hiển thị câu hỏi của người dùng và trả lời từ chatbot.
+3.  Hành động người dùng
+                           * Người dùng bấm vào biểu tượng chatbot để mở giao diện trò chuyện.
+                           * Nếu chưa từng nhắn, người dùng có thể chọn một câu hỏi gợi ý hoặc nhập câu hỏi tùy ý.
+                           * Chatbot sẽ xử lý và đưa ra phản hồi phù hợp hiển thị trong hộp thoại.
+                           * Lịch sử cuộc trò chuyện sẽ tiếp tục hiển thị cho đến khi người dùng đăng xuất hoặc đóng trình duyệt.
+4.  Hình minh họa giao diện
+  
+
+	  
+
+	Hình 6.14: Giao diện chatbot hỗ trợ. Hình bên trái thể hiện giao diện chatbot khi chưa có lịch sử trò chuyện, hiển thị các câu hỏi gợi ý để người dùng có thể lựa chọn nhanh. Hình bên phải minh họa khi người dùng đã bắt đầu trò chuyện với chatbot, các tin nhắn hỏi đáp giữa người dùng và chatbot sẽ được lưu lại và hiển thị trong khung trò chuyện. Giao diện giúp người dùng dễ dàng theo dõi nội dung đã trao đổi và tiếp tục đặt câu hỏi trong cùng một phiên đăng nhập.
+6.1.1.13. Giao diện Báo lỗi
+1.  Mô tả chức năng
+Giao diện báo lỗi cho phép người dùng phản hồi các lỗi gặp phải trong quá trình sử dụng hệ thống. Đây là kênh liên hệ trực tiếp với quản trị viên nhằm cải thiện trải nghiệm người dùng và nâng cao chất lượng dịch vụ.
+2.  Thành phần chính
+                           * Biểu tượng báo lỗi: Nằm ở góc dưới bên trái màn hình, cho phép người dùng mở form báo lỗi.
+                           * Form báo lỗi:
++  Ô nhập văn bản để người dùng mô tả lỗi gặp phải.
++  Nút Send để gửi nội dung lỗi cho quản trị viên.
++  Nút History nằm ở góc trên bên phải form, dùng để xem lại lịch sử các lỗi đã gửi và phản hồi của quản trị viên (nếu có).
+3.  Hành động người dùng
+                              * Người dùng bấm vào biểu tượng báo lỗi để mở form.
+                              * Nhập nội dung lỗi vào ô văn bản và nhấn Send để gửi.
+                              * Có thể bấm nút History để xem lại các báo lỗi trước đó cùng với phản hồi từ quản trị viên nếu đã được xử lý.
+4.  Hình minh họa giao diện
+  
+
+Hình 6.15: Giao diện báo lỗi. Hình minh họa thể hiện form báo lỗi sau khi người dùng nhấn vào biểu tượng báo lỗi ở góc dưới bên trái màn hình. Form gồm một ô nhập văn bản để người dùng mô tả lỗi gặp phải và nút Send để gửi nội dung cho quản trị viên. Ngoài ra, ở góc trên bên phải của form có nút History cho phép người dùng truy cập vào danh sách các lỗi đã báo trước đó cùng phản hồi từ quản trị viên (nếu có). Thiết kế nhỏ gọn giúp người dùng dễ dàng gửi phản hồi mà không làm gián đoạn trải nghiệm sử dụng.
+6.1.2. Giao Diện Quản Trị Viên (Admin)
+6.1.2.1. Giao diện Trang chủ
+1.  Mô tả chức năng
+Giao diện Trang chủ dành cho quản trị viên cung cấp cái nhìn tổng quan về tình hình hoạt động của hệ thống bán hàng. Tại đây, quản trị viên có thể theo dõi nhanh các chỉ số quan trọng liên quan đến đơn hàng, doanh thu và khách hàng, hỗ trợ việc ra quyết định và quản lý hiệu quả hơn.
+2.  Thành phần chính
+                              * Các ô thống kê nhanh:
++  Tổng số đơn hàng
++  Tổng số khách hàng
++  Tổng số đơn hàng đã bán
++  Tổng doanh thu
+                              * Biểu đồ thống kê:
++  Biểu đồ thể hiện số lượng đơn hàng theo từng ngày trong 7 ngày gần nhất.
++  Có nút tải xuống biểu đồ dưới dạng hình ảnh để lưu trữ hoặc báo cáo.
+3.  Hành động người dùng
+                                 * Xem nhanh các chỉ số tổng quan về hoạt động của cửa hàng.
+                                 * Quan sát xu hướng đơn hàng trong tuần thông qua biểu đồ.
+                                 * Bấm nút "Lưu biểu đồ" để tải biểu đồ thống kê về máy (thường ở định dạng PNG hoặc JPEG).
+                                 * Di chuyển chuột đến các điểm trên biểu đồ để xem chi tiết số đơn hàng từng ngày.
+4.  Hình minh họa giao diện
+  
+
+Hình 6.16: Giao diện trang chủ quản trị viên. Hình ảnh thể hiện giao diện tổng quan nơi quản trị viên có thể theo dõi các chỉ số thống kê chính bao gồm tổng số đơn hàng, tổng số khách hàng, số đơn hàng đã bán và tổng doanh thu. Bên dưới là biểu đồ minh họa số lượng đơn hàng theo từng ngày trong 7 ngày gần nhất, giúp quản trị viên nắm bắt xu hướng bán hàng. Giao diện được thiết kế trực quan, dễ theo dõi và có hỗ trợ tính năng tải biểu đồ về máy để phục vụ cho mục đích báo cáo.
+6.1.2.2. Giao diện Quản lý sản phẩm
+1.  Mô tả chức năng
+Giao diện quản lý sản phẩm cho phép quản trị viên tìm kiếm các sản phẩm hiện có trong hệ thống và thực hiện điều chỉnh số lượng tồn kho cho từng size của sản phẩm. Giao diện này hỗ trợ quản lý kho hàng một cách chính xác và thuận tiện, đảm bảo hàng hóa luôn được cập nhật đúng với tình trạng thực tế.
+2.  Thành phần chính
+                                 * Thanh tìm kiếm sản phẩm: Cho phép nhập từ khóa để tìm kiếm sản phẩm theo tên sản phẩm.
+                                 * Bảng chỉnh sửa tồn kho: Khi chọn một sản phẩm, bảng số lượng tồn kho theo từng size (S, M, L, XL, XXL) sẽ hiển thị, cho phép chỉnh sửa trực tiếp.
+                                 * Nút cập nhật kho: Dùng để cập nhật số lượng tồn kho mới sau khi chỉnh sửa.
+3.  Hành động người dùng
+                                 * Nhập từ khóa vào thanh tìm kiếm để tìm sản phẩm cần chỉnh sửa.
+                                 * Chọn một sản phẩm trong danh sách để xem chi tiết số lượng tồn kho theo size.
+                                 * Thay đổi số lượng tồn kho theo từng size bằng cách nhập giá trị mới.
+                                 * Nhấn nút cập nhật để xác nhận và cập nhật số lượng mới vào hệ thống.
+4.  Hình minh họa giao diện
+  
+
+Hình 6.17: Giao diện quản lý sản phẩm. Hình minh họa thể hiện bảng chỉnh sửa tồn kho của một sản phẩm. Giao diện bao gồm tên, giá, rating và hình ảnh sản phẩm , tiếp theo là bảng hiển thị các size hiện có (S, M, L, XL, XXL) kèm theo số lượng tồn kho tương ứng. Mỗi ô trong bảng có thể chỉnh sửa trực tiếp, cho phép quản trị viên cập nhật nhanh chóng số lượng cho từng size. Bên dưới là nút "Cập nhật kho" để xác nhận và áp dụng các thay đổi về tồn kho. Giao diện được thiết kế đơn giản, dễ thao tác, hỗ trợ quản lý kho hiệu quả.
+6.1.2.3. Giao diện Quản lý danh mục sản phẩm
+1.  Mô tả chức năng
+Giao diện này cho phép quản trị viên quản lý các danh mục sản phẩm trên hệ thống. Quản trị viên có thể xem toàn bộ danh sách danh mục đang tồn tại, theo dõi thông tin chi tiết của từng danh mục, và thực hiện thêm mới danh mục khi cần thiết.
+2.  Thành phần chính
+                                 * Danh sách danh mục: Hiển thị các danh mục hiện có theo dạng thẻ, mỗi mục có tên danh mục.
+                                 * Nút Thêm danh mục: Cho phép mở form thêm mới danh mục.
+                                 * Form thêm danh mục: Gồm các trường nhập tên danh mục (name) và mô tả (description).
+                                 * Chi tiết danh mục: Khi chọn một danh mục, sẽ hiển thị thông tin mô tả chi tiết của danh mục đó.
+3.  Hành động người dùng
+                                 * Quản trị viên có thể cuộn để xem danh sách các danh mục.
+                                 * Nhấn vào một danh mục cụ thể để xem chi tiết thông tin.
+                                 * Nhấn nút "Thêm danh mục", sau đó nhập tên và mô tả để tạo danh mục mới.
+                                 * Sau khi nhập thông tin, nhấn nút "Thêm" để hoàn tất quá trình thêm danh mục mới vào hệ thống.
+4.  Hình minh họa giao diện
+
+
+  
+
+	  
+
+
+
+	Hình 6.18: Giao diện quản lý danh mục sản phẩm. Hình minh họa thể hiện hai giao diện liên quan đến quản lý danh mục sản phẩm. Bên trái là giao diện danh sách danh mục được trình bày dưới dạng các thẻ, mỗi thẻ hiển thị tên của danh mục, giúp quản trị viên dễ dàng theo dõi và quản lý. Bên phải là giao diện form thêm danh mục mới, gồm hai trường để nhập tên và mô tả danh mục, cùng với nút thêm để lưu danh mục vào hệ thống. Giao diện này hỗ trợ quản trị viên thao tác nhanh chóng trong việc cập nhật danh mục sản phẩm.
+6.1.2.4. Giao diện Quản lý đơn hàng
+1.  Mô tả chức năng
+Giao diện Quản lý đơn hàng cho phép quản trị viên theo dõi và xử lý toàn bộ các đơn hàng mà khách hàng đã đặt. Quản trị viên có thể xem danh sách các đơn hàng, tra cứu chi tiết từng đơn hàng, và thực hiện các hành động xác nhận hoặc hủy đơn tùy theo tình trạng thanh toán.
+2.  Thành phần chính
+                                 * Danh sách đơn hàng: hiển thị các thông tin cơ bản như tên khách hàng, tổng tiền (đối với đơn hàng đang chờ xác nhận), trạng thái đơn hàng, thời gian đặt hàng, ghi chú đơn hàng.
+                                 * Nút “View Detail”: xem chi tiết các sản phẩm trong đơn hàng.
+                                 * Nút “Confirm” / “Cancel”: chỉ xuất hiện đối với đơn hàng đang chờ xác nhận.
+3.  Hành động người dùng
+                                 * Quản trị viên có thể cuộn, tìm kiếm trong danh sách để xem chi tiết các đơn hàng.
+                                 * Nhấn vào “View Detail” để xem chi tiết từng sản phẩm trong đơn hàng: bao gồm tên sản phẩm, size, số lượng, đơn giá,...
+                                 * Với các đơn hàng đang chờ xác nhận, nếu khách hàng thanh toán đúng số tiền và đúng thời hạn, quản trị viên nhấn “Confirm” để xác nhận đơn. Nếu không hợp lệ, nhấn “Cancel” để hủy đơn.
+4.  Hình minh họa giao diện
+  
+
+	  
+
+	Hình 6.19: Giao diện quản lý đơn hàng. Hình minh họa gồm hai giao diện chính của chức năng quản lý đơn hàng. Ở hình bên trái, giao diện hiển thị danh sách tất cả các đơn hàng trong hệ thống dưới dạng thẻ, bao gồm các thông tin như ghi chú đơn hàng, tên khách hàng, trạng thái và ngày đặt hàng. Mỗi đơn hàng đều có nút "View Detail" để quản trị viên có thể truy cập và xem chi tiết nội dung của đơn hàng đó. Ở hình bên phải, giao diện thể hiện chi tiết một đơn hàng đang chờ xác nhận. Tại đây, quản trị viên có hai lựa chọn hành động: "Confirm" nếu khách hàng đã thanh toán đúng số tiền và đúng hạn, hoặc "Cancel" nếu phát hiện sai lệch về thông tin thanh toán.
+6.1.2.5. Giao diện Quản lý người dùng
+1.  Mô tả chức năng
+Giao diện cho phép quản trị viên xem và quản lý danh sách tất cả khách hàng. Quản trị viên có thể xem chi tiết từng khách hàng, bao gồm thông tin cá nhân, lịch sử đơn hàng và các đánh giá sản phẩm mà khách hàng đã gửi. Ngoài ra, quản trị viên có thể gửi thông báo trực tiếp tới khách hàng khi cần thiết.
+2.  Thành phần chính
+                                 * Danh sách khách hàng dưới dạng thẻ, mỗi thẻ hiển thị tên và email của khách hàng.
+                                 * Form chi tiết khách hàng với các nút:
++  Lịch sử đơn hàng
++  Đánh giá (reviews) đã gửi
++  Gửi thông báo
+3.  Hành động người dùng
+                                    * Quản trị viên duyệt danh sách khách hàng, chọn một khách hàng bất kỳ để xem chi tiết.
+                                    * Xem các đơn hàng đã đặt và đánh giá của khách hàng đó.
+                                    * Soạn và gửi thông báo tới khách hàng thông qua giao diện gửi thông báo.
+4.  Hình minh họa giao diện
+  
+
+	  
+
+	Hình 6.20: Giao diện quản lý người dùng. Hình bên trái thể hiện danh sách khách hàng dưới dạng các thẻ, mỗi thẻ hiển thị tên và email của khách hàng, giúp quản trị viên dễ dàng tìm kiếm và chọn khách hàng cần quản lý. Hình bên phải là giao diện chi tiết của một khách hàng khi được chọn, bao gồm nút để xem thông tin về đơn hàng đã đặt, các đánh giá sản phẩm đã gửi, cùng với nút để gửi thông báo trực tiếp đến khách hàng đó.
+6.1.2.6. Giao diện Quản lý đánh giá sản phẩm
+1.  Mô tả chức năng
+Quản trị viên có thể xem toàn bộ các đánh giá sản phẩm do khách hàng gửi. Mỗi đánh giá bao gồm thông tin chi tiết về tên khách hàng, thời gian đánh giá, nội dung nhận xét, số sao và sản phẩm được đánh giá. Quản trị viên có thể xóa những đánh giá không phù hợp hoặc vi phạm quy định.
+2.  Thành phần chính
+                                    * Danh sách đánh giá gồm các trường: tên khách hàng, thời gian, nội dung đánh giá, số sao, tên sản phẩm.
+                                    * Nút xóa cho từng đánh giá để quản trị viên loại bỏ các đánh giá không phù hợp.
+3.  Hành động người dùng
+                                    * Xem danh sách các đánh giá.
+                                    * Chọn xóa một hoặc nhiều đánh giá không phù hợp bằng cách nhấn nút xóa tương ứng.
+4.  Hình minh họa giao diện
+  
+
+Hình 6.21: Giao diện quản lý đánh giá sản phẩm. Hình minh họa thể hiện danh sách các đánh giá với đầy đủ thông tin gồm tên khách hàng, thời gian đánh giá, nội dung nhận xét, số sao đánh giá và hình sản phẩm tương ứng. Giao diện có các nút xóa rõ ràng giúp quản trị viên dễ dàng loại bỏ những đánh giá không phù hợp hoặc vi phạm chính sách, đảm bảo chất lượng phản hồi trên hệ thống.
+6.1.2.7. Giao diện Quản lý khuyến mãi
+1.  Mô tả chức năng
+Giao diện cho phép quản trị viên tạo mới và quản lý các đợt khuyến mãi. Quản trị viên có thể chọn danh mục sản phẩm áp dụng khuyến mãi và thiết lập phần trăm giảm giá tương ứng. Ngoài ra, quản trị viên có thể xem danh sách các đợt khuyến mãi đang diễn ra và lựa chọn kết thúc bất kỳ đợt nào. Lịch sử tất cả các đợt khuyến mãi đã kết thúc cũng được lưu trữ để tra cứu và đối chiếu.
+2.  Thành phần chính
+                                    * Danh sách các đợt khuyến mãi hiện tại và lịch sử
+                                    * Form chọn danh mục sản phẩm và nhập phần trăm giảm giá
+                                    * Nút tạo đợt khuyến mãi mới
+                                    * Nút kết thúc đợt khuyến mãi đang diễn ra
+                                    * Nút xem lịch sử các đợt khuyến mãi.
+3.  Hành động người dùng
+                                    * Chọn danh mục sản phẩm và nhập phần trăm giảm giá để bắt đầu đợt khuyến mãi mới
+                                    * Xem chi tiết các đợt khuyến mãi đang áp dụng
+                                    * Chọn kết thúc đợt khuyến mãi bất kỳ khi cần thiết
+                                    * Xem lại lịch sử các đợt khuyến mãi đã kết thúc để quản lý và báo cáo
+4.  Hình minh họa giao diện
+  
+
+	  
+
+	Hình 6.22: Giao diện quản lý khuyến mãi. Hình minh họa gồm 2 phần: bên trái là form để quản trị viên nhập thông tin bắt đầu một đợt khuyến mãi mới, bao gồm chọn danh mục sản phẩm và phần trăm giảm giá; bên phải là danh sách các đợt khuyến mãi đang diễn ra với các thông tin chi tiết, kèm theo nút để quản trị viên có thể kết thúc đợt khuyến mãi bất kỳ hoặc xem lịch sử tất cả các đợt khuyến mãi đã kết thúc trước đó.
+6.1.2.8. Giao diện Gửi thông báo
+1.  Mô tả chức năng
+Giao diện này cho phép quản trị viên tạo và gửi thông báo đến toàn bộ khách hàng hoặc đến một khách hàng cụ thể tùy theo nhu cầu quản lý và tương tác. Thông báo có thể mang nhiều mục đích như giới thiệu sản phẩm mới, thông tin khuyến mãi, phản hồi báo lỗi hoặc các thông báo cá nhân hóa khác.
+2.  Thành phần chính
+                                    * Trường nhập tiêu đề thông báo (title)
+                                    * Trường nhập nội dung thông báo (message)
+                                    * Nút gửi thông báo
+3.  Hành động người dùng
+Quản trị viên nhập tiêu đề và nội dung thông báo phù hợp. Sau khi điền đầy đủ, quản trị viên bấm nút “Gửi” để gửi thông báo đi. Hệ thống sẽ xác nhận nếu gửi thành công hoặc hiển thị lỗi nếu còn thiếu thông tin cần thiết.
+4.  Hình minh họa giao diện
+  
+
+	  
+
+	Hình 6.23: Giao diện gửi thông báo. Hình minh họa gồm hai giao diện biểu mẫu gửi thông báo. Hình bên trái thể hiện giao diện gửi thông báo cho toàn bộ khách hàng, trong đó quản trị viên nhập tiêu đề (title) và nội dung thông báo (message) vào các trường tương ứng, sau đó nhấn nút Gửi để gửi thông báo hàng loạt. Hình bên phải là giao diện gửi thông báo cho một khách hàng cụ thể, cũng gồm trường title và message giống như bên trái. Cả hai giao diện đều được thiết kế đơn giản, dễ sử dụng, phục vụ nhu cầu tương tác nhanh chóng và hiệu quả giữa quản trị viên với khách hàng.
+6.1.2.9. Giao diện Quản lý báo lỗi
+1.  Mô tả chức năng
+Giao diện này cho phép quản trị viên xem danh sách các lỗi hệ thống được người dùng báo cáo trong quá trình sử dụng trang web. Quản trị viên có thể xem chi tiết từng lỗi bao gồm nội dung lỗi, thời gian gửi, thông tin người dùng gửi báo cáo. Đồng thời, quản trị viên cũng có thể phản hồi lại lỗi bằng cách nhập nội dung phản hồi và gửi lại cho người dùng.
+2.  Thành phần chính
+                                    * Danh sách lỗi do người dùng báo cáo (gồm nội dung lỗi, thời gian gửi, người gửi).
+                                    * Nút để phản hồi dưới mỗi nội dung lỗi.
+                                    * Trường nhập phản hồi từ quản trị viên.
+                                    * Nút gửi phản hồi.
+3.  Hành động người dùng
+                                    * Quản trị viên duyệt danh sách các lỗi đã báo.
+                                    * Chọn lỗi cần xử lý và thực hiện việc nhập phản hồi để gửi lại cho người dùng một cách kịp thời và phù hợp.
+                                    * Tiến hành nhập phản hồi vào ô nội dung được cung cấp để gửi lời giải thích hoặc hướng dẫn xử lý cụ thể đến người dùng đã báo lỗi.
+                                    * Nhấn nút Gửi để gửi phản hồi cho người dùng đã báo lỗi.
+4.  Hình minh họa giao diện
+  
+
+	  
+
+	Hình 6.24: Giao diện quản lý báo lỗi. Hình minh họa gồm hai phần. Hình bên trái thể hiện giao diện danh sách các lỗi được người dùng báo cáo. Mỗi lỗi được hiển thị bao gồm nội dung lỗi, thời gian gửi và thông tin người dùng báo lỗi. Quản trị viên có thể nhấp vào từng lỗi để phản hồi. Hình bên phải là giao diện hiển thị khi quản trị viên chọn một lỗi cụ thể. Tại đây, có một ô nhập để quản trị viên nhập phản hồi gửi lại cho người dùng. Bên dưới là nút "Gửi phản hồi", cho phép gửi phản hồi ngay sau khi hoàn tất. Giao diện được thiết kế trực quan nhằm giúp quản trị viên dễ dàng theo dõi, xử lý và phản hồi các báo lỗi một cách hiệu quả.
+6.2. Kiểm Thử Hệ Thống
+Bảng dưới đây mô tả các trường hợp kiểm thử (test case) cho từng chức năng chính của hệ thống, nhằm xác minh rằng các yêu cầu chức năng được thực hiện đúng theo đặc tả. Mỗi test case bao gồm thông tin về chức năng cần kiểm thử, dữ liệu đầu vào, kết quả mong đợi, người thực hiện kiểm thử, ngày kiểm thử và kết quả thực tế.
+STT
+	Tên Yêu Cầu (Chức năng/ Phi chức năng)
+	Dữ Liệu Kiểm Thử
+	Kết Quả Mong Đợi
+	Người Kiểm Thử
+	Ngày Kiểm Thử
+	Kết Quả 
+	1
+	Đăng nhập
+	Email: truonghai0126@gmail.com, Password: 0123456789
+	Đăng nhập thành công, định hướng đến trang chủ.
+	Trương Văn Hải
+	23/5/2025
+	Pass
+	2
+	Đăng nhập - Sai mật khẩu
+	Email: truonghai012@gmail.com, Password: 012345678
+	Thông báo lỗi: "Invalid email or password. Please try again."
+	Trương Văn Hải
+	23/5/2025
+	Pass
+	3
+	Admin đăng nhập
+	Email: admin@admin.com,
+Password: 012345678
+	Đăng nhập thành công, định hướng đến trang chủ admin.
+	Trương Văn Hải
+	23/5/2025
+	Pass
+	4
+	Đăng ký
+	Email: test@example.com, Password: Test123!, Fullname: Test User
+	Đăng ký thành công.
+	Trương Văn Hải
+	23/5/2025
+	Pass
+	5
+	Đăng ký - trùng email
+	Email: truonghai0126@gmail.com, Password:0123456asw3
+	Thông báo lỗi: "Email already registered".
+	Trương Văn Hải
+	23/5/2025
+	Pass
+	6
+	Tìm kiếm sản phẩm
+	Từ khóa: “Dress”
+	Hiện ra gợi ý tìm kiếm những sản phẩm có từ khóa “dress” trong tên hoặc phần mô tả
+	Trương Văn Hải
+	23/5/2025
+	Pass
+	7
+	Lọc sản phẩm
+	Category: "Men", Size: "L", Price range: $20-$50
+	Những sản phẩm thỏa mãn tiêu chí hiện ra.
+	Trương Văn Hải
+	23/5/2025
+	Pass
+	8
+	Hiện chi tiết sản phẩm
+	Nhấn vào một sản phẩm
+	Trang chi tiết sản phẩm hiện ra.
+	Trương Văn Hải
+	23/5/2025
+	Pass
+	9
+	Thêm vào giỏ hàng
+	Product_id: 3,
+Quantity: 3
+	Sản phẩm "Women's Vintage Plaid Christmas Dress, Sleeveless A-Line Party Dress" được thêm vào giỏ hàng.
+	Trương Văn Hải
+	23/5/2025
+	Pass
+	10
+	Cập nhật số lượng trong giỏ hàng
+	Product_id: 3,
+Quantity: 2
+	Sản phẩm "Women's Vintage Plaid Christmas Dress, Sleeveless A-Line Party Dress" trong giỏ hàng có số lượng là 2.
+	Trương Văn Hải
+	24/5/2025
+	Pass
+	11
+	Xóa khỏi giỏ hàng
+	Product_id: 3
+	Sản phẩm "Women's Vintage Plaid Christmas Dress, Sleeveless A-Line Party Dress" không còn trong giỏ hàng
+	Trương Văn Hải
+	24/5/2025
+	Pass
+	12
+	Thanh toán
+	Phone number: 0987112222,
+Shipping address: HN
+	Trạng thái đơn hàng là “pending”,
+định hướng đến trang mã QR
+	Trương Văn Hải
+	24/5/2025
+	Pass
+	13
+	Lịch sử đơn hàng
+	Nhấn lịch sử đơn hàng.
+	Danh sách đầy đủ các đơn hàng ở trạng thái “Paid” hiện ra.
+	Trương Văn Hải
+	24/5/2025
+	Pass
+	14
+	Chi tiết đơn hàng
+	Order_id: 1
+	Danh sách đầy đủ sản phẩm trong đơn hàng hiện ra.
+	Trương Văn Hải
+	24/5/2025
+	Pass
+	15
+	Đánh giá
+	Product_id: 3, Rating: 4, Comment: "Great quality"
+
+
+	Đánh giá và comment đã được hiện ra
+	Trương Văn Hải
+	24/5/2025
+	Pass
+	16
+	Xóa một thông báo
+	Notification_id: 3
+	Thông báo đã được xóa.
+	Trương Văn Hải
+	25/5/2025
+	Pass
+	17
+	Xóa tất cả thông báo
+	
+
+	Tất cả thông báo đã được xóa.
+	Trương Văn Hải
+	25/5/2025
+	Pass
+	18
+	Gửi một báo lỗi
+	Message: “Product 1 is overpriced”
+	Báo lỗi được gửi, admin nhận được.
+	Trương Văn Hải
+	25/5/2025
+	Pass
+	19
+	
+
+Quên mật khẩu - gửi OTP
+	Email: “truongvanhai866@gmail.com”
+	Định hướng đến trang nhập OTP, OTP đã được gửi qua email. 
+	Trương Văn Hải
+	25/5/2025
+	Pass
+	20
+	Quên mật khẩu - nhập OTP
+	OTP: 012584
+	OTP đúng, nhập mật khẩu mới đúng.
+	Trương Văn Hải
+	25/5/2025
+	Pass
+	21
+	Cập nhật thông tin cá nhân
+	Password: “0123456789”
+	Định hướng đến trang cập nhật.
+	Trương Văn Hải
+	25/5/2025
+	Pass
+	22
+	Cập nhật thông tin cá nhân - điền
+	Name: “Nguyen Anh Tu”
+	Tên người dùng được cập nhật thành “Nguyen Anh Tu”
+	Trương Văn Hải
+	25/5/2025
+	Pass
+	23
+	Thêm vào yêu thích
+	Product_id: 3
+	Sản phẩm "Women's Vintage Plaid Christmas Dress, Sleeveless A-Line Party Dress" được thêm vào yêu thích.
+	Trương Văn Hải
+	25/5/2025
+	Pass
+	24
+	Xóa khỏi yêu thích
+	Product_id: 3
+	Sản phẩm "Women's Vintage Plaid Christmas Dress, Sleeveless A-Line Party Dress" không còn trong yêu thích.
+	Trương Văn Hải
+	25/5/2025
+	Pass
+	25
+	Admin thêm tài khoản admin mới
+	Email: “admin1@admin.com”,
+Password: “0123456789”
+	Thông báo thành công.
+	Trương Văn Hải
+	26/5/2025
+	Pass
+	26
+	Admin phản hồi báo lỗi người dùng
+	Message: “Ok, I’ll fix”
+	Thông báo gửi đến đúng người dùng.
+	Trương Văn Hải
+	26/5/2025
+	Pass
+	27
+	Admin thêm khuyến mãi
+	Age/Gender: “Men”,
+Discount Percentage: “20”
+	Tất cả sản phẩm “Men” được cập nhật giá bằng 80% ban đầu.
+	Trương Văn Hải
+	26/5/2025
+	Pass
+	28
+	Admin xác nhận order đã thanh toán
+	Order_id: 3
+	Người dùng id là 5 được thông báo.
+	Trương Văn Hải
+	26/5/2025
+	Pass
+	29
+	Admin xóa một đánh giá của người dùng
+	Review_id: 2
+	Đánh giá đã được xóa.
+	Trương Văn Hải
+	26/5/2025
+	Pass
+	30
+	 Đăng xuất
+	
+
+	Trang Login hiện ra, đăng xuất thành công.
+	Trương Văn Hải
+	26/5/2025
+	Pass
+	31
+	 Chatbot - Stock Availability
+
+
+	"How do I know if a product is in stock?"
+
+
+	Câu trả lời giải thích được về cách kiểm tra số lượng của một sản phẩm, đúng 3 document được retrieve.
+	Nguyễn Anh Tú
+	30/5/2025
+	Pass
+	32
+	Chatbot - Product Search
+	"How do I search for products?”
+	Trả lời được chức năng của thanh tìm kiếm, đúng 3 document được retrieve.
+	Nguyễn Anh Tú
+	30/5/2025
+	Pass
+	33
+	 Chatbot - Product Reviews
+	"Why can't I review a product?"
+	Câu trả lời giải thích được rằng chỉ sản phẩm đã từng mua mới có thể đánh giá, đúng 3 document được retrieve.
+	Nguyễn Anh Tú
+	30/5/2025
+	Pass
+	34
+	Chatbot - Report Issue
+	"How do I report an issue?"
+	Câu trả lời giải thích rõ ràng về quy trình báo lỗi, đúng 3 document được retrieve.
+	Nguyễn Anh Tú
+	30/5/2025
+	Pass
+	35
+	 Chatbot - Question Classification
+	"How can I check my order details"
+	Câu hỏi được phân loại vào loại 2.
+	Trương Văn Hải
+	30/5/2025
+	Pass
+	36
+	Chatbot - Small Talk
+	"Hello, how are you today?"
+	Câu trả lời lịch sự và hợp lý.
+	Nguyễn Anh Tú
+	30/5/2025
+	Pass
+	37
+	Chatbot - Small Talk
+	“Heloloofdgdklnsvcc rgrfv”
+	Câu trả lời lịch sự và hợp lý.
+	Nguyễn Anh Tú
+	30/5/2025
+	Pass
+	38
+	Chatbot - Database Tool Usage
+	"How many products are in the Men category?"
+	Truy vấn SQL được tạo và thực thi đúng, trả ra đúng số sản phẩm Men.
+	Trương Văn Hải
+	1/6/2025
+	Pass
+	39
+	Chatbot - câu hỏi cá nhân
+	"What's in my cart?"
+	Truy vấn SQL được tạo và thực thi đúng, câu trả lời hợp lý liệt kê một số sản phẩm trong giỏ hàng của người dùng.
+	Trương Văn Hải
+	1/6/2025
+	Pass
+	40
+	Chatbot - câu hỏi cá nhân
+	“How many reports have I submitted?”
+	Truy vấn SQL được tạo và thực thi đúng, câu trả lời hợp lý, không vòng vo trả lời thẳng số lượng.
+	Trương Văn Hải
+	2/6/2025
+	Pass
+	41
+	Performance hệ thống
+	Number of users: 30,
+Ramp up: 5,
+Host: localhost:3000,
+Endpoints: GET /products;
+ GET /products?priceMin=0&category=Jewellery&search=s&maxRating=4&size=XL&size=M&minRating=0&priceMax=2000000&ageGender=Babies;
+GET /categories, GET /reviews
+	RPM/1 endpoint <= 1s,
+Fails: 0,
+Max < 1.5s
+	Trương Văn Hải
+	2/6/2025
+	Pass
+	42
+	Chatbot - hiểu context
+	“Answer my last question again?”
+	Trả lời được chính xác số lượng report của người sau khi đã thêm một báo lỗi.
+	Nguyễn Anh Tú
+	2/6/2025
+	Pass
+	43
+	Chatbot - Gợi ý chung chung.
+	“Suggest me a coat”
+	Câu trả lời gợi ý được những sản phẩm liên quan.
+	Nguyễn Anh Tú
+	2/6/2025
+	Pass
+	44 
+	CORS
+	Call api từ https://facebook.com
+	Request bị từ chối
+	Nguyễn Anh Tú
+	2/6/2025
+	Pass
+	45
+	Xác thực JWT
+	Login với truonghai012@gmail.com và đợi 30 phút
+	Yêu cầu đăng nhập khi vào giỏ hàng, yêu thích, …
+	Nguyễn Anh Tú
+	2/6/2025
+	Pass
+	46
+	Tương thích
+	Truy cập trang web trên trình duyệt Chrome, Edge, Firefox và hệ điều hành Window 10, 11
+	Các chức năng cơ bản hoạt động đúng.
+	Nguyễn Anh Tú
+	2/6/2025
+	Pass
+	Bảng 6.1. Danh sách các trường hợp kiểm thử hệ thống - bao gồm cả kiểm thử chức năng và phi chức năng nhằm đánh giá toàn diện mức độ đáp ứng yêu cầu của hệ thống. Trong đó, kiểm thử chức năng liệt kê các kịch bản cụ thể, mỗi hàng thể hiện một trường hợp kiểm thử với đầy đủ thông tin về đầu vào, chức năng và kết quả mong đợi. Dữ liệu kiểm thử được thiết kế để bao quát cả các tình huống hợp lệ và không hợp lệ, giúp kiểm tra tính đúng đắn và độ ổn định của hệ thống. Kết quả thực tế sẽ được so sánh với kết quả mong đợi để xác định trạng thái kiểm thử (Pass/Fail). Các trường hợp kiểm thử phi chức năng được xây dựng song song để đánh giá hiệu năng, khả năng bảo mật, khả năng tương thích và các yêu cầu chất lượng khác, từ đó giúp phát hiện sớm các lỗi tiềm ẩn và đảm bảo hệ thống vận hành hiệu quả trong thực tế.
+6.3. Tổng Kết Chương
+Chương 6 đã trình bày chi tiết quá trình cài đặt và kiểm thử hệ thống, bao gồm phần mô tả giao diện người dùng, các thành phần chức năng chính và các hoạt động tương tác trong hệ thống. Việc kiểm thử được tiến hành toàn diện với cả kiểm thử yêu cầu chức năng và phi chức năng, đảm bảo rằng hệ thống đáp ứng đúng các yêu cầu đã được đặt ra từ đầu.
+Cụ thể, đã thực hiện hơn 40 ca kiểm thử chức năng và phi chức năng, mỗi ca đều được mô tả chi tiết theo bảng với các thông tin như dữ liệu đầu vào, kết quả mong đợi, người thực hiện kiểm thử, ngày thực hiện và kết quả thực tế (pass/fail). Các kiểm thử này tập trung vào các tính năng quan trọng của hệ thống, đặc biệt là những yếu tố có tích hợp AI như chatbot hỗ trợ.
+Kết quả kiểm thử cho thấy hệ thống vận hành ổn định, chức năng chatbot hỗ trợ hoạt động đúng theo yêu cầu, mang lại trải nghiệm tốt cho người dùng. Các lỗi phát hiện được trong quá trình kiểm thử đã được ghi nhận và xử lý kịp thời, góp phần nâng cao chất lượng phần mềm.
+Tổng thể, chương này khẳng định mức độ hoàn thiện của hệ thống ở giai đoạn hiện tại, sẵn sàng triển khai trong môi trường thực tế và tiếp tục cải tiến ở các phiên bản sau.
+
+
+________________
+KẾT LUẬN
+Trong khuôn khổ môn học và quá trình nghiên cứu phát triển hệ thống, chúng em đã xây dựng thành công một website thương mại điện tử bán quần áo tích hợp chatbot hỗ trợ người dùng. Hệ thống được thiết kế và triển khai nhằm giải quyết các vấn đề thực tiễn mà các cửa hàng thời trang vừa và nhỏ thường gặp như: quản lý sản phẩm rời rạc, thiếu kênh tương tác hiệu quả với khách hàng, thao tác thủ công gây chậm trễ đơn hàng, và không có công cụ hỗ trợ tư vấn tự động.
+Hệ thống được phát triển theo mô hình Client - Server với kiến trúc phân lớp rõ ràng, nhằm đảm bảo khả năng mở rộng, dễ bảo trì và thích ứng với các thay đổi trong tương lai. Giao diện frontend sử dụng ReactJS kết hợp Tailwind CSS mang lại trải nghiệm hiện đại, thân thiện với người dùng. Backend sử dụng FastAPI hỗ trợ xử lý nhanh và hiệu quả, cơ sở dữ liệu được thiết kế tối ưu với MySQL và SQLAlchemy. Đặc biệt, hệ thống tích hợp chatbot thông minh sử dụng mô hình Retrieval-Augmented Generation (RAG) để tăng cường khả năng tư vấn tự động.
+Các chức năng chính của hệ thống bao gồm: đăng ký, đăng nhập và quản lý thông tin cá nhân người dùng; quản lý sản phẩm, danh mục và số lượng tồn kho; tìm kiếm và lọc sản phẩm theo từ khóa, kích cỡ, giá hoặc đánh giá; thêm sản phẩm vào giỏ hàng và thực hiện thanh toán qua mã QR; theo dõi trạng thái đơn hàng; đánh giá sản phẩm và xem đánh giá từ những người dùng khác; quản lý chương trình khuyến mãi, thông báo và thống kê doanh thu; hỗ trợ tư vấn qua chatbot tích hợp; cũng như cho phép quản trị viên xử lý phản hồi và báo lỗi từ người dùng.
+Tất cả các yêu cầu chức năng và phi chức năng đều đã được kiểm thử kỹ lưỡng với hơn 40 ca kiểm thử khác nhau. Hệ thống cho thấy khả năng đáp ứng tốt về hiệu năng, bảo mật, khả năng tương thích và trải nghiệm người dùng.
+Thông qua dự án này, chúng em không chỉ nâng cao kiến thức chuyên môn về phát triển phần mềm mà còn rèn luyện kỹ năng làm việc nhóm, phân tích yêu cầu, thiết kế hệ thống, triển khai và kiểm thử phần mềm toàn diện. Chúng em hy vọng hệ thống có thể được áp dụng thực tiễn và làm nền tảng cho các đề tài mở rộng sau này như gợi ý sản phẩm cá nhân hóa, chatbot đa ngữ, tích hợp mạng xã hội và phân tích hành vi khách hàng.
+TÀI LIỆU THAM KHẢO
+                                    1. ReactJS Official Documentation – https://reactjs.org
+
+                                    2. Tailwind CSS Official Documentation – https://tailwindcss.com
+
+                                    3. FastAPI Official Documentation – https://fastapi.tiangolo.com
+
+                                    4. SQLAlchemy Documentation – https://docs.sqlalchemy.org
+
+                                    5. Alembic Migration Tool – https://alembic.sqlalchemy.org
+
+                                    6. MySQL Reference Manual – https://dev.mysql.com/doc/
+
+                                    7. LangChain Documentation – https://docs.langchain.com
+
+                                    8. LangGraph for Conversational AI – https://docs.langgraph.dev
+
+                                    9. JWT Introduction and Guide – https://jwt.io/introduction
+
+                                    10.  Locust Performance Testing – https://locust.io
+
+                                    11.  Bcrypt Password Hashing – https://pypi.org/project/bcrypt/
+
+                                    12.  Material Design Guidelines – https://m3.material.io
+
+                                    13.  Shopify vs. WooCommerce vs. Tiki: A Comparative Study – [Tạp chí Công nghệ Thông tin, 2023]
+
+                                    14.  Research Paper on RAG Model for Conversational AI – arXiv:2005.11401

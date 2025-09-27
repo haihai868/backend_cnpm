@@ -24,6 +24,7 @@ jobs:
       # upload from local to VM using scp
       - name: Upload project to VM
         run: |
+          ssh ${{ secrets.GCP_USER }}@${{ secrets.GCP_HOST }} "rm -rf ~/fashion_app"
           scp -r . ${{ secrets.GCP_USER }}@${{ secrets.GCP_HOST }}:~/fashion_app
 
       - name: Deploy on VM

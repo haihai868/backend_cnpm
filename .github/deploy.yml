@@ -1,0 +1,37 @@
+name: Deploy FashionX
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.GCP_HOST }} >> ~/.ssh/known_hosts
+
+      # upload from local to VM using scp
+      - name: Upload project to VM
+        run: |
+          scp -r . ${{ secrets.GCP_USER }}@${{ secrets.GCP_HOST }}:~/fashion_app
+
+      - name: Deploy on VM
+        run: |
+          ssh ${{ secrets.GCP_USER }}@${{ secrets.GCP_HOST }} << 'EOF'
+            cd ~/fashion_app
+            docker stop fashion_app_container || true
+            docker rm fashion_app_container || true
+            docker rmi fashion_app_image || true
+
+            docker build -t fashion_app_image .
+            docker run -d -p 80:80 --name fashion_app_container --env-file .env fashion_app_image
+          EOF

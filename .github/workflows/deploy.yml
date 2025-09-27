@@ -36,5 +36,5 @@ jobs:
             docker rmi fashion_app_image || true
 
             docker build -t fashion_app_image .
-            docker run -d -p 80:80 --name fashion_app_container --env-file .env fashion_app_image
+            docker run -d -p 80:80 --name fashion_app_container --env-file ~/envs/fashion_app.env fashion_app_image
           EOF

@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import APIRouter, Depends
 from app import schemas, models, security
-from chatbot.real_main_agent import graph, role
+from app.services import chatbot_service
 
 router = APIRouter(
     prefix='/chatbot',
@@ -11,8 +11,4 @@ router = APIRouter(
 
 @router.post('/ask', response_model=List[schemas.ChatbotResponse])
 def ask_question(request: schemas.ChatbotRequest, user: models.User = Depends(security.get_current_user)):
-    config = {"configurable": {"thread_id": str(user.id)}}
-
-    res = graph.invoke({"user_id": str(user.id) ,"messages": request.question}, config)
-
-    return [{"role": role(m), "content": m.content} for m in res["messages"]]
+    return chatbot_service.ask_question(request, user)

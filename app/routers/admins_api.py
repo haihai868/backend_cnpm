@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app import schemas, models, security
+from app.services import admins_service
 from app.database_connect import get_db
 
 router = APIRouter(
@@ -11,36 +12,17 @@ router = APIRouter(
 
 @router.post('/',status_code=201, response_model=schemas.AdminOut)
 def create_admin(admin: schemas.AdminCreate, db: Session = Depends(get_db)):
-    query = db.query(models.Admin).filter(models.Admin.email == admin.email)
-    if query.first():
-        raise HTTPException(status_code=400, detail='Email already registered')
-
-    admin.password = security.hash(admin.password)
-    new_admin = models.Admin(**admin.model_dump())
-    db.add(new_admin)
-    db.commit()
-    db.refresh(new_admin)
-    return new_admin
+    return admins_service.create_admin(admin, db)
 
 @router.get('/{id}', response_model=schemas.AdminOut)
 def get_admin(id: int, db: Session = Depends(get_db)):
-    admin = db.query(models.Admin).filter(models.Admin.id == id).first()
-    if not admin:
-        raise HTTPException(status_code=404, detail="Admin not found")
-
-    return admin
+    return admins_service.get_admin(id, db)
 
 @router.post('/password-verification/{password}')
 def verify_password(password: str, admin: models.Admin = Depends(security.get_current_admin)):
-    if security.verify(password, admin.password):
-        return {'message': 'Password is correct'}
-    raise HTTPException(status_code=403, detail='Incorrect password')
+    return admins_service.verify_password(password, admin)
 
 @router.put('/', response_model=schemas.AdminOut)
 def update_admin(updated_admin: schemas.AdminCreate, db: Session = Depends(get_db), admin: models.Admin = Depends(security.get_current_admin)):
-    admin_query = db.query(models.Admin).filter(models.Admin.id == admin.id)
-    updated_admin.password = security.hash(updated_admin.password)
-    admin_query.update(updated_admin.model_dump(), synchronize_session=False)
-    db.commit()
-    return admin_query.first()
+    return admins_service.update_admin(updated_admin, db, admin)
 

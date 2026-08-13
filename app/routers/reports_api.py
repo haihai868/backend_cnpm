@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app import schemas, models, security
+from app.services import reports_service
 from app.database_connect import get_db
 
 router = APIRouter(
@@ -13,75 +14,29 @@ router = APIRouter(
 
 @router.post('/', status_code=201, response_model=schemas.ReportOut)
 def create_report(report: schemas.ReportCreate, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
-    report = models.Report(**report.model_dump(), user_id=user.id)
-    db.add(report)
-    db.commit()
-    db.refresh(report)
-
-    report.fullname = user.fullname
-    return report
+    return reports_service.create_report(report, db, user)
 
 @router.delete('/{id}')
 def delete_report(id: int, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
-    report = db.query(models.Report).filter(models.Report.id == id).first()
-    if not report:
-        raise HTTPException(status_code=404, detail="Report not found")
-
-    if report.user_id != user.id:
-        raise HTTPException(status_code=403, detail="You can only delete your own reports")
-
-    db.delete(report)
-    db.commit()
-    return {'message': 'Report deleted successfully'}
+    return reports_service.delete_report(id, db, user)
 
 
 @router.put('/{id}', response_model=schemas.ReportOut)
 def update_report(report: schemas.ReportCreate, id: int, db: Session = Depends(get_db), user: models.User = Depends(security.get_current_user)):
-    report_db = db.query(models.Report).filter(models.Report.id == id).first()
-    if not report_db:
-        raise HTTPException(status_code=404, detail="Report not found")
-
-    if report_db.user_id != user.id:
-        raise HTTPException(status_code=403, detail="You can only update your own reports")
-
-    report_db.message = report.message
-    db.commit()
-    db.refresh(report_db)
-    report_db.fullname = user.fullname
-    return report_db
+    return reports_service.update_report(report, id, db, user)
 
 @router.put('/admin/{id}', response_model=schemas.ReportOut)
 def admin_update_report(report: schemas.ReportCreate, id: int, db: Session = Depends(get_db), admin: models.Admin = Depends(security.get_current_admin)):
-    report_db = db.query(models.Report).filter(models.Report.id == id).first()
-    if not report_db:
-        raise HTTPException(status_code=404, detail="Report not found")
-
-    report_db.message = report.message
-    db.commit()
-    db.refresh(report_db)
-
-    report_db.fullname = report_db.user.fullname
-    return report_db
+    return reports_service.admin_update_report(report, id, db, admin)
 
 @router.get('/{id}', response_model=schemas.ReportOut)
 def get_report(id: int, db: Session = Depends(get_db)):
-    report = db.query(models.Report).filter(models.Report.id == id).first()
-    if not report:
-        raise HTTPException(status_code=404, detail="Report not found")
-
-    report.fullname = report.user.fullname
-    return report
+    return reports_service.get_report(id, db)
 
 @router.get('/users/{id}', response_model=List[schemas.ReportOut])
 def get_reports_by_user_id(id: int, db: Session = Depends(get_db)):
-    reports = db.query(models.Report).filter(models.Report.user_id == id).all()
-
-    reports = [schemas.ReportOut(**report.__dict__, fullname=report.user.fullname) for report in reports]
-    return reports
+    return reports_service.get_reports_by_user_id(id, db)
 
 @router.get('/', response_model=List[schemas.ReportOut])
 def get_all_reports(db: Session = Depends(get_db)):
-    reports = db.query(models.Report).all()
-
-    reports = [schemas.ReportOut(**report.__dict__, fullname=report.user.fullname) for report in reports]
-    return reports
+    return reports_service.get_all_reports(db)
